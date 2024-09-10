@@ -9,13 +9,16 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Report implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private UUID id;
+    private User author;
     private String description;
     private List<String> imageURL = new ArrayList<>();
     private String location;
@@ -23,6 +26,7 @@ public class Report implements Serializable {
     private Integer reportType;
     private Integer reportStatus;
     private Instant timeStamp;
+    private List<Comment> comments = new ArrayList<>();
 
     public Report() {
     }
@@ -36,18 +40,27 @@ public class Report implements Serializable {
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
+        setComments(builder.comments);
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public String getDescription() {
@@ -118,6 +131,14 @@ public class Report implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public Builder toBuilder() {
 
         return new Builder()
@@ -128,11 +149,12 @@ public class Report implements Serializable {
                 .withSeverityLevel(this.severityLevel)
                 .withReportType(this.reportStatus)
                 .withReportStatus(this.reportStatus)
-                .withTimeStamp(this.timeStamp);
+                .withTimeStamp(this.timeStamp)
+                .withComments(this.comments);
     }
 
     public static final class Builder {
-        private String id;
+        private UUID id;
         private String description;
         private List<String> imageURL;
         private String location;
@@ -140,11 +162,12 @@ public class Report implements Serializable {
         private Integer reportType;
         private Integer reportStatus;
         private Instant timeStamp;
+        private List<Comment> comments;
 
         private Builder() {
         }
 
-        public Builder withId(String id) {
+        public Builder withId(UUID id) {
             this.id = id;
             return this;
         }
@@ -184,8 +207,42 @@ public class Report implements Serializable {
             return this;
         }
 
+        public Builder withComments(List<Comment> comments) {
+            this.comments = comments;
+            return this;
+        }
+
         public Report build() {
             return new Report(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Report report = (Report) o;
+        return Objects.equals(id, report.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "id=" + id +
+                ", author=" + author +
+                ", description='" + description + '\'' +
+                ", imageURL=" + imageURL +
+                ", location='" + location + '\'' +
+                ", severityLevel=" + severityLevel +
+                ", reportType=" + reportType +
+                ", reportStatus=" + reportStatus +
+                ", timeStamp=" + timeStamp +
+                ", comments=" + comments +
+                '}';
     }
 }
