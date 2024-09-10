@@ -15,3 +15,4 @@ Funcionalidades:
 ## Modelo Conceitual
 
 **Diagrama Entidade-Relacionamento**
+![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/blob/main/diagrams/diagram-der.png)
