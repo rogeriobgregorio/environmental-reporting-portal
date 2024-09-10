@@ -11,3 +11,7 @@ Funcionalidades:
 - Geolocalização das denúncias.
 - Classificação das denúncias por gravidade e tipo.
 - Sistema de acompanhamento do status da denúncia.
+
+## Modelo Conceitual
+
+**Diagrama Entidade-Relacionamento**

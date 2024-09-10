@@ -4,27 +4,38 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Comment implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
+    private UUID id;
     private User author;
+    private Report report;
     private String content;
     private Instant timestamp;
 
     public Comment() {
     }
 
-    private Comment(Builder builder) {
-        setAuthor(builder.author);
-        setContent(builder.content);
-        setTimestamp(builder.timestamp);
+    public Comment(UUID id, User author, Report report,
+                   String content, Instant timestamp) {
+
+        this.id = id;
+        this.author = author;
+        this.report = report;
+        this.content = content;
+        this.timestamp = timestamp;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public User getAuthor() {
@@ -33,6 +44,14 @@ public class Comment implements Serializable {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
     }
 
     public String getContent() {
@@ -51,59 +70,25 @@ public class Comment implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public Builder toBuilder() {
-
-        return new Builder()
-                .withAuthor(this.author)
-                .withContent(this.content)
-                .withTimestamp(this.timestamp);
-    }
-
-    public static final class Builder {
-        private User author;
-        private String content;
-        private Instant timestamp;
-
-        private Builder() {
-        }
-
-        public Builder withAuthor(User author) {
-            this.author = author;
-            return this;
-        }
-
-        public Builder withContent(String content) {
-            this.content = content;
-            return this;
-        }
-
-        public Builder withTimestamp(Instant timestamp) {
-            this.timestamp = timestamp;
-            return this;
-        }
-
-        public Comment build() {
-            return new Comment(this);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(author, comment.author);
+        return Objects.equals(id, comment.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(author);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Comment{" +
-                "author=" + author +
+                "id=" + id +
+                ", author=" + author +
+                ", report=" + report +
                 ", content='" + content + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
