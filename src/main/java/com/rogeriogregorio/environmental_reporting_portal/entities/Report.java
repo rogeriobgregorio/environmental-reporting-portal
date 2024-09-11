@@ -10,22 +10,21 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Report implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private String id;
     private User author;
     private String description;
-    private List<String> imageURL = new ArrayList<>();
     private String location;
     private Integer severityLevel;
     private Integer reportType;
     private Integer reportStatus;
     private Instant timeStamp;
+    private List<String> imageURL = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
     public Report() {
@@ -34,12 +33,12 @@ public class Report implements Serializable {
     private Report(Builder builder) {
         setId(builder.id);
         setDescription(builder.description);
-        setImageURL(builder.imageURL);
         setLocation(builder.location);
         severityLevel = builder.severityLevel;
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
+        setImageURL(builder.imageURL);
         setComments(builder.comments);
     }
 
@@ -47,11 +46,11 @@ public class Report implements Serializable {
         return new Builder();
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -69,14 +68,6 @@ public class Report implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<String> getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(List<String> imageURL) {
-        this.imageURL = imageURL;
     }
 
     public String getLocation() {
@@ -131,6 +122,14 @@ public class Report implements Serializable {
         this.timeStamp = timeStamp;
     }
 
+    public List<String> getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(List<String> imageURL) {
+        this.imageURL = imageURL;
+    }
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -144,41 +143,36 @@ public class Report implements Serializable {
         return new Builder()
                 .withId(this.id)
                 .withDescription(this.description)
-                .withImageURL(this.imageURL)
                 .withLocation(this.location)
                 .withSeverityLevel(this.severityLevel)
                 .withReportType(this.reportStatus)
                 .withReportStatus(this.reportStatus)
                 .withTimeStamp(this.timeStamp)
+                .withImageURL(this.imageURL)
                 .withComments(this.comments);
     }
 
     public static final class Builder {
-        private UUID id;
+        private String id;
         private String description;
-        private List<String> imageURL;
         private String location;
         private Integer severityLevel;
         private Integer reportType;
         private Integer reportStatus;
         private Instant timeStamp;
+        private List<String> imageURL;
         private List<Comment> comments;
 
         private Builder() {
         }
 
-        public Builder withId(UUID id) {
+        public Builder withId(String id) {
             this.id = id;
             return this;
         }
 
         public Builder withDescription(String description) {
             this.description = description;
-            return this;
-        }
-
-        public Builder withImageURL(List<String> imageURL) {
-            this.imageURL = imageURL;
             return this;
         }
 
@@ -204,6 +198,11 @@ public class Report implements Serializable {
 
         public Builder withTimeStamp(Instant timeStamp) {
             this.timeStamp = timeStamp;
+            return this;
+        }
+
+        public Builder withImageURL(List<String> imageURL) {
+            this.imageURL = imageURL;
             return this;
         }
 
@@ -233,15 +232,15 @@ public class Report implements Serializable {
     @Override
     public String toString() {
         return "Report{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", author=" + author +
                 ", description='" + description + '\'' +
-                ", imageURL=" + imageURL +
                 ", location='" + location + '\'' +
                 ", severityLevel=" + severityLevel +
                 ", reportType=" + reportType +
                 ", reportStatus=" + reportStatus +
                 ", timeStamp=" + timeStamp +
+                ", imageURL=" + imageURL +
                 ", comments=" + comments +
                 '}';
     }

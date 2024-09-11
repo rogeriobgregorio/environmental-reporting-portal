@@ -4,14 +4,13 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Comment implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private String id;
     private User author;
     private Report report;
     private String content;
@@ -20,7 +19,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(UUID id, User author, Report report,
+    public Comment(String id, User author, Report report,
                    String content, Instant timestamp) {
 
         this.id = id;
@@ -30,11 +29,11 @@ public class Comment implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -4,22 +4,22 @@ import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRol
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class User implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private String id;
     private String name;
     private String email;
     private String password;
     private UserRole role;
-
+    private Instant timeStamp;
     private List<Report> reports = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
@@ -32,6 +32,7 @@ public class User implements Serializable {
         setEmail(builder.email);
         setPassword(builder.password);
         setRole(builder.role);
+        setTimeStamp(builder.timeStamp);
         setReports(builder.reports);
         setComments(builder.comments);
     }
@@ -41,11 +42,11 @@ public class User implements Serializable {
     }
 
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -81,6 +82,14 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public Instant getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Instant timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public List<Report> getReports() {
         return reports;
     }
@@ -105,6 +114,7 @@ public class User implements Serializable {
                 .withEmail(this.email)
                 .withPassword(this.password)
                 .withRole(this.role)
+                .withTimestamp(this.timeStamp)
                 .withReports(this.reports)
                 .withComments(this.comments);
     }
@@ -123,18 +133,19 @@ public class User implements Serializable {
     }
 
     public static final class Builder {
-        private UUID id;
+        private String id;
         private String name;
         private String email;
         private String password;
         private UserRole role;
+        private Instant timeStamp;
         private List<Report> reports;
         private List<Comment> comments;
 
         private Builder() {
         }
 
-        public Builder withId(UUID id) {
+        public Builder withId(String id) {
             this.id = id;
             return this;
         }
@@ -159,6 +170,11 @@ public class User implements Serializable {
             return this;
         }
 
+        public Builder withTimestamp(Instant timestamp) {
+            this.timeStamp = timestamp;
+            return this;
+        }
+
         public Builder withReports(List<Report> reports) {
             this.reports = reports;
             return this;
@@ -177,11 +193,12 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
+                ", timeStamp=" + timeStamp +
                 ", reports=" + reports +
                 ", comments=" + comments +
                 '}';

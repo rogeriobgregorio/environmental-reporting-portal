@@ -7,10 +7,14 @@ de princípios SOLID, além de Design Patterns para criar um software flexível,
 Utiliza tecnologias como JWT, JUnit, Mockito e log4j2 para garantir a qualidade e eficiência do sistema.
 
 Funcionalidades:
-- Cadastro de denúncias com fotos e descrição.
+- Cadastro de Usuários e Administradores.
+- Login seguro com JWT.
+- Postagem de denúncias com fotos, descrição.
+- Opção de comentar postagens de denúncias.
 - Geolocalização das denúncias.
 - Classificação das denúncias por gravidade e tipo.
 - Sistema de acompanhamento do status da denúncia.
+- Envio de e-mail ao Usuário com atualizações de status.
 
 ## Modelo Conceitual
 
