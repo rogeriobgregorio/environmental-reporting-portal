@@ -3,6 +3,8 @@ package com.rogeriogregorio.environmental_reporting_portal.entities;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportType;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.SeverityLevel;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,11 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Document(collation = "reports")
 public class Report implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Id
     private String id;
     private User author;
     private String description;
@@ -28,6 +32,24 @@ public class Report implements Serializable {
     private List<Comment> comments = new ArrayList<>();
 
     public Report() {
+    }
+
+    public Report(String id, User author, String description,
+                  String location, Integer severityLevel,
+                  Integer reportType, Integer reportStatus,
+                  Instant timeStamp, List<String> imageURL,
+                  List<Comment> comments) {
+
+        this.id = id;
+        this.author = author;
+        this.description = description;
+        this.location = location;
+        this.severityLevel = severityLevel;
+        this.reportType = reportType;
+        this.reportStatus = reportStatus;
+        this.timeStamp = timeStamp;
+        this.imageURL = imageURL;
+        this.comments = comments;
     }
 
     private Report(Builder builder) {
