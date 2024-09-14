@@ -1,30 +1,21 @@
-package com.rogeriogregorio.environmental_reporting_portal.entities;
+package com.rogeriogregorio.environmental_reporting_portal.dto.request;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportType;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.SeverityLevel;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-@Document(collation = "reports")
-public class Report implements Serializable {
+public class ReportRequest implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id;
-
-    @DBRef
-    private User author;
+    private String authorId;
     private String description;
     private String location;
     private Integer severityLevel;
@@ -32,13 +23,12 @@ public class Report implements Serializable {
     private Integer reportStatus;
     private Instant timeStamp;
     private List<String> imageURL = new ArrayList<>();
-    private List<Comment> comments = new ArrayList<>();
 
-    public Report() {
+    public ReportRequest() {
     }
 
-    private Report(Builder builder) {
-        setId(builder.id);
+    private ReportRequest(Builder builder) {
+        setAuthorId(builder.authorId);
         setDescription(builder.description);
         setLocation(builder.location);
         severityLevel = builder.severityLevel;
@@ -46,27 +36,18 @@ public class Report implements Serializable {
         reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
         setImageURL(builder.imageURL);
-        setComments(builder.comments);
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public String getId() {
-        return id;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public String getDescription() {
@@ -85,8 +66,8 @@ public class Report implements Serializable {
         this.location = location;
     }
 
-    public SeverityLevel getSeverityLevel() {
-        return SeverityLevel.valueOf(severityLevel);
+    public Integer getSeverityLevel() {
+        return severityLevel;
     }
 
     public void setSeverityLevel(SeverityLevel severityLevel) {
@@ -97,8 +78,8 @@ public class Report implements Serializable {
         this.severityLevel = severityLevel.getCode();
     }
 
-    public ReportType getReportType() {
-        return ReportType.valueOf(reportType);
+    public Integer getReportType() {
+        return reportType;
     }
 
     public void setReportType(ReportType reportType) {
@@ -109,8 +90,8 @@ public class Report implements Serializable {
         this.reportType = reportType.getCode();
     }
 
-    public ReportStatus getReportStatus() {
-        return ReportStatus.valueOf(reportStatus);
+    public Integer getReportStatus() {
+        return reportStatus;
     }
 
     public void setReportStatus(ReportStatus reportStatus) {
@@ -137,30 +118,22 @@ public class Report implements Serializable {
         this.imageURL = imageURL;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
     public Builder toBuilder() {
 
         return new Builder()
-                .withId(this.id)
+                .withAuthorId(this.authorId)
                 .withDescription(this.description)
                 .withLocation(this.location)
                 .withSeverityLevel(this.severityLevel)
-                .withReportType(this.reportStatus)
+                .withReportType(this.reportType)
                 .withReportStatus(this.reportStatus)
                 .withTimeStamp(this.timeStamp)
-                .withImageURL(this.imageURL)
-                .withComments(this.comments);
+                .withImageURL(this.imageURL);
     }
 
+
     public static final class Builder {
-        private String id;
+        private String authorId;
         private String description;
         private String location;
         private Integer severityLevel;
@@ -168,13 +141,12 @@ public class Report implements Serializable {
         private Integer reportStatus;
         private Instant timeStamp;
         private List<String> imageURL;
-        private List<Comment> comments;
 
         private Builder() {
         }
 
-        public Builder withId(String id) {
-            this.id = id;
+        public Builder withAuthorId(String authorId) {
+            this.authorId = authorId;
             return this;
         }
 
@@ -213,42 +185,8 @@ public class Report implements Serializable {
             return this;
         }
 
-        public Builder withComments(List<Comment> comments) {
-            this.comments = comments;
-            return this;
+        public ReportRequest build() {
+            return new ReportRequest(this);
         }
-
-        public Report build() {
-            return new Report(this);
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Report report = (Report) o;
-        return Objects.equals(id, report.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Report{" +
-                "id='" + id + '\'' +
-                ", author=" + author +
-                ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", severityLevel=" + severityLevel +
-                ", reportType=" + reportType +
-                ", reportStatus=" + reportStatus +
-                ", timeStamp=" + timeStamp +
-                ", imageURL=" + imageURL +
-                ", comments=" + comments +
-                '}';
     }
 }

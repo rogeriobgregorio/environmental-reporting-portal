@@ -1,29 +1,20 @@
-package com.rogeriogregorio.environmental_reporting_portal.entities;
+package com.rogeriogregorio.environmental_reporting_portal.dto.response;
 
-import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
-import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportType;
-import com.rogeriogregorio.environmental_reporting_portal.entities.enums.SeverityLevel;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.rogeriogregorio.environmental_reporting_portal.entities.Comment;
+import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-@Document(collation = "reports")
-public class Report implements Serializable {
+public class ReportResponse implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
     private String id;
-
-    @DBRef
     private User author;
     private String description;
     private String location;
@@ -34,16 +25,17 @@ public class Report implements Serializable {
     private List<String> imageURL = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
-    public Report() {
+    public ReportResponse() {
     }
 
-    private Report(Builder builder) {
+    private ReportResponse(Builder builder) {
         setId(builder.id);
+        setAuthor(builder.author);
         setDescription(builder.description);
         setLocation(builder.location);
-        severityLevel = builder.severityLevel;
-        reportType = builder.reportType;
-        reportStatus = builder.reportStatus;
+        setSeverityLevel(builder.severityLevel);
+        setReportType(builder.reportType);
+        setReportStatus(builder.reportStatus);
         setTimeStamp(builder.timeStamp);
         setImageURL(builder.imageURL);
         setComments(builder.comments);
@@ -85,40 +77,28 @@ public class Report implements Serializable {
         this.location = location;
     }
 
-    public SeverityLevel getSeverityLevel() {
-        return SeverityLevel.valueOf(severityLevel);
+    public Integer getSeverityLevel() {
+        return severityLevel;
     }
 
-    public void setSeverityLevel(SeverityLevel severityLevel) {
-        if (severityLevel == null) {
-            throw new IllegalArgumentException("The severity level cannot be null.");
-        }
-
-        this.severityLevel = severityLevel.getCode();
+    public void setSeverityLevel(Integer severityLevel) {
+        this.severityLevel = severityLevel;
     }
 
-    public ReportType getReportType() {
-        return ReportType.valueOf(reportType);
+    public Integer getReportType() {
+        return reportType;
     }
 
-    public void setReportType(ReportType reportType) {
-        if (reportType == null) {
-            throw new IllegalArgumentException("The report type cannot be null.");
-        }
-
-        this.reportType = reportType.getCode();
+    public void setReportType(Integer reportType) {
+        this.reportType = reportType;
     }
 
-    public ReportStatus getReportStatus() {
-        return ReportStatus.valueOf(reportStatus);
+    public Integer getReportStatus() {
+        return reportStatus;
     }
 
-    public void setReportStatus(ReportStatus reportStatus) {
-        if (reportStatus == null) {
-            throw new IllegalArgumentException("The report status cannot be null.");
-        }
-
-        this.reportStatus = reportStatus.getCode();
+    public void setReportStatus(Integer reportStatus) {
+        this.reportStatus = reportStatus;
     }
 
     public Instant getTimeStamp() {
@@ -145,14 +125,16 @@ public class Report implements Serializable {
         this.comments = comments;
     }
 
+
     public Builder toBuilder() {
 
         return new Builder()
                 .withId(this.id)
+                .withAuthor(this.author)
                 .withDescription(this.description)
                 .withLocation(this.location)
                 .withSeverityLevel(this.severityLevel)
-                .withReportType(this.reportStatus)
+                .withReportType(this.reportType)
                 .withReportStatus(this.reportStatus)
                 .withTimeStamp(this.timeStamp)
                 .withImageURL(this.imageURL)
@@ -161,6 +143,7 @@ public class Report implements Serializable {
 
     public static final class Builder {
         private String id;
+        private User author;
         private String description;
         private String location;
         private Integer severityLevel;
@@ -175,6 +158,11 @@ public class Report implements Serializable {
 
         public Builder withId(String id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder withAuthor(User author) {
+            this.author = author;
             return this;
         }
 
@@ -218,37 +206,8 @@ public class Report implements Serializable {
             return this;
         }
 
-        public Report build() {
-            return new Report(this);
+        public ReportResponse build() {
+            return new ReportResponse(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Report report = (Report) o;
-        return Objects.equals(id, report.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Report{" +
-                "id='" + id + '\'' +
-                ", author=" + author +
-                ", description='" + description + '\'' +
-                ", location='" + location + '\'' +
-                ", severityLevel=" + severityLevel +
-                ", reportType=" + reportType +
-                ", reportStatus=" + reportStatus +
-                ", timeStamp=" + timeStamp +
-                ", imageURL=" + imageURL +
-                ", comments=" + comments +
-                '}';
     }
 }

@@ -2,6 +2,7 @@ package com.rogeriogregorio.environmental_reporting_portal.entities;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
@@ -23,24 +24,15 @@ public class User implements Serializable {
     private String email;
     private String password;
     private UserRole role;
-    private Instant timeStamp;
+    private Instant timestamp;
+
+    @DBRef
     private List<Report> reports = new ArrayList<>();
+
+    @DBRef
     private List<Comment> comments = new ArrayList<>();
 
     public User() {
-    }
-
-    public User(String id, String name, String email, String password, UserRole role,
-                Instant timeStamp, List<Report> reports, List<Comment> comments) {
-
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.timeStamp = timeStamp;
-        this.reports = reports;
-        this.comments = comments;
     }
 
     private User(Builder builder) {
@@ -49,7 +41,7 @@ public class User implements Serializable {
         setEmail(builder.email);
         setPassword(builder.password);
         setRole(builder.role);
-        setTimeStamp(builder.timeStamp);
+        setTimestamp(builder.timeStamp);
         setReports(builder.reports);
         setComments(builder.comments);
     }
@@ -99,12 +91,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public Instant getTimeStamp() {
-        return timeStamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(Instant timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
     public List<Report> getReports() {
@@ -131,22 +123,9 @@ public class User implements Serializable {
                 .withEmail(this.email)
                 .withPassword(this.password)
                 .withRole(this.role)
-                .withTimestamp(this.timeStamp)
+                .withTimestamp(this.timestamp)
                 .withReports(this.reports)
                 .withComments(this.comments);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
     public static final class Builder {
@@ -208,6 +187,19 @@ public class User implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
@@ -215,7 +207,7 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", timeStamp=" + timeStamp +
+                ", timeStamp=" + timestamp +
                 ", reports=" + reports +
                 ", comments=" + comments +
                 '}';

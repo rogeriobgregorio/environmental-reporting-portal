@@ -1,35 +1,24 @@
-package com.rogeriogregorio.environmental_reporting_portal.entities;
+package com.rogeriogregorio.environmental_reporting_portal.dto.response;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
+import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
-@Document(collation = "comments")
-public class Comment implements Serializable {
+public class CommentResponse implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
     private String id;
-
-    @DBRef
     private User author;
-
-    @DBRef
     private Report report;
     private String content;
     private Instant timestamp;
 
-    public Comment() {
-    }
-
-    private Comment(Builder builder) {
+    private CommentResponse(Builder builder) {
         setId(builder.id);
         setAuthor(builder.author);
         setReport(builder.report);
@@ -126,33 +115,8 @@ public class Comment implements Serializable {
             return this;
         }
 
-        public Comment build() {
-            return new Comment(this);
+        public CommentResponse build() {
+            return new CommentResponse(this);
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", author=" + author +
-                ", report=" + report +
-                ", content='" + content + '\'' +
-                ", timestamp=" + timestamp +
-                '}';
-    }
 }
-
