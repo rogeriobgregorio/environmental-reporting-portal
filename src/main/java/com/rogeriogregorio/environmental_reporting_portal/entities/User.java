@@ -23,6 +23,7 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
+    private String profilePicURL;
     private UserRole role;
     private Instant timestamp;
 
@@ -40,6 +41,7 @@ public class User implements Serializable {
         setName(builder.name);
         setEmail(builder.email);
         setPassword(builder.password);
+        setProfilePicURL(builder.profilePicURL);
         setRole(builder.role);
         setTimestamp(builder.timeStamp);
         setReports(builder.reports);
@@ -83,6 +85,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getProfilePicURL() {
+        return profilePicURL;
+    }
+
+    public void setProfilePicURL(String profilePicURL) {
+        this.profilePicURL = profilePicURL;
+    }
+
     public UserRole getRole() {
         return role;
     }
@@ -122,6 +132,7 @@ public class User implements Serializable {
                 .withName(this.name)
                 .withEmail(this.email)
                 .withPassword(this.password)
+                .withProfilePicURL(this.profilePicURL)
                 .withRole(this.role)
                 .withTimestamp(this.timestamp)
                 .withReports(this.reports)
@@ -133,6 +144,7 @@ public class User implements Serializable {
         private String name;
         private String email;
         private String password;
+        private String profilePicURL;
         private UserRole role;
         private Instant timeStamp;
         private List<Report> reports;
@@ -158,6 +170,11 @@ public class User implements Serializable {
 
         public Builder withPassword(String password) {
             this.password = password;
+            return this;
+        }
+
+        public Builder withProfilePicURL(String profilePicURL) {
+            this.profilePicURL = profilePicURL;
             return this;
         }
 
@@ -206,8 +223,9 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", profilePicURL='" + profilePicURL + '\'' +
                 ", role=" + role +
-                ", timeStamp=" + timestamp +
+                ", timestamp=" + timestamp +
                 ", reports=" + reports +
                 ", comments=" + comments +
                 '}';

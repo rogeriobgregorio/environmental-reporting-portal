@@ -3,6 +3,7 @@ package com.rogeriogregorio.environmental_reporting_portal.dto.request;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportType;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.SeverityLevel;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ public class ReportRequest implements Serializable {
     private Integer reportType;
     private Integer reportStatus;
     private Instant timeStamp;
-    private List<String> imageURL = new ArrayList<>();
+    private transient List<MultipartFile> imageURLs = new ArrayList<>();
 
     public ReportRequest() {
     }
@@ -35,7 +36,7 @@ public class ReportRequest implements Serializable {
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
-        setImageURL(builder.imageURL);
+        setImageURLs(builder.imageURLs);
     }
 
     public static Builder newBuilder() {
@@ -110,12 +111,12 @@ public class ReportRequest implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public List<String> getImageURL() {
-        return imageURL;
+    public List<MultipartFile> getImageURLs() {
+        return imageURLs;
     }
 
-    public void setImageURL(List<String> imageURL) {
-        this.imageURL = imageURL;
+    public void setImageURLs(List<MultipartFile> imageURLs) {
+        this.imageURLs = imageURLs;
     }
 
     public Builder toBuilder() {
@@ -128,7 +129,7 @@ public class ReportRequest implements Serializable {
                 .withReportType(this.reportType)
                 .withReportStatus(this.reportStatus)
                 .withTimeStamp(this.timeStamp)
-                .withImageURL(this.imageURL);
+                .withImageURLs(this.imageURLs);
     }
 
 
@@ -140,7 +141,7 @@ public class ReportRequest implements Serializable {
         private Integer reportType;
         private Integer reportStatus;
         private Instant timeStamp;
-        private List<String> imageURL;
+        private List<MultipartFile> imageURLs;
 
         private Builder() {
         }
@@ -180,8 +181,8 @@ public class ReportRequest implements Serializable {
             return this;
         }
 
-        public Builder withImageURL(List<String> imageURL) {
-            this.imageURL = imageURL;
+        public Builder withImageURLs(List<MultipartFile> imageURLs) {
+            this.imageURLs = imageURLs;
             return this;
         }
 

@@ -14,6 +14,7 @@ public class UserResponse implements Serializable {
     private String id;
     private String name;
     private String email;
+    private String profilePicURL;
     private UserRole role;
     private Instant timestamp;
 
@@ -24,6 +25,7 @@ public class UserResponse implements Serializable {
         setId(builder.id);
         setName(builder.name);
         setEmail(builder.email);
+        setProfilePicURL(builder.profilePicURL);
         setRole(builder.role);
         setTimestamp(builder.timestamp);
     }
@@ -56,6 +58,14 @@ public class UserResponse implements Serializable {
         this.email = email;
     }
 
+    public String getProfilePicURL() {
+        return profilePicURL;
+    }
+
+    public void setProfilePicURL(String profilePicURL) {
+        this.profilePicURL = profilePicURL;
+    }
+
     public UserRole getRole() {
         return role;
     }
@@ -78,6 +88,7 @@ public class UserResponse implements Serializable {
                 .withId(this.id)
                 .withName(this.name)
                 .withEmail(this.email)
+                .withProfilePicURL(this.profilePicURL)
                 .withRole(this.role)
                 .withTimestamp(this.timestamp);
     }
@@ -86,6 +97,7 @@ public class UserResponse implements Serializable {
         private String id;
         private String name;
         private String email;
+        private String profilePicURL;
         private UserRole role;
         private Instant timestamp;
 
@@ -109,6 +121,11 @@ public class UserResponse implements Serializable {
 
         public Builder withRole(UserRole role) {
             this.role = role;
+            return this;
+        }
+
+        public Builder withProfilePicURL(String profilePicURL) {
+            this.profilePicURL = profilePicURL;
             return this;
         }
 

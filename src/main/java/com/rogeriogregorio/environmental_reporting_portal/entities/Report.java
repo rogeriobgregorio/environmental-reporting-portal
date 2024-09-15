@@ -31,7 +31,7 @@ public class Report implements Serializable {
     private Integer reportType;
     private Integer reportStatus;
     private Instant timeStamp;
-    private List<String> imageURL = new ArrayList<>();
+    private List<String> imageURLs = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
     public Report() {
@@ -45,7 +45,7 @@ public class Report implements Serializable {
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
-        setImageURL(builder.imageURL);
+        setImageURLs(builder.imageURLs);
         setComments(builder.comments);
     }
 
@@ -129,12 +129,12 @@ public class Report implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public List<String> getImageURL() {
-        return imageURL;
+    public List<String> getImageURLs() {
+        return imageURLs;
     }
 
-    public void setImageURL(List<String> imageURL) {
-        this.imageURL = imageURL;
+    public void setImageURLs(List<String> imageURLs) {
+        this.imageURLs = imageURLs;
     }
 
     public List<Comment> getComments() {
@@ -155,7 +155,7 @@ public class Report implements Serializable {
                 .withReportType(this.reportStatus)
                 .withReportStatus(this.reportStatus)
                 .withTimeStamp(this.timeStamp)
-                .withImageURL(this.imageURL)
+                .withImageURLs(this.imageURLs)
                 .withComments(this.comments);
     }
 
@@ -167,7 +167,7 @@ public class Report implements Serializable {
         private Integer reportType;
         private Integer reportStatus;
         private Instant timeStamp;
-        private List<String> imageURL;
+        private List<String> imageURLs;
         private List<Comment> comments;
 
         private Builder() {
@@ -208,8 +208,8 @@ public class Report implements Serializable {
             return this;
         }
 
-        public Builder withImageURL(List<String> imageURL) {
-            this.imageURL = imageURL;
+        public Builder withImageURLs(List<String> imageURLs) {
+            this.imageURLs = imageURLs;
             return this;
         }
 
@@ -247,7 +247,7 @@ public class Report implements Serializable {
                 ", reportType=" + reportType +
                 ", reportStatus=" + reportStatus +
                 ", timeStamp=" + timeStamp +
-                ", imageURL=" + imageURL +
+                ", imageURLs=" + imageURLs +
                 ", comments=" + comments +
                 '}';
     }

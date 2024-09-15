@@ -1,0 +1,25 @@
+package com.rogeriogregorio.environmental_reporting_portal.services;
+
+import com.rogeriogregorio.environmental_reporting_portal.dto.request.CommentRequest;
+import com.rogeriogregorio.environmental_reporting_portal.dto.request.ReportRequest;
+import com.rogeriogregorio.environmental_reporting_portal.dto.response.CommentResponse;
+import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
+
+@Component
+public interface CommentService {
+
+    Page<CommentResponse> findAllComments(Pageable pageable);
+
+    CommentResponse createComment(ReportRequest commentRequest);
+
+    CommentResponse updateComment(String id, CommentRequest commentRequest);
+
+    CommentResponse findCommentById(String id);
+
+    void deleteComment(String id);
+
+    Report getCommentIfExists(String id);
+}
