@@ -2,6 +2,7 @@ package com.rogeriogregorio.environmental_reporting_portal.utils.impl;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.mongodb.MongoException;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.*;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
 import jakarta.mail.MessagingException;
@@ -12,7 +13,6 @@ import org.modelmapper.MappingException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.TransactionException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,7 +27,6 @@ public class CatchErrorImpl implements CatchError {
     static {
         EXCEPTION_MAP.put(UsernameNotFoundException.class, NotFoundException::new);
         EXCEPTION_MAP.put(JWTVerificationException.class, TokenJwtException::new);
-        EXCEPTION_MAP.put(TransactionException.class, RepositoryException::new);
         EXCEPTION_MAP.put(DataAccessException.class, RepositoryException::new);
         EXCEPTION_MAP.put(JWTCreationException.class, TokenJwtException::new);
         EXCEPTION_MAP.put(ServletException.class, HttpServletException::new);

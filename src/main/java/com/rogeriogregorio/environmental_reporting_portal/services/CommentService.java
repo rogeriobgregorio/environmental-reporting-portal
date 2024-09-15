@@ -1,9 +1,8 @@
 package com.rogeriogregorio.environmental_reporting_portal.services;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.CommentRequest;
-import com.rogeriogregorio.environmental_reporting_portal.dto.request.ReportRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.CommentResponse;
-import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
+import com.rogeriogregorio.environmental_reporting_portal.entities.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,7 @@ public interface CommentService {
 
     Page<CommentResponse> findAllComments(Pageable pageable);
 
-    CommentResponse createComment(ReportRequest commentRequest);
+    CommentResponse createComment(CommentRequest commentRequest);
 
     CommentResponse updateComment(String id, CommentRequest commentRequest);
 
@@ -21,5 +20,5 @@ public interface CommentService {
 
     void deleteComment(String id);
 
-    Report getCommentIfExists(String id);
+    Comment getCommentIfExists(String id);
 }

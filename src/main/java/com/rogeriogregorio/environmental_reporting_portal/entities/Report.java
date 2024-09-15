@@ -39,6 +39,7 @@ public class Report implements Serializable {
 
     private Report(Builder builder) {
         setId(builder.id);
+        setAuthor(builder.author);
         setDescription(builder.description);
         setLocation(builder.location);
         severityLevel = builder.severityLevel;
@@ -149,6 +150,7 @@ public class Report implements Serializable {
 
         return new Builder()
                 .withId(this.id)
+                .withAuthor(this.author)
                 .withDescription(this.description)
                 .withLocation(this.location)
                 .withSeverityLevel(this.severityLevel)
@@ -161,6 +163,7 @@ public class Report implements Serializable {
 
     public static final class Builder {
         private String id;
+        private User author;
         private String description;
         private String location;
         private Integer severityLevel;
@@ -175,6 +178,11 @@ public class Report implements Serializable {
 
         public Builder withId(String id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder withAuthor(User author) {
+            this.author = author;
             return this;
         }
 

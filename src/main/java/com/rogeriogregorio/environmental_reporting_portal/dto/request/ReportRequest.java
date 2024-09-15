@@ -23,7 +23,7 @@ public class ReportRequest implements Serializable {
     private Integer reportType;
     private Integer reportStatus;
     private Instant timeStamp;
-    private transient List<MultipartFile> imageURLs = new ArrayList<>();
+    private transient List<MultipartFile> images = new ArrayList<>();
 
     public ReportRequest() {
     }
@@ -36,7 +36,7 @@ public class ReportRequest implements Serializable {
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
-        setImageURLs(builder.imageURLs);
+        setImages(builder.images);
     }
 
     public static Builder newBuilder() {
@@ -111,12 +111,12 @@ public class ReportRequest implements Serializable {
         this.timeStamp = timeStamp;
     }
 
-    public List<MultipartFile> getImageURLs() {
-        return imageURLs;
+    public List<MultipartFile> getImages() {
+        return images;
     }
 
-    public void setImageURLs(List<MultipartFile> imageURLs) {
-        this.imageURLs = imageURLs;
+    public void setImages(List<MultipartFile> images) {
+        this.images = images;
     }
 
     public Builder toBuilder() {
@@ -129,7 +129,7 @@ public class ReportRequest implements Serializable {
                 .withReportType(this.reportType)
                 .withReportStatus(this.reportStatus)
                 .withTimeStamp(this.timeStamp)
-                .withImageURLs(this.imageURLs);
+                .withImages(this.images);
     }
 
 
@@ -141,7 +141,7 @@ public class ReportRequest implements Serializable {
         private Integer reportType;
         private Integer reportStatus;
         private Instant timeStamp;
-        private List<MultipartFile> imageURLs;
+        private List<MultipartFile> images;
 
         private Builder() {
         }
@@ -181,8 +181,8 @@ public class ReportRequest implements Serializable {
             return this;
         }
 
-        public Builder withImageURLs(List<MultipartFile> imageURLs) {
-            this.imageURLs = imageURLs;
+        public Builder withImages(List<MultipartFile> imageURLs) {
+            this.images = imageURLs;
             return this;
         }
 
