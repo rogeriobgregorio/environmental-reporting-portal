@@ -23,9 +23,9 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
-    private String profilePicURL;
     private UserRole role;
     private Instant timestamp;
+    private boolean emailEnabled;
 
     @DBRef
     private List<Report> reports = new ArrayList<>();
@@ -41,9 +41,9 @@ public class User implements Serializable {
         setName(builder.name);
         setEmail(builder.email);
         setPassword(builder.password);
-        setProfilePicURL(builder.profilePicURL);
         setRole(builder.role);
         setTimestamp(builder.timeStamp);
+        setEmailEnabled(builder.emailEnabled);
         setReports(builder.reports);
         setComments(builder.comments);
     }
@@ -51,7 +51,6 @@ public class User implements Serializable {
     public static Builder newBuilder() {
         return new Builder();
     }
-
 
     public String getId() {
         return id;
@@ -85,14 +84,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getProfilePicURL() {
-        return profilePicURL;
-    }
-
-    public void setProfilePicURL(String profilePicURL) {
-        this.profilePicURL = profilePicURL;
-    }
-
     public UserRole getRole() {
         return role;
     }
@@ -107,6 +98,14 @@ public class User implements Serializable {
 
     public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isEmailEnabled() {
+        return emailEnabled;
+    }
+
+    public void setEmailEnabled(boolean emailEnabled) {
+        this.emailEnabled = emailEnabled;
     }
 
     public List<Report> getReports() {
@@ -132,9 +131,9 @@ public class User implements Serializable {
                 .withName(this.name)
                 .withEmail(this.email)
                 .withPassword(this.password)
-                .withProfilePicURL(this.profilePicURL)
                 .withRole(this.role)
                 .withTimestamp(this.timestamp)
+                .withEmailEnabled(this.emailEnabled)
                 .withReports(this.reports)
                 .withComments(this.comments);
     }
@@ -144,9 +143,9 @@ public class User implements Serializable {
         private String name;
         private String email;
         private String password;
-        private String profilePicURL;
         private UserRole role;
         private Instant timeStamp;
+        private boolean emailEnabled;
         private List<Report> reports;
         private List<Comment> comments;
 
@@ -173,11 +172,6 @@ public class User implements Serializable {
             return this;
         }
 
-        public Builder withProfilePicURL(String profilePicURL) {
-            this.profilePicURL = profilePicURL;
-            return this;
-        }
-
         public Builder withRole(UserRole role) {
             this.role = role;
             return this;
@@ -185,6 +179,11 @@ public class User implements Serializable {
 
         public Builder withTimestamp(Instant timestamp) {
             this.timeStamp = timestamp;
+            return this;
+        }
+
+        public Builder withEmailEnabled(boolean emailEnabled) {
+            this.emailEnabled = emailEnabled;
             return this;
         }
 
@@ -223,9 +222,9 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", profilePicURL='" + profilePicURL + '\'' +
                 ", role=" + role +
                 ", timestamp=" + timestamp +
+                ", emailEnabled=" + emailEnabled +
                 ", reports=" + reports +
                 ", comments=" + comments +
                 '}';

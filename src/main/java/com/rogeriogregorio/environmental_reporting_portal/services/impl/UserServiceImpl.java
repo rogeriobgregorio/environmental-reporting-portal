@@ -5,6 +5,7 @@ import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserRespo
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
+import com.rogeriogregorio.environmental_reporting_portal.mail.MailService;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.UserRepository;
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
@@ -18,12 +19,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordHelper passwordHelper;
+    private final MailService mailService;
     private final CatchError catchError;
     private final DataMapper dataMapper;
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
@@ -31,11 +34,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            PasswordHelper passwordHelper,
+                           MailService mailService,
                            CatchError catchError,
                            DataMapper dataMapper) {
 
         this.userRepository = userRepository;
         this.passwordHelper = passwordHelper;
+        this.mailService = mailService;
         this.catchError = catchError;
         this.dataMapper = dataMapper;
     }
@@ -51,12 +56,10 @@ public class UserServiceImpl implements UserService {
 
         passwordHelper.validate(userRequest.getPassword());
         String encodedPassword = passwordHelper.enconde(userRequest.getPassword());
-        String profilePicURL = null;
 
         User user = User.newBuilder()
                 .withName(userRequest.getName())
                 .withEmail(userRequest.getEmail())
-                .withProfilePicURL(profilePicURL)
                 .withRole(UserRole.USER)
                 .withPassword(encodedPassword)
                 .withTimestamp(Instant.now())
@@ -64,6 +67,7 @@ public class UserServiceImpl implements UserService {
 
         User registeredUser = catchError.run(() -> userRepository.save(user));
         LOGGER.info("User registered: {}", registeredUser);
+//        CompletableFuture.runAsync(() -> mailService.sendVerificationEmail(user)); TODO REATIVAR
         return dataMapper.map(registeredUser, UserResponse.class);
     }
 
@@ -91,12 +95,10 @@ public class UserServiceImpl implements UserService {
         User userRecovered = getUserIfExists(id);
         passwordHelper.validate(userRequest.getPassword());
         String encodedPassword = passwordHelper.enconde(userRequest.getPassword());
-        String profilePicURL = null;
 
         userRecovered.toBuilder()
                 .withName(userRequest.getName())
                 .withEmail(userRequest.getEmail())
-                .withProfilePicURL(null)
                 .withPassword(encodedPassword)
                 .withTimestamp(Instant.now())
                 .build();

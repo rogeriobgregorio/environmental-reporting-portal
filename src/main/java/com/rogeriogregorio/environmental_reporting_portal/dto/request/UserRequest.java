@@ -15,7 +15,6 @@ public class UserRequest implements Serializable {
     private String name;
     private String email;
     private String password;
-    private transient MultipartFile profilePic;
     private UserRole role;
     private Instant timeStamp;
 
@@ -26,7 +25,6 @@ public class UserRequest implements Serializable {
         setName(builder.name);
         setEmail(builder.email);
         setPassword(builder.password);
-        setProfilePic(builder.profilePic);
         setRole(builder.role);
         setTimeStamp(builder.timeStamp);
     }
@@ -59,14 +57,6 @@ public class UserRequest implements Serializable {
         this.password = password;
     }
 
-    public MultipartFile getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(MultipartFile profilePic) {
-        this.profilePic = profilePic;
-    }
-
     public UserRole getRole() {
         return role;
     }
@@ -89,7 +79,6 @@ public class UserRequest implements Serializable {
                 .withName(this.name)
                 .withEmail(this.email)
                 .withPassword(this.password)
-                .withProfilePic(this.profilePic)
                 .withRole(this.role)
                 .withTimeStamp(this.timeStamp);
     }
@@ -98,7 +87,6 @@ public class UserRequest implements Serializable {
         private String name;
         private String email;
         private String password;
-        private MultipartFile profilePic;
         private UserRole role;
         private Instant timeStamp;
 
@@ -117,11 +105,6 @@ public class UserRequest implements Serializable {
 
         public Builder withPassword(String password) {
             this.password = password;
-            return this;
-        }
-
-        public Builder withProfilePic(MultipartFile profilePic) {
-            this.profilePic = profilePic;
             return this;
         }
 
