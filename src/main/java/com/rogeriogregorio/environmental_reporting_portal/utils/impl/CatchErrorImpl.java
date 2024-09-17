@@ -2,7 +2,6 @@ package com.rogeriogregorio.environmental_reporting_portal.utils.impl;
 
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.mongodb.MongoException;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.*;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
 import jakarta.mail.MessagingException;

@@ -25,7 +25,6 @@ public class User implements Serializable {
     private String password;
     private UserRole role;
     private Instant timestamp;
-    private boolean emailEnabled;
 
     @DBRef
     private List<Report> reports = new ArrayList<>();
@@ -43,7 +42,6 @@ public class User implements Serializable {
         setPassword(builder.password);
         setRole(builder.role);
         setTimestamp(builder.timeStamp);
-        setEmailEnabled(builder.emailEnabled);
         setReports(builder.reports);
         setComments(builder.comments);
     }
@@ -100,14 +98,6 @@ public class User implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public boolean isEmailEnabled() {
-        return emailEnabled;
-    }
-
-    public void setEmailEnabled(boolean emailEnabled) {
-        this.emailEnabled = emailEnabled;
-    }
-
     public List<Report> getReports() {
         return reports;
     }
@@ -133,7 +123,6 @@ public class User implements Serializable {
                 .withPassword(this.password)
                 .withRole(this.role)
                 .withTimestamp(this.timestamp)
-                .withEmailEnabled(this.emailEnabled)
                 .withReports(this.reports)
                 .withComments(this.comments);
     }
@@ -145,7 +134,6 @@ public class User implements Serializable {
         private String password;
         private UserRole role;
         private Instant timeStamp;
-        private boolean emailEnabled;
         private List<Report> reports;
         private List<Comment> comments;
 
@@ -179,11 +167,6 @@ public class User implements Serializable {
 
         public Builder withTimestamp(Instant timestamp) {
             this.timeStamp = timestamp;
-            return this;
-        }
-
-        public Builder withEmailEnabled(boolean emailEnabled) {
-            this.emailEnabled = emailEnabled;
             return this;
         }
 
@@ -224,7 +207,6 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", timestamp=" + timestamp +
-                ", emailEnabled=" + emailEnabled +
                 ", reports=" + reports +
                 ", comments=" + comments +
                 '}';

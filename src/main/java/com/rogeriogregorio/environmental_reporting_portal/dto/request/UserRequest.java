@@ -1,7 +1,6 @@
 package com.rogeriogregorio.environmental_reporting_portal.dto.request;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serial;
 import java.io.Serializable;

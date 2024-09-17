@@ -14,7 +14,7 @@ public interface UserService {
 
     UserResponse registerUser(UserRequest userRequest);
 
-    UserResponse createAdmin(String id, UserRequest userRequest);
+    UserResponse updateUserRole(String id, UserRequest userRequest);
 
     UserResponse findUserById(String id);
 

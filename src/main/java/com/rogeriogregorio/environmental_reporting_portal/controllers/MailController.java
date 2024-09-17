@@ -2,7 +2,6 @@ package com.rogeriogregorio.environmental_reporting_portal.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.rogeriogregorio.environmental_reporting_portal.dto.PasswordResetDto;
-import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
 import com.rogeriogregorio.environmental_reporting_portal.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,14 +18,6 @@ public class MailController {
     @Autowired
     public MailController(MailService mailService) {
         this.mailService = mailService;
-    }
-
-    @GetMapping(value = "/validate/search")
-    public ResponseEntity<UserResponse> getEmailVerificationToken(@RequestParam("token") String token) {
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(mailService.validateEmailVerificationToken(token));
     }
 
     @PostMapping(value = "/password-reset")

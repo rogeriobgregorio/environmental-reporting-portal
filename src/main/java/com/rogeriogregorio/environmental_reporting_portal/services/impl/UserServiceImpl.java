@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordHelper passwordHelper;
-    private final MailService mailService;
     private final CatchError catchError;
     private final DataMapper dataMapper;
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
@@ -34,13 +33,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            PasswordHelper passwordHelper,
-                           MailService mailService,
                            CatchError catchError,
                            DataMapper dataMapper) {
 
         this.userRepository = userRepository;
         this.passwordHelper = passwordHelper;
-        this.mailService = mailService;
         this.catchError = catchError;
         this.dataMapper = dataMapper;
     }
@@ -67,11 +64,10 @@ public class UserServiceImpl implements UserService {
 
         User registeredUser = catchError.run(() -> userRepository.save(user));
         LOGGER.info("User registered: {}", registeredUser);
-//        CompletableFuture.runAsync(() -> mailService.sendVerificationEmail(user)); TODO REATIVAR
         return dataMapper.map(registeredUser, UserResponse.class);
     }
 
-    public UserResponse createAdmin(String id, UserRequest userRequest) {
+    public UserResponse updateUserRole(String id, UserRequest userRequest) {
 
         User user = getUserIfExists(id)
                 .toBuilder()

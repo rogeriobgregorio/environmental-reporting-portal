@@ -10,6 +10,7 @@ import com.rogeriogregorio.environmental_reporting_portal.services.ReportService
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
 import com.rogeriogregorio.environmental_reporting_portal.utils.DataMapper;
+import com.rogeriogregorio.environmental_reporting_portal.utils.FileStorage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class ReportServiceImpl implements ReportService {
 
     private final ReportRepository reportRepository;
     private final UserService userService;
+    private final FileStorage fileStorage;
     private final CatchError catchError;
     private final DataMapper dataMapper;
     private static final Logger LOGGER = LogManager.getLogger(ReportServiceImpl.class);
@@ -32,11 +34,12 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     public ReportServiceImpl(ReportRepository reportRepository,
                              UserService userService,
-                             CatchError catchError,
+                             FileStorage fileStorage, CatchError catchError,
                              DataMapper dataMapper) {
 
         this.reportRepository = reportRepository;
         this.userService = userService;
+        this.fileStorage = fileStorage;
         this.catchError = catchError;
         this.dataMapper = dataMapper;
     }
@@ -50,7 +53,7 @@ public class ReportServiceImpl implements ReportService {
     public ReportResponse createReport(ReportRequest reportRequest) {
 
         User author = userService.getUserIfExists(reportRequest.getAuthorId());
-        List<String> imageURLs = null;
+        List<String> imageURLs = fileStorage.saveFiles(reportRequest.getImages());
 
         Report report = Report.newBuilder()
                 .withAuthor(author)
@@ -69,7 +72,7 @@ public class ReportServiceImpl implements ReportService {
 
     public ReportResponse updateReport(String id, ReportRequest reportRequest) {
 
-        List<String> imageURLs = null;
+        List<String> imageURLs = fileStorage.saveFiles(reportRequest.getImages());
 
         Report reportRecovered = getReportIfExists(id)
                 .toBuilder()

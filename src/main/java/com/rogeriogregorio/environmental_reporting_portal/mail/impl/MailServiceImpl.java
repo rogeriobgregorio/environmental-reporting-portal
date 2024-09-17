@@ -30,9 +30,7 @@ import java.util.Map;
 public class MailServiceImpl implements MailService {
 
     private static final String SENDER_EMAIL = "ecommercemanager@mailservice.com";
-    private static final String EMAIL_VERIFICATION_PROCESS = "Email Verification Process";
     private static final String PASSWORD_RESET_PROCESS = "Password Reset Process";
-    private static final String VERIFICATION_EMAIL_HTML = "templates/verification-email.html";
     private static final String PASSWORD_RESET_HTML = "templates/password-reset-email.html";
 
     private final JavaMailSender mailSender;
@@ -40,20 +38,18 @@ public class MailServiceImpl implements MailService {
     private final PasswordHelper passwordHelper;
     private final TokenService tokenService;
     private final CatchError catchError;
-    private final DataMapper dataMapper;
     private static final Logger LOGGER = LogManager.getLogger(MailServiceImpl.class);
 
     @Autowired
     public MailServiceImpl(JavaMailSender mailSender, UserRepository userRepository,
                            PasswordHelper passwordHelper, TokenService tokenService,
-                           CatchError catchError, DataMapper dataMapper) {
+                           CatchError catchError) {
 
         this.mailSender = mailSender;
         this.userRepository = userRepository;
         this.passwordHelper = passwordHelper;
         this.tokenService = tokenService;
         this.catchError = catchError;
-        this.dataMapper = dataMapper;
     }
 
     private void sendEmail(EmailDetailsDto emailDetails) {
@@ -75,24 +71,6 @@ public class MailServiceImpl implements MailService {
             mailSender.send(message);
             LOGGER.info("Email sent to: {}", emailDetails.getRecipient());
         });
-    }
-
-    public void sendVerificationEmail(User user) {
-
-        String token = tokenService.generateEmailToken(user);
-
-        Map<String, String> replacements = new HashMap<>();
-        replacements.put("#{name}", user.getName());
-        replacements.put("#{token}", token);
-
-        sendEmail(EmailDetailsDto.newBuilder()
-                .withSender(SENDER_EMAIL)
-                .withSubject(EMAIL_VERIFICATION_PROCESS)
-                .withRecipient(user.getEmail())
-                .withTemplateName(VERIFICATION_EMAIL_HTML)
-                .withReplacements(replacements)
-                .build()
-        );
     }
 
     public void sendPasswordResetEmail(PasswordResetDto passwordReset) {
@@ -121,13 +99,6 @@ public class MailServiceImpl implements MailService {
                 .readAllBytes(), StandardCharsets.UTF_8));
     }
 
-    public UserResponse validateEmailVerificationToken(String token) {
-
-        User user = tokenService.validateEmailToken(token);
-        saveEmailAsEnabled(user);
-        return dataMapper.map(user, UserResponse.class);
-    }
-
     public void validatePasswordResetToken(PasswordResetDto passwordReset) {
 
         User user = tokenService.validateEmailToken(passwordReset.getToken());
@@ -141,12 +112,6 @@ public class MailServiceImpl implements MailService {
                 orElseThrow(() -> new NotFoundException("The user was not found with the email: " + email));
     }
 
-    private void saveEmailAsEnabled(User user) {
-
-        user.setEmailEnabled(true);
-        User savedUser = catchError.run(() -> userRepository.save(user));
-        LOGGER.info("User email verified and saved: {}", savedUser.getEmail());
-    }
 
     private void saveNewPassword(User user) {
 
