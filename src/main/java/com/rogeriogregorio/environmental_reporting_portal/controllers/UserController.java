@@ -75,4 +75,15 @@ public class UserController {
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
+
+    @GetMapping(value = "/search")
+    public ResponseEntity<List<UserResponse>> getUserByNameOrEmail(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email,
+            Pageable pageable) {
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userService.findUserByNameOrEmail(name, email, pageable).getContent());
+    }
 }

@@ -21,4 +21,6 @@ public interface CommentService {
     void deleteComment(String id);
 
     Comment getCommentIfExists(String id);
+
+    Page<CommentResponse> findCommentByAuthorNameOrEmail(String name, String email, Pageable pageable);
 }

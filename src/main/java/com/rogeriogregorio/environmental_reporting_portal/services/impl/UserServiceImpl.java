@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -115,5 +116,11 @@ public class UserServiceImpl implements UserService {
 
         return catchError.run(() -> userRepository.findById(id))
                 .orElseThrow(() -> new NotFoundException("User not found with ID: " + id + "."));
+    }
+
+    public Page<UserResponse> findUserByNameOrEmail(String name, String email, Pageable pageable) {
+
+        return catchError.run(() -> userRepository.findByNameOrEmail(name, email, pageable))
+                .map(user -> dataMapper.map(user, UserResponse.class));
     }
 }

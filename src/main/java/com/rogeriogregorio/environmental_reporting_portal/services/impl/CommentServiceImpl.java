@@ -2,6 +2,7 @@ package com.rogeriogregorio.environmental_reporting_portal.services.impl;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.CommentRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.CommentResponse;
+import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
 import com.rogeriogregorio.environmental_reporting_portal.entities.Comment;
 import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
@@ -99,5 +100,11 @@ public class CommentServiceImpl implements CommentService {
 
         return catchError.run(() -> commentRepository.findById(id))
                 .orElseThrow(() -> new NotFoundException("Comment not found with ID: " + id + "."));
+    }
+
+    public Page<CommentResponse> findCommentByAuthorNameOrEmail(String name, String email, Pageable pageable) {
+
+        return catchError.run(() -> commentRepository.findByAuthorNameOrEmail(name, email, pageable))
+                .map(comment -> dataMapper.map(comment, CommentResponse.class));
     }
 }
