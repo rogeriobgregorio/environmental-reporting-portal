@@ -102,7 +102,7 @@ public class CommentServiceImpl implements CommentService {
                 .orElseThrow(() -> new NotFoundException("Comment not found with ID: " + id + "."));
     }
 
-    public Page<CommentResponse> findCommentByAuthorNameOrEmail(String name, String email, Pageable pageable) {
+    public Page<CommentResponse> findCommentsByAuthorNameOrEmail(String name, String email, Pageable pageable) {
 
         return catchError.run(() -> commentRepository.findByAuthorNameOrEmail(name, email, pageable))
                 .map(comment -> dataMapper.map(comment, CommentResponse.class));

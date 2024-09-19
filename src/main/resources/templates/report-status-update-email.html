@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperação de Senha</title>
+    <title>Atualização de Status da Denúncia</title>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
@@ -62,20 +62,6 @@
       margin-bottom: 20px;
     }
 
-    .input-container {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .input-container input {
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      width: calc(100% - 22px);
-      max-width: 400px;
-    }
-
     .btn {
       display: inline-block;
       padding: 12px 24px;
@@ -102,60 +88,13 @@
 
 <body>
 <div class="container">
-    <h1>Recuperação de Senha</h1>
+    <h1>Status da Denúncia Atualizado</h1>
     <p>Olá, #{name}</p>
-    <h5>ATENÇÃO!</h5>
-    Para a sua segurança a senha deve ter no mínimo:<br><br>
-    - oito caracteres<br>
-    - uma letra minúscula<br>
-    - um número<br>
-    - um caractere especial<br>
-    - uma letra maiúscula<br><br>
-    Caso contrário a senha não será validada pelo sistema.<br>
-
-    <p>Exemplo de senha válida: !Abcdef1</p>
-    </p>
-    <p>Para redefinir sua senha, por favor, insira a nova senha abaixo e clique no botão "Redefinir Senha".</p>
-    <div class="input-container">
-        <input type="password" id="new-password" placeholder="Nova Senha" required />
-    </div>
-    <button class="btn" onclick="sendPasswordRecovery()">Redefinir Senha</button>
-    <p>Se você não solicitou a redefinição de senha, por favor, desconsidere este e-mail.</p>
+    <p>O status da sua denúncia foi atualizado. Abaixo estão os detalhes da sua denúncia:</p>
+    <p>#{report}</p>
+    <p>Se você tiver qualquer dúvida, por favor, entre em contato com nossa equipe de suporte.</p>
     <p class="footer">Por favor, não responda a este e-mail. Obrigado!</p>
 </div>
-
-<script>
-  function sendPasswordRecovery() {
-    const password = document.getElementById('new-password').value;
-    const email = "#{email}";
-    const token = "#{token}";
-
-    const payload = {
-      email: email,
-      password: password,
-      token: token
-    };
-
-    fetch('http://localhost:8080/api/v1/reset-password', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => {
-      if (response.ok) {
-        alert('Sua senha foi redefinida com sucesso.');
-      } else {
-        alert('Houve um problema ao redefinir sua senha. Por favor, tente novamente.');
-      }
-    })
-    .catch(error => {
-      console.error('Erro:', error);
-      alert('Houve um problema ao redefinir sua senha. Por favor, tente novamente.');
-    });
-  }
-</script>
 </body>
 
 </html>

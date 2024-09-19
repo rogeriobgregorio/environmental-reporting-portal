@@ -5,6 +5,7 @@ import com.rogeriogregorio.environmental_reporting_portal.dto.response.ReportRes
 import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
+import com.rogeriogregorio.environmental_reporting_portal.mail.MailService;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.ReportRepository;
 import com.rogeriogregorio.environmental_reporting_portal.services.ReportService;
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
@@ -20,12 +21,14 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ReportServiceImpl implements ReportService {
 
     private final ReportRepository reportRepository;
     private final UserService userService;
+    private final MailService mailService;
     private final FileStorage fileStorage;
     private final CatchError catchError;
     private final DataMapper dataMapper;
@@ -34,11 +37,14 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     public ReportServiceImpl(ReportRepository reportRepository,
                              UserService userService,
-                             FileStorage fileStorage, CatchError catchError,
+                             MailService mailService,
+                             FileStorage fileStorage,
+                             CatchError catchError,
                              DataMapper dataMapper) {
 
         this.reportRepository = reportRepository;
         this.userService = userService;
+        this.mailService = mailService;
         this.fileStorage = fileStorage;
         this.catchError = catchError;
         this.dataMapper = dataMapper;
@@ -84,7 +90,21 @@ public class ReportServiceImpl implements ReportService {
                 .build();
 
         Report updatedReport = catchError.run(() -> reportRepository.save(reportRecovered));
-        LOGGER.info("Report comment: {}", updatedReport);
+        LOGGER.info("Report updated: {}", updatedReport);
+        return dataMapper.map(updatedReport, ReportResponse.class);
+    }
+
+    public ReportResponse updateReportStatus(String id, Integer reportStatus) {
+
+        Report reportRecovered = getReportIfExists(id)
+                .toBuilder()
+                .withReportStatus(reportStatus)
+                .build();
+
+        Report updatedReport = catchError.run(() -> reportRepository.save(reportRecovered));
+        LOGGER.info("ReportStatus updated : {}", updatedReport);
+
+        //CompletableFuture.runAsync(() -> mailService.sendReportStatusUpdateEmail(updatedReport)); TODO reativar método
         return dataMapper.map(updatedReport, ReportResponse.class);
     }
 
@@ -106,5 +126,28 @@ public class ReportServiceImpl implements ReportService {
 
         return catchError.run(() -> reportRepository.findById(id))
                 .orElseThrow(() -> new NotFoundException("Report not found with ID: " + id + "."));
+    }
+
+    public Page<ReportResponse> findReportsByAuthorNameOrEmail(String name, String email, Pageable pageable) {
+        return catchError.run(() -> reportRepository.findByAuthorNameOrEmail(name, email, pageable))
+                .map(report -> dataMapper.map(report, ReportResponse.class));
+    }
+
+    public Page<ReportResponse> findReportsBySeverityLevel(Integer severityLevel, Pageable pageable) {
+
+        return catchError.run(() -> reportRepository.findBySeverityLevel(severityLevel, pageable))
+                .map(report -> dataMapper.map(report, ReportResponse.class));
+    }
+
+    public Page<ReportResponse> findReportsByReportType(Integer reportType, Pageable pageable) {
+
+        return catchError.run(() -> reportRepository.findByReportType(reportType, pageable))
+                .map(report -> dataMapper.map(report, ReportResponse.class));
+    }
+
+    public Page<ReportResponse> findReportsByReportStatus(Integer reportStatus, Pageable pageable) {
+
+        return catchError.run(() -> reportRepository.findByReportStatus(reportStatus, pageable))
+                .map(report -> dataMapper.map(report, ReportResponse.class));
     }
 }

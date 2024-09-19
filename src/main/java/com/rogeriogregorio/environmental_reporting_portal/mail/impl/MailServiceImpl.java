@@ -2,16 +2,15 @@ package com.rogeriogregorio.environmental_reporting_portal.mail.impl;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.EmailDetailsDto;
 import com.rogeriogregorio.environmental_reporting_portal.dto.PasswordResetDto;
-import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
+import com.rogeriogregorio.environmental_reporting_portal.dto.ReportDetailsDto;
+import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
 import com.rogeriogregorio.environmental_reporting_portal.mail.MailService;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.UserRepository;
 import com.rogeriogregorio.environmental_reporting_portal.security.TokenService;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
-import com.rogeriogregorio.environmental_reporting_portal.utils.DataMapper;
 import com.rogeriogregorio.environmental_reporting_portal.utils.PasswordHelper;
-import jakarta.annotation.Resource;
 import jakarta.mail.internet.MimeMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +19,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -30,8 +28,10 @@ import java.util.Map;
 public class MailServiceImpl implements MailService {
 
     private static final String SENDER_EMAIL = "ecommercemanager@mailservice.com";
-    private static final String PASSWORD_RESET_PROCESS = "Password Reset Process";
-    private static final String PASSWORD_RESET_HTML = "templates/password-reset-email.html";
+    private static final String REPORT_STATUS_UPDATE_SUBJECT = "Report Status Update";
+    private static final String REPORT_STATUS_UPDATE_TEMPLATE = "templates/report-status-update-email.html";
+    private static final String PASSWORD_RESET_SUBJECT = "Password Reset Process";
+    private static final String PASSWORD_RESET_TEMPLATE = "templates/password-reset-email.html";
 
     private final JavaMailSender mailSender;
     private final UserRepository userRepository;
@@ -50,6 +50,13 @@ public class MailServiceImpl implements MailService {
         this.passwordHelper = passwordHelper;
         this.tokenService = tokenService;
         this.catchError = catchError;
+    }
+
+    private String getEmailTemplate(String path) {
+
+        ClassPathResource pathResource = new ClassPathResource(path);
+        return catchError.run(() -> new String(pathResource.getInputStream()
+                .readAllBytes(), StandardCharsets.UTF_8));
     }
 
     private void sendEmail(EmailDetailsDto emailDetails) {
@@ -73,6 +80,24 @@ public class MailServiceImpl implements MailService {
         });
     }
 
+    public void sendReportStatusUpdateEmail(Report report) {
+
+        ReportDetailsDto reportDetails = new ReportDetailsDto(report);
+
+        Map<String, String> replacements = new HashMap<>();
+        replacements.put("#{name}", report.getAuthor().getName());
+        replacements.put("#{report}", reportDetails.toString());
+
+        sendEmail(EmailDetailsDto.newBuilder()
+                .withSender(SENDER_EMAIL)
+                .withSubject(REPORT_STATUS_UPDATE_SUBJECT)
+                .withRecipient(report.getAuthor().getEmail())
+                .withTemplateName(REPORT_STATUS_UPDATE_TEMPLATE)
+                .withReplacements(replacements)
+                .build()
+        );
+    }
+
     public void sendPasswordResetEmail(PasswordResetDto passwordReset) {
 
         User user = findUserByEmail(passwordReset.getEmail());
@@ -84,19 +109,12 @@ public class MailServiceImpl implements MailService {
 
         sendEmail(EmailDetailsDto.newBuilder()
                 .withSender(SENDER_EMAIL)
-                .withSubject(PASSWORD_RESET_PROCESS)
+                .withSubject(PASSWORD_RESET_SUBJECT)
                 .withRecipient(user.getEmail())
-                .withTemplateName(PASSWORD_RESET_HTML)
+                .withTemplateName(PASSWORD_RESET_TEMPLATE)
                 .withReplacements(replacements)
                 .build()
         );
-    }
-
-    private String getEmailTemplate(String path) {
-
-        ClassPathResource pathResource = new ClassPathResource(path);
-        return catchError.run(() -> new String(pathResource.getInputStream()
-                .readAllBytes(), StandardCharsets.UTF_8));
     }
 
     public void validatePasswordResetToken(PasswordResetDto passwordReset) {
@@ -106,13 +124,6 @@ public class MailServiceImpl implements MailService {
         saveNewPassword(user);
     }
 
-    private User findUserByEmail(String email) {
-
-        return catchError.run(() -> userRepository.findByEmail(email)).
-                orElseThrow(() -> new NotFoundException("The user was not found with the email: " + email));
-    }
-
-
     private void saveNewPassword(User user) {
 
         passwordHelper.validate(user.getPassword());
@@ -120,5 +131,11 @@ public class MailServiceImpl implements MailService {
         user.setPassword(passwordEncode);
         User savedUser = catchError.run(() -> userRepository.save(user));
         LOGGER.info("User password updated: {}", savedUser);
+    }
+
+    private User findUserByEmail(String email) {
+
+        return catchError.run(() -> userRepository.findByEmail(email)).
+                orElseThrow(() -> new NotFoundException("The user was not found with the email: " + email));
     }
 }

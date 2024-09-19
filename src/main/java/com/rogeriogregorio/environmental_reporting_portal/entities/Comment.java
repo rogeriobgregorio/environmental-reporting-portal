@@ -1,5 +1,6 @@
 package com.rogeriogregorio.environmental_reporting_portal.entities;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,7 +24,10 @@ public class Comment implements Serializable {
 
     @DBRef
     private Report report;
+
+    @NotBlank(message = "The comment content must not be blank.")
     private String content;
+
     private Instant timestamp;
 
     public Comment() {

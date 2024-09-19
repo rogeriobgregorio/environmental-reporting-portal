@@ -16,9 +16,19 @@ public interface ReportService {
 
     ReportResponse updateReport(String id, ReportRequest reportRequest);
 
+    ReportResponse updateReportStatus(String id, Integer reportStatus);
+
     ReportResponse findReportById(String id);
 
     void deleteReport(String id);
 
     Report getReportIfExists(String id);
+
+    Page<ReportResponse> findReportsByAuthorNameOrEmail(String name, String email, Pageable pageable);
+
+    Page<ReportResponse> findReportsBySeverityLevel(Integer severityLevel, Pageable pageable);
+
+    Page<ReportResponse> findReportsByReportType(Integer reportType, Pageable pageable);
+
+    Page<ReportResponse> findReportsByReportStatus(Integer reportStatus, Pageable pageable);
 }

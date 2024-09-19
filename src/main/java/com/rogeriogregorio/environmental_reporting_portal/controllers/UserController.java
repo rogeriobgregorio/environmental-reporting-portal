@@ -41,7 +41,8 @@ public class UserController {
     }
 
     @PatchMapping(value = "/roles/{id}")
-    public ResponseEntity<UserResponse> patchUserRole(@PathVariable String id,
+    public ResponseEntity<UserResponse> patchUserRole(
+            @PathVariable String id,
             @Valid @RequestBody UserRequest userRequest) {
 
         return ResponseEntity
@@ -58,7 +59,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserResponse> putUser(@PathVariable String id,
+    public ResponseEntity<UserResponse> putUser(
+            @PathVariable String id,
             @Valid @RequestBody UserRequest userRequest) {
 
         return ResponseEntity
@@ -77,13 +79,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/search")
-    public ResponseEntity<List<UserResponse>> getUserByNameOrEmail(
+    public ResponseEntity<List<UserResponse>> getUsersByNameOrEmail(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,
             Pageable pageable) {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userService.findUserByNameOrEmail(name, email, pageable).getContent());
+                .body(userService.findUsersByNameOrEmail(name, email, pageable).getContent());
     }
 }

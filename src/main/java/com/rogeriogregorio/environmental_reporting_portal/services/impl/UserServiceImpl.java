@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new NotFoundException("User not found with ID: " + id + "."));
     }
 
-    public Page<UserResponse> findUserByNameOrEmail(String name, String email, Pageable pageable) {
+    public Page<UserResponse> findUsersByNameOrEmail(String name, String email, Pageable pageable) {
 
         return catchError.run(() -> userRepository.findByNameOrEmail(name, email, pageable))
                 .map(user -> dataMapper.map(user, UserResponse.class));

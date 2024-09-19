@@ -20,7 +20,7 @@ public class MailController {
         this.mailService = mailService;
     }
 
-    @PostMapping(value = "/password-reset")
+    @PostMapping(value = "/password-recover")
     public ResponseEntity<Void> postRequestPasswordReset(
             @Validated(PasswordResetDto.View.Request.class)
             @JsonView(PasswordResetDto.View.Request.class)
@@ -33,7 +33,7 @@ public class MailController {
                 .build();
     }
 
-    @PutMapping(value = "/password-reset")
+    @PutMapping(value = "/reset-password")
     public ResponseEntity<Void> putResetPassword(
             @Validated(PasswordResetDto.View.Reset.class)
             @JsonView(PasswordResetDto.View.Reset.class)

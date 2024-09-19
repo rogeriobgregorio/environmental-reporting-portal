@@ -3,6 +3,8 @@ package com.rogeriogregorio.environmental_reporting_portal.entities;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportType;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.SeverityLevel;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,13 +27,27 @@ public class Report implements Serializable {
 
     @DBRef
     private User author;
+
+    @NotBlank(message = "The description must not be blank.")
     private String description;
+
+    @NotBlank(message = "The location must not be blank.")
     private String location;
+
+    @NotNull(message = "The severity level cannot be null.")
     private Integer severityLevel;
+
+    @NotNull(message = "The report type cannot be null.")
     private Integer reportType;
+
+    @NotNull(message = "The report status cannot be null.")
     private Integer reportStatus;
+
     private Instant timeStamp;
+
+    @NotNull(message = "The image URLs cannot be null.")
     private List<String> imageURLs = new ArrayList<>();
+
     private List<Comment> comments = new ArrayList<>();
 
     public Report() {

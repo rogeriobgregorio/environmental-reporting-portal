@@ -1,6 +1,7 @@
 package com.rogeriogregorio.environmental_reporting_portal.entities;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
+import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,10 +21,22 @@ public class User implements Serializable {
 
     @Id
     private String id;
+
+    @NotBlank(message = "The name must not be blank.")
+    @Pattern(regexp = "^[\\p{L}\\s.]+$", message = "The name must contain only letters and spaces.")
+    @Size(min = 5, max = 250, message = "The name must have between 5 and 250 characters.")
     private String name;
+
+    @NotBlank(message = "The email must not be blank.")
+    @Email(message = "Please enter a valid email address. Example: user@example.com")
     private String email;
+
+    @NotBlank(message = "The password must not be blank.")
     private String password;
+
+    @NotNull(message = "The user role cannot be null.")
     private UserRole role;
+
     private Instant timestamp;
 
     @DBRef

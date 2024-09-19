@@ -22,5 +22,5 @@ public interface CommentService {
 
     Comment getCommentIfExists(String id);
 
-    Page<CommentResponse> findCommentByAuthorNameOrEmail(String name, String email, Pageable pageable);
+    Page<CommentResponse> findCommentsByAuthorNameOrEmail(String name, String email, Pageable pageable);
 }
