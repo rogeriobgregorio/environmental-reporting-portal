@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -59,7 +60,7 @@ public class ReportServiceImpl implements ReportService {
     public ReportResponse createReport(ReportRequest reportRequest) {
 
         User author = userService.getUserIfExists(reportRequest.getAuthorId());
-        List<String> imageURLs = fileStorage.saveFiles(reportRequest.getImages());
+        List<String> imageURLs = fileStorage.saveFilesAndGetUrls(reportRequest.getImages());
 
         Report report = Report.newBuilder()
                 .withAuthor(author)
@@ -78,34 +79,42 @@ public class ReportServiceImpl implements ReportService {
 
     public ReportResponse updateReport(String id, ReportRequest reportRequest) {
 
-        List<String> imageURLs = fileStorage.saveFiles(reportRequest.getImages());
+        Report existingReport = getReportIfExists(id);
 
-        Report reportRecovered = getReportIfExists(id)
-                .toBuilder()
+        List<String> existingImageNames = existingReport.getImageURLs().stream()
+                .map(url -> url.substring(url.lastIndexOf("/") + 1)).toList();
+
+        catchError.run(() -> fileStorage.deleteFiles(existingImageNames));
+
+        List<String> newImageURLs = fileStorage.saveFilesAndGetUrls(reportRequest.getImages());
+
+        Report updatedReport = existingReport.toBuilder()
                 .withDescription(reportRequest.getDescription())
-                .withImageURLs(imageURLs)
+                .withImageURLs(newImageURLs)
                 .withLocation(reportRequest.getLocation())
                 .withSeverityLevel(reportRequest.getSeverityLevel())
                 .withReportType(reportRequest.getReportType())
                 .build();
 
-        Report updatedReport = catchError.run(() -> reportRepository.save(reportRecovered));
-        LOGGER.info("Report updated: {}", updatedReport);
-        return dataMapper.map(updatedReport, ReportResponse.class);
+        Report savedReport = catchError.run(() -> reportRepository.save(updatedReport));
+        LOGGER.info("Report updated: {}", savedReport);
+        return dataMapper.map(savedReport, ReportResponse.class);
     }
+
 
     public ReportResponse updateReportStatus(String id, Integer reportStatus) {
 
-        Report reportRecovered = getReportIfExists(id)
+        Report updatedReport = getReportIfExists(id)
                 .toBuilder()
                 .withReportStatus(reportStatus)
                 .build();
 
-        Report updatedReport = catchError.run(() -> reportRepository.save(reportRecovered));
-        LOGGER.info("ReportStatus updated : {}", updatedReport);
+        Report savedReport = catchError.run(() -> reportRepository.save(updatedReport));
+        LOGGER.info("ReportStatus updated : {}", savedReport);
 
-        //CompletableFuture.runAsync(() -> mailService.sendReportStatusUpdateEmail(updatedReport)); TODO reativar método
-        return dataMapper.map(updatedReport, ReportResponse.class);
+        // TODO reativar em produção
+        //CompletableFuture.runAsync(() -> mailService.sendReportStatusUpdateEmail(updatedReport));
+        return dataMapper.map(savedReport, ReportResponse.class);
     }
 
     public ReportResponse findReportById(String id) {
@@ -118,7 +127,14 @@ public class ReportServiceImpl implements ReportService {
     public void deleteReport(String id) {
 
         Report report = getReportIfExists(id);
-        catchError.run(() -> reportRepository.delete(report));
+
+        List<String> existingImageNames = report.getImageURLs().stream()
+                .map(url -> url.substring(url.lastIndexOf("/") + 1)).toList();
+
+        catchError.run(() -> {
+            fileStorage.deleteFiles(existingImageNames);
+            reportRepository.delete(report);
+        });
         LOGGER.warn("Report deleted: {}", report);
     }
 

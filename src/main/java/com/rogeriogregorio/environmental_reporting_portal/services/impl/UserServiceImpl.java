@@ -63,21 +63,21 @@ public class UserServiceImpl implements UserService {
                 .withTimestamp(Instant.now())
                 .build();
 
-        User registeredUser = catchError.run(() -> userRepository.save(user));
-        LOGGER.info("User registered: {}", registeredUser);
-        return dataMapper.map(registeredUser, UserResponse.class);
+        User savedReport = catchError.run(() -> userRepository.save(user));
+        LOGGER.info("User registered: {}", savedReport);
+        return dataMapper.map(savedReport, UserResponse.class);
     }
 
     public UserResponse updateUserRole(String id, UserRequest userRequest) {
 
-        User user = getUserIfExists(id)
+        User updatedUser = getUserIfExists(id)
                 .toBuilder()
                 .withRole(userRequest.getRole())
                 .build();
 
-        User updatedUser = catchError.run(() -> userRepository.save(user));
-        LOGGER.info("User role updated: {}", updatedUser);
-        return dataMapper.map(updatedUser, UserResponse.class);
+        User savedReport = catchError.run(() -> userRepository.save(updatedUser));
+        LOGGER.info("User role updated: {}", savedReport);
+        return dataMapper.map(savedReport, UserResponse.class);
     }
 
     public UserResponse findUserById(String id) {
@@ -89,20 +89,19 @@ public class UserServiceImpl implements UserService {
 
     public UserResponse updateUser(String id, UserRequest userRequest) {
 
-        User userRecovered = getUserIfExists(id);
         passwordHelper.validate(userRequest.getPassword());
         String encodedPassword = passwordHelper.enconde(userRequest.getPassword());
 
-        userRecovered.toBuilder()
+        User updatedUser = getUserIfExists(id).toBuilder()
                 .withName(userRequest.getName())
                 .withEmail(userRequest.getEmail())
                 .withPassword(encodedPassword)
                 .withTimestamp(Instant.now())
                 .build();
 
-        User updatedUser = catchError.run(() -> userRepository.save(userRecovered));
-        LOGGER.info("User updated: {}", updatedUser);
-        return dataMapper.map(updatedUser, UserResponse.class);
+        User savedUser = catchError.run(() -> userRepository.save(updatedUser));
+        LOGGER.info("User updated: {}", savedUser);
+        return dataMapper.map(savedUser, UserResponse.class);
     }
 
     public void deleteUser(String id) {

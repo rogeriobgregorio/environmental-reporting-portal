@@ -2,7 +2,6 @@ package com.rogeriogregorio.environmental_reporting_portal.services.impl;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.CommentRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.CommentResponse;
-import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
 import com.rogeriogregorio.environmental_reporting_portal.entities.Comment;
 import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
@@ -72,14 +71,14 @@ public class CommentServiceImpl implements CommentService {
 
     public CommentResponse updateComment(String id, CommentRequest commentRequest) {
 
-        Comment commentRecovered = getCommentIfExists(id)
+        Comment updatedComment = getCommentIfExists(id)
                 .toBuilder()
                 .withContent(commentRequest.getContent())
                 .build();
 
-        Comment updatedComment = catchError.run(() -> commentRepository.save(commentRecovered));
-        LOGGER.info("Updated comment: {}", updatedComment);
-        return dataMapper.map(updatedComment, CommentResponse.class);
+        Comment savedComment = catchError.run(() -> commentRepository.save(updatedComment));
+        LOGGER.info("Updated comment: {}", savedComment);
+        return dataMapper.map(savedComment, CommentResponse.class);
     }
 
     public CommentResponse findCommentById(String id) {

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,8 +29,23 @@ public class FileStorageImpl implements FileStorage {
         this.catchError = catchError;
     }
 
+    public List<String> saveFilesAndGetUrls(List<MultipartFile> files) {
 
-    public List<String> saveFiles(List<MultipartFile> files) {
+        List<String> fileNames = saveFiles(files);
+        return generateFileUrls(fileNames);
+    }
+
+    public void deleteFiles(List<String> fileNames) {
+
+        for (String fileName : fileNames) {
+
+            Path path = Paths.get(STORAGE_DIRECTORY + fileName);
+            catchError.run(() -> Files.deleteIfExists(path));
+            LOGGER.warn("File deleted: {}", path);
+        }
+    }
+
+    private List<String> saveFiles(List<MultipartFile> files) {
 
         List<String> fileNames = new ArrayList<>();
 
@@ -50,12 +66,20 @@ public class FileStorageImpl implements FileStorage {
         return fileNames;
     }
 
-    public void deleteFiles(List<String> fileNames) {
+    private List<String> generateFileUrls(List<String> fileNames) {
+
+        List<String> fileUrls = new ArrayList<>();
 
         for (String fileName : fileNames) {
-            Path path = Paths.get(STORAGE_DIRECTORY + fileName);
-            catchError.run(() -> Files.deleteIfExists(path));
-            LOGGER.warn("File deleted: {}", path);
+
+            String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/" + STORAGE_DIRECTORY)
+                    .path(fileName)
+                    .toUriString();
+
+            fileUrls.add(fileUrl);
         }
+
+        return fileUrls;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public interface FileStorage {
 
-    List<String> saveFiles(List<MultipartFile> files);
+    List<String> saveFilesAndGetUrls(List<MultipartFile> files);
 
     void deleteFiles(List<String> fileNames) throws IOException;
 }
