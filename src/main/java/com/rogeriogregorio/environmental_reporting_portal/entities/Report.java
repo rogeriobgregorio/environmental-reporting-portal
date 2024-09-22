@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Document(collation = "reports")
+@Document(collection = "reports")
 public class Report implements Serializable {
 
     @Serial

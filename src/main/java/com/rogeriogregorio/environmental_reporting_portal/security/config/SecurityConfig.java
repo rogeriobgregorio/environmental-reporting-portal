@@ -49,7 +49,7 @@ public class SecurityConfig {
 
                         // users
                         .requestMatchers(HttpMethod.GET, "/users").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.POST, "/users/register").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "/users/roles/{id}").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.PUT, "/users/{id}").hasAnyRole(ADMIN, USER)

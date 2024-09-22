@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-@Document(collation = "comments")
+@Document(collection = "comments")
 public class Comment implements Serializable {
 
     @Serial
