@@ -21,8 +21,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -81,8 +79,11 @@ public class ReportServiceImpl implements ReportService {
 
         Report existingReport = getReportIfExists(id);
 
-        List<String> existingImageNames = existingReport.getImageURLs().stream()
-                .map(url -> url.substring(url.lastIndexOf("/") + 1)).toList();
+        List<String> existingImageNames = existingReport
+                .getImageURLs()
+                .stream()
+                .map(url -> url.substring(url.lastIndexOf("/") + 1))
+                .toList();
 
         catchError.run(() -> fileStorage.deleteFiles(existingImageNames));
 
@@ -128,8 +129,11 @@ public class ReportServiceImpl implements ReportService {
 
         Report report = getReportIfExists(id);
 
-        List<String> existingImageNames = report.getImageURLs().stream()
-                .map(url -> url.substring(url.lastIndexOf("/") + 1)).toList();
+        List<String> existingImageNames = report
+                .getImageURLs()
+                .stream()
+                .map(url -> url.substring(url.lastIndexOf("/") + 1))
+                .toList();
 
         catchError.run(() -> {
             fileStorage.deleteFiles(existingImageNames);

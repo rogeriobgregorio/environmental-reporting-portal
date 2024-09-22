@@ -50,7 +50,7 @@ public class ReportController {
                 .body(reportService.updateReport(id, reportRequest));
     }
 
-    @PatchMapping(value = "/status/{id}")
+    @PatchMapping(value = "/{id}/status")
     public ResponseEntity<ReportResponse> patchReportStatus(
             @PathVariable String id,
             @Valid @RequestBody Integer reportStatus) {

@@ -68,7 +68,7 @@ public class CommentController {
                 .build();
     }
 
-    @GetMapping(value = "/search")
+    @GetMapping(value = "/search/name-email")
     public ResponseEntity<List<CommentResponse>> getCommentsByAuthorNameOrEmail(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,

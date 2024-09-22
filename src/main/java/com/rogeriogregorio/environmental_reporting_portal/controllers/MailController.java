@@ -20,7 +20,7 @@ public class MailController {
         this.mailService = mailService;
     }
 
-    @PostMapping(value = "/password-recover")
+    @PostMapping(value = "/recover-password")
     public ResponseEntity<Void> postRequestPasswordReset(
             @Validated(PasswordResetDto.View.Request.class)
             @JsonView(PasswordResetDto.View.Request.class)

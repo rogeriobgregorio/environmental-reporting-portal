@@ -5,7 +5,6 @@ import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserRespo
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
-import com.rogeriogregorio.environmental_reporting_portal.mail.MailService;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.UserRepository;
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
@@ -19,8 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @Service
 public class UserServiceImpl implements UserService {

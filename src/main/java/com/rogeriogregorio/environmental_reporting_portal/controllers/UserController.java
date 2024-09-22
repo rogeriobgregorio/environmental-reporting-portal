@@ -31,7 +31,7 @@ public class UserController {
                 .body(userService.findAllUsers(pageable).getContent());
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> postUser(
             @Valid @RequestBody UserRequest userRequest) {
 
@@ -78,7 +78,7 @@ public class UserController {
                 .build();
     }
 
-    @GetMapping(value = "/search")
+    @GetMapping(value = "/search/name-email")
     public ResponseEntity<List<UserResponse>> getUsersByNameOrEmail(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String email,

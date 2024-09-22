@@ -21,6 +21,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final String USER = "USER";
+    private static final String ADMIN = "ADMIN";
+
     private final SecurityFilterConfig securityFilterConfig;
     private final CatchError catchError;
 
@@ -38,18 +41,41 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
+
+                        // authenticate and mail
                         .requestMatchers(HttpMethod.POST, "/authenticate").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/email/validate/search").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/email/password-reset").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/email/password-reset").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/users").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.POST, "/users").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.PUT, "/users/{id}").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/users/search").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/users/roles").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/mail/recover-password").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/mail/reset-password").hasAnyRole(ADMIN, USER)
+
+                        // users
+                        .requestMatchers(HttpMethod.GET, "/users").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/users/register").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PATCH, "/users/roles/{id}").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PUT, "/users/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/users/search/name-email").hasAnyRole(ADMIN, USER)
+
+                        // comments
+                        .requestMatchers(HttpMethod.GET, "/comments").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/comments").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PUT, "/comments/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/comments/{id}").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.DELETE, "/comments/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/comments/search/name-email").hasRole(ADMIN)
+
+                        // reports
+                        .requestMatchers(HttpMethod.GET, "/reports").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.POST, "/reports").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PUT, "/reports/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PATCH, "/reports/{id}/status").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/reports/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.DELETE, "/reports/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/reports/search/name-email").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/reports/search/severity-level").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/reports/search/report-type").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/reports/search/report-status").hasAnyRole(ADMIN, USER)
+
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)
