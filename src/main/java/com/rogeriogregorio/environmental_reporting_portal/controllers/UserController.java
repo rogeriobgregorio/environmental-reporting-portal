@@ -3,6 +3,12 @@ package com.rogeriogregorio.environmental_reporting_portal.controllers;
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.UserRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
+@Tag(name = "Users API", description = "API para gestão de usuários")
 public class UserController {
 
     private final UserService userService;
@@ -23,6 +30,16 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @Operation(summary = "Buscar todos", description = "Endpoint para buscar todos os usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao buscar usuários")
+    })
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers(Pageable pageable) {
 
@@ -31,7 +48,15 @@ public class UserController {
                 .body(userService.findAllUsers(pageable).getContent());
     }
 
-    @PostMapping("/register")
+    @Operation(summary = "Registrar", description = "Endpoint para registrar usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Registro realizado com sucesso",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Usuário já registrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao registrar-se")
+    })
+    @PostMapping(value = "/register")
     public ResponseEntity<UserResponse> postUser(
             @Valid @RequestBody UserRequest userRequest) {
 
@@ -40,6 +65,15 @@ public class UserController {
                 .body(userService.registerUser(userRequest));
     }
 
+    @Operation(summary = "Atualizar autorização do usuário", description = "Endpoint para editar autorização do usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Autorização editada com sucesso",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao editar autorização do usuário")
+    })
     @PatchMapping(value = "/roles/{id}")
     public ResponseEntity<UserResponse> patchUserRole(
             @PathVariable String id,
@@ -50,6 +84,15 @@ public class UserController {
                 .body(userService.updateUserRole(id, userRequest));
     }
 
+    @Operation(summary = "Buscar usuário por Id",description = "Endpoint para buscar usuário pelo Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao buscar usuário")
+    })
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable String id) {
 
@@ -58,6 +101,15 @@ public class UserController {
                 .body(userService.findUserById(id));
     }
 
+    @Operation(summary = "Atualizar usuário", description = "Endpoint para atualizar usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "usuário editado com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao editar usuário")
+    })
     @PutMapping(value = "/{id}")
     public ResponseEntity<UserResponse> putUser(
             @PathVariable String id,
@@ -68,6 +120,12 @@ public class UserController {
                 .body(userService.updateUser(id, userRequest));
     }
 
+    @Operation(summary = "Deletar usuário", description = "Endpoint para deletar usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Nenhum livro encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao deletar livro")
+    })
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
 
@@ -78,6 +136,14 @@ public class UserController {
                 .build();
     }
 
+    @Operation(summary = "Buscar usuário por nome ou email", description = "Endpoint para buscar usuários por nome ou email")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao buscar livro")
+    })
     @GetMapping(value = "/search/name-email")
     public ResponseEntity<List<UserResponse>> getUsersByNameOrEmail(
             @RequestParam(required = false) String name,
