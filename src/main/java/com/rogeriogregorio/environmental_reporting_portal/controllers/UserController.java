@@ -31,13 +31,12 @@ public class UserController {
     }
 
 
-    @Operation(summary = "Buscar todos", description = "Endpoint para buscar todos os usuário")
+    @Operation(summary = "Buscar todos os usuários", description = "Endpoint para buscar todos os usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
                     content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
-            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
             @ApiResponse(responseCode = "500", description = "Erro ao buscar usuários")
     })
     @GetMapping
@@ -48,7 +47,7 @@ public class UserController {
                 .body(userService.findAllUsers(pageable).getContent());
     }
 
-    @Operation(summary = "Registrar", description = "Endpoint para registrar usuário")
+    @Operation(summary = "Registrar usuário", description = "Endpoint para registrar usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Registro realizado com sucesso",
                     content = @Content(mediaType = "application/json",
@@ -65,14 +64,14 @@ public class UserController {
                 .body(userService.registerUser(userRequest));
     }
 
-    @Operation(summary = "Atualizar autorização do usuário", description = "Endpoint para editar autorização do usuário")
+    @Operation(summary = "Atualizar autorização do usuário", description = "Endpoint para atualizar autorização do usuário")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Autorização editada com sucesso",
+            @ApiResponse(responseCode = "200", description = "Autorização atualizada com sucesso",
                     content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
             @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao editar autorização do usuário")
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar autorização do usuário")
     })
     @PatchMapping(value = "/roles/{id}")
     public ResponseEntity<UserResponse> patchUserRole(
@@ -103,12 +102,12 @@ public class UserController {
 
     @Operation(summary = "Atualizar usuário", description = "Endpoint para atualizar usuário")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "usuário editado com sucesso",
+            @ApiResponse(responseCode = "200", description = "usuário atualizado com sucesso",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
             @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao editar usuário")
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar usuário")
     })
     @PutMapping(value = "/{id}")
     public ResponseEntity<UserResponse> putUser(
@@ -123,6 +122,7 @@ public class UserController {
     @Operation(summary = "Deletar usuário", description = "Endpoint para deletar usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso"),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
             @ApiResponse(responseCode = "404", description = "Nenhum livro encontrado"),
             @ApiResponse(responseCode = "500", description = "Erro ao deletar livro")
     })
