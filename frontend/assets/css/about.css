@@ -1,0 +1,26 @@
+/* Seção Sobre */
+.about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.about img {
+    width: 500px;
+    margin-left: 30px;
+}

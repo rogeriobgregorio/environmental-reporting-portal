@@ -1,0 +1,35 @@
+/* Seção Hero */
+.hero {
+    height: 600px;
+    background-image: url('https://via.placeholder.com/1200x600');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    margin-top: 80px;
+    /* Ajuste para compensar o cabeçalho fixo */
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    font-size: 24px;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.hero .cta-btn {
+    background-color: #046245;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #fff;
+}

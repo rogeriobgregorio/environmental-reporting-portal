@@ -1,0 +1,26 @@
+/* Seção FAQ */
+.faq {
+    padding: 60px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.faq-item p {
+    font-size: 16px;
+    margin-top: 10px;
+}

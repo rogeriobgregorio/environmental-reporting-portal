@@ -1,0 +1,35 @@
+/* Seção Informativos */
+.info {
+    padding: 60px 100px;
+    text-align: center;
+}
+
+.info h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: #F7F7F7;
+    padding: 20px;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+}
