@@ -1,6 +1,6 @@
 /* Rodapé (Footer) */
 footer {
-    background-color: #333333;
+    background-color: #046245;
     color: #FFFFFF;
     padding: 40px 100px;
     text-align: center;
@@ -9,7 +9,7 @@ footer {
 .footer-links a {
     color: #FFFFFF;
     text-decoration: none;
-    margin: 0 20px;
+    margin: 0 15px;
     font-size: 14px;
 }
 
