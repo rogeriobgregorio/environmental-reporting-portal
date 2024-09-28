@@ -14,7 +14,7 @@ class HeaderComponent extends HTMLElement {
             <li><a href="#contato">Contato</a></li>
           </ul>
         </nav>
-        <a href="#" class="cta-btn">Cadastre-se</a>
+        <a href="#" class="cta-btn-register">Cadastre-se</a>
       </header>
     `;
   }

@@ -12,9 +12,13 @@
 
 .testimonial {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    text-align: left;
 }
 
 .testimonial img {
@@ -22,9 +26,13 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .testimonial p {
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    flex-grow: 1;
+    text-align: left;
 }

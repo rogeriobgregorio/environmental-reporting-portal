@@ -25,11 +25,12 @@
     margin-bottom: 40px;
 }
 
-.hero .cta-btn {
+.hero .cta-btn-report {
     background-color: #046245;
+    color: #fff;
     padding: 15px 30px;
     border-radius: 5px;
+    text-decoration: none;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
-    color: #fff;
 }
