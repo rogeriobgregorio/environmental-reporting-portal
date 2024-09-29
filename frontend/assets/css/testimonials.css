@@ -29,10 +29,22 @@
     flex-shrink: 0;
 }
 
+.testimonial-text {
+    flex-grow: 1;
+}
+
 .testimonial p {
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-    flex-grow: 1;
+    text-align: left;
+}
+
+.user-name {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #046245;
     text-align: left;
 }

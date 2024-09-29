@@ -33,4 +33,10 @@
     text-decoration: none;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero .cta-btn-report:hover {
+    background-color: #038a62;
+    transform: scale(1.05);
 }
