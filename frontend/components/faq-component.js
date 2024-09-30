@@ -1,3 +1,5 @@
+import { setupFAQToggle } from '../js/faq-toggle.js';
+
 class FAQComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -47,27 +49,7 @@ class FAQComponent extends HTMLElement {
 
       </section>
     `;
-    this.setupFAQToggle();
-  }
-
-  setupFAQToggle() {
-    const faqItems = this.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-
-      const questionButton = item.querySelector('.faq-question');
-      const answer = item.querySelector('.faq-answer');
-      const icon = item.querySelector('.faq-icon');
-
-      answer.style.display = 'none';
-
-      questionButton.addEventListener('click', () => {
-
-        const isVisible = answer.style.display === 'block';
-        answer.style.display = isVisible ? 'none' : 'block';
-        icon.textContent = isVisible ? '+' : '-';
-      });
-    });
+    setupFAQToggle(this);
   }
 }
 customElements.define('faq-component', FAQComponent);
