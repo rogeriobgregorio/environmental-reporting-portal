@@ -22,7 +22,7 @@ class AboutComponent extends HTMLElement {
           </p>
         </div>
 
-        <img src="https://via.placeholder.com/500" alt="Imagem sobre ECOAR">
+        <img src="assets/images/about-image.jpg" alt="Imagem sobre ECOAR">
         
       </section>
     `;

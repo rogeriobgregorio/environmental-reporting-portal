@@ -19,6 +19,8 @@
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
     max-width: 800px;
+    text-align: justify;
+    hyphens: auto;
 }
 
 .about img {

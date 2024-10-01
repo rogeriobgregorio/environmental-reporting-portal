@@ -1,4 +1,3 @@
-
 class HeroComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `

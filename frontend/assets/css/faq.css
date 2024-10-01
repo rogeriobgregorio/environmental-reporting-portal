@@ -44,6 +44,8 @@
     padding: 10px 10px 10px 10px;
     display: none;
     transition: all 0.3s ease;
+    text-align: left;
+    hyphens: auto;
 }
 
 .faq-question:hover {

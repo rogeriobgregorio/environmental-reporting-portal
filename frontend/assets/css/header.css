@@ -24,6 +24,7 @@ header {
     color: #000000;
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
+    font-weight: 600;
     letter-spacing: 0.5px;
     display: inline-block;
     transition: color 0.3s ease, transform 0.3s ease;
