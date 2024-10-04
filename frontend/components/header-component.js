@@ -4,12 +4,14 @@ class HeaderComponent extends HTMLElement {
       <header>
 
         <div class="logo">
-          <img src="assets/images/ecoar-logo.svg" alt="Logo ECOAR" id="logo">
+          <a href="#">
+            <img src="assets/images/ecoar-logo.svg" alt="Logo ECOAR" id="logo">
+          </a>
         </div>
 
         <nav class="menu">
           <ul>
-            <li><a href="#hero">Início</a></li>
+            <li><a href="#">Início</a></li>
             <li><a href="#about">Sobre</a></li>
             <li><a href="#denuncias">Denúncias</a></li>
             <li><a href="#informativos">Informativos</a></li>

@@ -9,8 +9,8 @@ class AboutComponent extends HTMLElement {
           <p>
             O ECOAR (Espaço de Conscientização e Ação Ambiental Responsável) é uma plataforma digital dedicada 
             à denúncia de crimes ambientais e à promoção de ações em prol da preservação do meio ambiente. 
-            Através do ECOAR, usuários podem reportar atividades ilegais que prejudiquem a natureza, como desmatamento, poluição 
-            ou caça ilegal, permitindo que essas denúncias sejam visualizadas pela comunidade e pelas autoridades responsáveis.
+            Através do ECOAR, usuários podem reportar quaisquer atividades ilegais que prejudiquem a natureza, como desmatamento, 
+            poluição ou caça ilegal, permitindo que essas denúncias sejam visualizadas pela comunidade e pelas autoridades responsáveis.
           </p>
 
           <br>
