@@ -20,10 +20,7 @@ class AboutComponent extends HTMLElement {
             sobre práticas sustentáveis, leis ambientais e mudanças climáticas, com o objetivo de conscientizar a 
             população sobre a importância da preservação ambiental.
           </p>
-        </div>
-
-        <img src="assets/images/about-image.jpg" alt="Imagem sobre ECOAR">
-        
+        </div>        
       </section>
     `;
     }

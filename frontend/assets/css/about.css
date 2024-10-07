@@ -1,11 +1,12 @@
 /* Seção Sobre */
 .about {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 60px 100px;
     max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .about h2 {
@@ -21,10 +22,4 @@
     max-width: 800px;
     text-align: justify;
     hyphens: auto;
-}
-
-.about img {
-    width: 500px;
-    margin-left: 30px;
-    border-radius: 30px;
 }
