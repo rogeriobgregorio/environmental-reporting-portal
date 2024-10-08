@@ -1,18 +1,18 @@
 /* Rodapé (Footer) */
 footer {
-    background-color: #046245;
-    color: #FFFFFF;
-    padding: 40px 100px;
-    text-align: center;
+  background-color: #046245;
+  color: #ffffff;
+  padding: 40px 100px;
+  text-align: center;
 }
 
 .footer-links a {
-    color: #FFFFFF;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
 }
 
 .footer-links a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

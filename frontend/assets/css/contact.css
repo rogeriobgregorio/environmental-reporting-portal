@@ -1,67 +1,68 @@
 /* Estilos da Seção de Contato */
 .contact-section {
-    padding: 60px 150px;
-    text-align: center;
+  padding: 60px 150px;
+  text-align: center;
 }
 
 .contact-section h2 {
-    font-size: 36px;
-    font-weight: 600;
-    margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .form-group {
-    width: 100%;
+  width: 100%;
 }
 
 .form-group label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #000000;
-    text-align: left;
-    font-family: 'Roboto', sans-serif;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #000000;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
 }
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    background-color: #F7F7F7;
-    border: 1px solid #cccccc;
-    border-radius: 30px;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border: 1px solid #cccccc;
+  border-radius: 30px;
+  font-size: 16px;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #046245;
-    outline: none;
+  border-color: #046245;
+  outline: none;
 }
 
 .submit-btn {
-    background-color: #046245;
-    color: #ffffff;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 2px;
-    transition: background-color 0.3s ease, transform 0.3s ease;}
+  background-color: #046245;
+  color: #ffffff;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
 .submit-btn:hover {
-    background-color: #038a62;
-    transform: scale(1.05);
+  background-color: #038a62;
+  transform: scale(1.05);
 }

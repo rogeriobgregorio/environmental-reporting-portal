@@ -1,54 +1,54 @@
 /* Seção FAQ */
 .faq {
-    padding: 60px 100px;
-    max-width: 1000px;
-    margin: 0 auto;
+  padding: 60px 100px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .faq h2 {
-    font-size: 36px;
-    font-weight: 600;
-    margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .faq-item {
-    background-color: #F7F7F7;
-    border-radius: 30px;
-    margin-bottom: 20px;
+  background-color: #f7f7f7;
+  border-radius: 30px;
+  margin-bottom: 20px;
 }
 
 .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 10px 10px 10px 10px;
-    border-radius: 30px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 10px 10px 10px;
+  border-radius: 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
 .faq-icon {
-    font-size: 24px;
-    margin-left: 10px;
-    transition: transform 0.3s ease;
+  font-size: 24px;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
 }
 
 .faq-answer {
-    font-size: 16px;
-    font-family: 'Open Sans', sans-serif;
-    padding: 10px 10px 10px 10px;
-    display: none;
-    transition: all 0.3s ease;
-    text-align: left;
-    hyphens: auto;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  padding: 10px 10px 10px 10px;
+  display: none;
+  transition: all 0.3s ease;
+  text-align: left;
+  hyphens: auto;
 }
 
 .faq-question:hover {
-    color: #046245;
+  color: #046245;
 }

@@ -4,18 +4,18 @@ class HeaderComponent extends HTMLElement {
       <header>
 
         <div class="logo">
-          <a href="#">
-            <img src="assets/images/ecoar-logo.svg" alt="Logo ECOAR" id="logo">
+          <a href="./index.html#">
+            <img src="./assets/images/ecoar-logo.svg" alt="Logo ECOAR" id="logo">
           </a>
         </div>
 
         <nav class="menu">
           <ul>
-            <li><a href="#">Início</a></li>
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#denuncias">Denúncias</a></li>
-            <li><a href="#informativos">Informativos</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="./index.html#">Início</a></li>
+            <li><a href="./index.html#sobre">Sobre</a></li>
+            <li><a href="./index.html#denuncias">Denúncias</a></li>
+            <li><a href="./index.html#informativos">Informativos</a></li>
+            <li><a href="./index.html#contato">Contato</a></li>
           </ul>
         </nav>
 
@@ -25,4 +25,4 @@ class HeaderComponent extends HTMLElement {
     `;
   }
 }
-customElements.define('header-component', HeaderComponent);
+customElements.define("header-component", HeaderComponent);

@@ -1,56 +1,53 @@
 /* Seção Hero */
 .hero {
-    position: relative;
-    height: 840px;
-    background-image: url('../images/hero-background1.png');
-    background-size: contain;
-    background-position: right;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    color: #ffffff;
-    margin-top: 80px;
-    overflow: hidden;
+  position: relative;
+  height: 840px;
+  background-image: url("../images/hero-background.webp");
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-top: 80px;
+  overflow: hidden;
 }
 
 .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 100px 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 100px 150px;
 }
 
 .hero h1 {
-    font-size: 60px;
-    font-weight: 700;
-    color: black;
-    margin-bottom: 10px;
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .hero h2 {
-    font-size: 30px;
-    font-weight: 300;
-    color: black;
-    margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 40px;
 }
 
 .hero .cta-btn-report {
-    background-color: #046245;
-    color: #ffffff;
-    padding: 15px 30px;
-    border-radius: 30px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 2px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #046245;
+  color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .hero .cta-btn-report:hover {
-    background-color: #038a62;
-    transform: scale(1.05);
+  background-color: #038a62;
+  transform: scale(1.05);
 }

@@ -1,7 +1,6 @@
-
 class InfoComponent extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
       <section id="informativos" class="info">
 
         <h2>Como contribuir para a preservação?</h2>
@@ -27,6 +26,6 @@ class InfoComponent extends HTMLElement {
         
       </section>
     `;
-    }
+  }
 }
-customElements.define('info-component', InfoComponent);
+customElements.define("info-component", InfoComponent);

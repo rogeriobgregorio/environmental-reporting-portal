@@ -1,60 +1,60 @@
 /* Cabeçalho (Header) */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    padding: 15px 150px;
-    background-color: #ffffff;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 15px 150px;
+  background-color: #ffffff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
 .menu ul {
-    display: flex;
-    gap: 40px;
-    list-style: none;
+  display: flex;
+  gap: 40px;
+  list-style: none;
 }
 
 .menu a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 30px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    display: inline-block;
-    transition: color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  color: #000000;
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .menu a:hover {
-    color: #046245;
-    transform: scale(1.2);
+  color: #046245;
+  transform: scale(1.2);
 }
 
 .cta-btn-register {
-    background-color: #046245;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #046245;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-btn-register:hover {
-    background-color: #038a62;
-    transform: scale(1.05);
+  background-color: #038a62;
+  transform: scale(1.05);
 }
 
 .logo img {
-    margin-top: 10px;
-    height: 40px;
-    width: auto;
+  margin-top: 10px;
+  height: 40px;
+  width: auto;
 }

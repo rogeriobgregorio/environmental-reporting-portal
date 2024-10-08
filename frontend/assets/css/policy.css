@@ -1,0 +1,29 @@
+/* Estilos da Seção Política de Privacidade */
+.privacy-policy {
+  padding: 120px 150px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.privacy-policy h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.privacy-policy h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.privacy-policy p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+  hyphens: auto;
+  color: #000000;
+}

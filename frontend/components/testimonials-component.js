@@ -32,4 +32,4 @@ class TestimonialsComponent extends HTMLElement {
     `;
   }
 }
-customElements.define('testimonials-component', TestimonialsComponent);
+customElements.define("testimonials-component", TestimonialsComponent);

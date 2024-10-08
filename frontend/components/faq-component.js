@@ -1,4 +1,4 @@
-import { setupFAQToggle } from '../js/faq-toggle.js';
+import { setupFAQToggle } from "../js/faq-toggle.js";
 
 class FAQComponent extends HTMLElement {
   connectedCallback() {
@@ -12,7 +12,8 @@ class FAQComponent extends HTMLElement {
             <h3>Como faço uma denúncia?</h3>
             <span class="faq-icon">+</span>
           </button>
-          <p class="faq-answer">Para fazer uma denúncia, basta cadastrar-se na plataforma e seguir os passos indicados na seção de denúncias.</p>
+          <p class="faq-answer">Para fazer uma denúncia, basta cadastrar-se na 
+          plataforma e seguir os passos indicados na seção de denúncias.</p>
         </div>
 
         <div class="faq-item">
@@ -28,7 +29,8 @@ class FAQComponent extends HTMLElement {
             <h3>Que tipo de crimes ambientais posso denunciar?</h3>
             <span class="faq-icon">+</span>
           </button>
-          <p class="faq-answer">Você pode denunciar qualquer atividade que prejudique o meio ambiente, como desmatamento ilegal, poluição, caça de espécies protegidas e muito mais.</p>
+          <p class="faq-answer">Você pode denunciar qualquer atividade que prejudique o meio ambiente, 
+          como desmatamento ilegal, poluição, caça de espécies protegidas e muito mais.</p>
         </div>
 
         <div class="faq-item">
@@ -36,7 +38,8 @@ class FAQComponent extends HTMLElement {
             <h3>Como o ECOAR protege minhas informações?</h3>
             <span class="faq-icon">+</span>
           </button>
-          <p class="faq-answer">Usamos tecnologias avançadas de criptografia e armazenamento seguro para garantir que seus dados e denúncias estejam sempre protegidos.</p>
+          <p class="faq-answer">Usamos tecnologias avançadas de criptografia e armazenamento 
+          seguro para garantir que seus dados e denúncias estejam sempre protegidos.</p>
         </div>
 
         <div class="faq-item">
@@ -52,4 +55,4 @@ class FAQComponent extends HTMLElement {
     setupFAQToggle(this);
   }
 }
-customElements.define('faq-component', FAQComponent);
+customElements.define("faq-component", FAQComponent);
