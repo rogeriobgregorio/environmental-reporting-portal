@@ -1,37 +1,26 @@
-/* Estilos da Seção Termos de Uso */
-.terms-section {
+/* Estilos da Seção Dicas Sustentáveis */
+.dicas-sustentaveis {
   padding: 120px 150px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.terms-section h1 {
+.dicas-sustentaveis h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 40px;
   text-align: center;
 }
 
-.terms-section h2 {
+.dicas-sustentaveis h2 {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-.terms-section p {
+.dicas-sustentaveis p {
   font-size: 18px;
   margin-bottom: 20px;
   text-align: justify;
   hyphens: auto;
-}
-
-.terms-section ul {
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-
-.terms-section ul li {
-  font-size: 18px;
-  font-family: "Open Sans", sans-serif;
-  margin-bottom: 10px;
 }

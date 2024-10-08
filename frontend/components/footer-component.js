@@ -9,7 +9,7 @@ class FooterComponent extends HTMLElement {
           <a href="./lgpd.html">LGPD</a>
         </div>
         
-        <p>&copy; 2024 ECOAR - Todos os direitos reservados</p>
+        <p>&copy; 2024 ECOAR - Todos os Direitos Reservados</p>
 
       </footer>
     `;

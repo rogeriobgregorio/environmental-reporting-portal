@@ -3,7 +3,6 @@
   padding: 120px 150px;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #ffffff;
 }
 
 .privacy-policy h1 {
@@ -21,9 +20,7 @@
 
 .privacy-policy p {
   font-size: 18px;
-  line-height: 1.8;
   margin-bottom: 20px;
   text-align: justify;
   hyphens: auto;
-  color: #000000;
 }
