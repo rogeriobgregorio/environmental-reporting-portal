@@ -1,26 +1,62 @@
 /* Estilos da Seção Leis Ambientais */
 .leis-ambientais {
-  padding: 120px 150px;
+  padding: 15vh 5%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .leis-ambientais h1 {
-  font-size: 36px;
+  font-size: 2.5em; 
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 2em; 
   text-align: center;
 }
 
 .leis-ambientais h2 {
-  font-size: 28px;
+  font-size: 2em; 
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 1em; 
 }
 
 .leis-ambientais p {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1em; 
+  margin-bottom: 1em; 
   text-align: justify;
   hyphens: auto;
+}
+
+@media (max-width: 768px) {
+  .leis-ambientais {
+    padding: 15vh 3%; 
+  }
+
+  .leis-ambientais h1 {
+    font-size: 2em; 
+  }
+
+  .leis-ambientais h2 {
+    font-size: 1.5rem;
+  }
+
+  .leis-ambientais p {
+    font-size: 0.9em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .leis-ambientais {
+    padding: 15vh 2%; 
+  }
+
+  .leis-ambientais h1 {
+    font-size: 1.5rem; 
+  }
+
+  .leis-ambientais h2 {
+    font-size: 1.3rem; 
+  }
+
+  .leis-ambientais p {
+    font-size: 0.8rem; 
+  }
 }

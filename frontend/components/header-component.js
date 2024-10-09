@@ -2,7 +2,6 @@ class HeaderComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <header>
-
         <div class="logo">
           <a href="./index.html#">
             <img src="./assets/images/ecoar-logo.svg" alt="Logo ECOAR" id="logo">
@@ -20,9 +19,22 @@ class HeaderComponent extends HTMLElement {
         </nav>
 
         <a href="#" class="cta-btn-register">Cadastre-se</a>
-        
+
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </header>
     `;
+
+    const hamburger = this.querySelector(".hamburger");
+    const menu = this.querySelector(".menu");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      menu.classList.toggle("active");
+    });
   }
 }
 customElements.define("header-component", HeaderComponent);

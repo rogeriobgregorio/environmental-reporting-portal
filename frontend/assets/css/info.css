@@ -1,19 +1,20 @@
 /* Seção Informativos */
 .info {
-  padding: 60px 100px;
+  padding: 3.75rem 6.25rem; 
   text-align: center;
 }
 
 .info h2 {
-  font-size: 36px;
+  font-size: 2.25rem; 
   font-weight: 600;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem; 
 }
 
 .cards {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 40px;
+  flex-wrap: wrap; 
+  margin-top: 2.5rem; 
 }
 
 .card {
@@ -21,21 +22,22 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #f7f7f7;
-  padding: 20px;
-  width: 300px;
-  height: 250px;
-  border-radius: 30px;
+  padding: 1.25rem;
+  width: 18.75rem; 
+  height: 15.625rem; 
+  border-radius: 1.875rem; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 1.25rem; 
 }
 
 .card h3 {
-  font-size: 24px;
+  font-size: 1.5rem; 
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem; 
 }
 
 .card p {
-  font-size: 16px;
+  font-size: 1rem; 
   text-align: justify;
   hyphens: auto;
 }
@@ -43,10 +45,10 @@
 .card a {
   background-color: #046245;
   color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 0.625rem 1.25rem; 
+  border-radius: 1.875rem; 
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem; 
   font-weight: 300;
   font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
@@ -57,4 +59,24 @@
 .card a:hover {
   background-color: #038a62;
   transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .info {
+    padding: 2rem; 
+  }
+
+  .info h2 {
+    font-size: 1.875rem; 
+  }
+
+  .cards {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .card {
+    width: 90%; 
+    height: auto; 
+  }
 }

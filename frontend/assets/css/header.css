@@ -4,7 +4,7 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  padding: 15px 150px;
+  padding: 15px 5%;
   background-color: #ffffff;
   position: fixed;
   width: 100%;
@@ -12,10 +12,17 @@ header {
   z-index: 1000;
 }
 
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
 .menu ul {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu a {
@@ -24,14 +31,12 @@ header {
   font-size: 28px;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  display: inline-block;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .menu a:hover {
   color: #046245;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .cta-btn-register {
@@ -52,8 +57,82 @@ header {
   transform: scale(1.05);
 }
 
-.logo img {
-  margin-top: 10px;
-  height: 40px;
-  width: auto;
+@media (max-width: 1024px) {
+  header {
+    padding: 15px 20px;
+  }
+
+  .menu ul {
+    gap: 20px;
+  }
+
+  .menu a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+
+  .menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: #ffffff;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu a {
+    font-size: 20px;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .cta-btn-register {
+    font-size: 14px;
+  }
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background-color: #000000;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
 }

@@ -1,36 +1,74 @@
 /* Estilos da Seção Termos de Uso */
 .terms-section {
-  padding: 120px 150px;
+  padding: 15vh 5%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .terms-section h1 {
-  font-size: 36px;
+  font-size: 2.5em; 
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 2em; 
   text-align: center;
 }
 
 .terms-section h2 {
-  font-size: 28px;
+  font-size: 2em; 
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 1em; 
 }
 
 .terms-section p {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1em; 
+  margin-bottom: 1em; 
   text-align: justify;
   hyphens: auto;
 }
 
 .terms-section ul {
   margin-left: 20px;
-  margin-bottom: 20px;
+  list-style: disc;
+  font-size: 1em; 
 }
 
 .terms-section ul li {
-  font-size: 18px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .terms-section {
+    padding: 15vh 3%; 
+  }
+
+  .terms-section h1 {
+    font-size: 2em; 
+  }
+
+  .terms-section h2 {
+    font-size: 1.5em; 
+  }
+
+  .terms-section p,
+  .terms-section ul {
+    font-size: 0.9em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .terms-section {
+    padding: 15vh 2%; 
+  }
+
+  .terms-section h1 {
+    font-size: 1.5em; 
+  }
+
+  .terms-section h2 {
+    font-size: 1.3em; 
+  }
+
+  .terms-section p,
+  .terms-section ul {
+    font-size: 0.8em; 
+  }
 }

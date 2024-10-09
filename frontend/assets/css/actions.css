@@ -1,37 +1,75 @@
 /* Estilos da Seção ODS 13 */
 .ods-13 {
-  padding: 120px 150px;
+  padding: 15vh 5%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .ods-13 h1 {
-  font-size: 36px;
+  font-size: 2.5em; 
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 2em; 
   text-align: center;
 }
 
 .ods-13 h2 {
-  font-size: 28px;
+  font-size: 2em; 
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 1em; 
 }
 
 .ods-13 p {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1em; 
+  margin-bottom: 1em; 
   text-align: justify;
   hyphens: auto;
 }
 
 .ods-13 ul {
-    margin-left: 20px;
-    list-style: disc;
-    font-size: 18px;
-    color: #333333;
+  margin-left: 20px;
+  list-style: disc;
+  font-size: 1em; 
 }
 
 .ods-13 ul li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .ods-13 {
+    padding: 15vh 3%; 
+  }
+
+  .ods-13 h1 {
+    font-size: 2em; 
+  }
+
+  .ods-13 h2 {
+    font-size: 1.5em; 
+  }
+
+  .ods-13 p,
+  .ods-13 ul {
+    font-size: 0.9em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .ods-13 {
+    padding: 15vh 2%; 
+  }
+
+  .ods-13 h1 {
+    font-size: 1.5em; 
+  }
+
+  .ods-13 h2 {
+    font-size: 1.3em; 
+  }
+
+  .ods-13 p,
+  .ods-13 ul {
+    font-size: 0.8em; 
+  }
 }

@@ -1,27 +1,62 @@
 /* Estilos da Seção LGPD */
 .lgpd-policy {
-  padding: 120px 150px;
+  padding: 15vh 5%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .lgpd-policy h1 {
-  font-size: 36px;
+  font-size: 2.5em; 
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 2em; 
   text-align: center;
 }
 
 .lgpd-policy h2 {
-  font-size: 28px;
+  font-size: 2em; 
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 1em; 
 }
 
 .lgpd-policy p {
-  font-size: 18px;
-  line-height: 1.8;
-  margin-bottom: 20px;
+  font-size: 1em; 
+  margin-bottom: 1em; 
   text-align: justify;
   hyphens: auto;
+}
+
+@media (max-width: 768px) {
+  .lgpd-policy {
+    padding: 15vh 3%; 
+  }
+
+  .lgpd-policy h1 {
+    font-size: 2em; 
+  }
+
+  .lgpd-policy h2 {
+    font-size: 1.5rem;
+  }
+
+  .lgpd-policy p {
+    font-size: 0.9em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .lgpd-policy {
+    padding: 15vh 2%; 
+  }
+
+  .lgpd-policy h1 {
+    font-size: 1.5rem; 
+  }
+
+  .lgpd-policy h2 {
+    font-size: 1.3rem; 
+  }
+
+  .lgpd-policy p {
+    font-size: 0.8rem; 
+  }
 }

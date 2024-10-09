@@ -4,20 +4,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 100px;
+  padding: 5vh 5%; 
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
 
 .about h2 {
-  font-size: 36px;
+  font-size: 2.5em; 
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 1em; 
 }
 
 .about p {
-  font-size: 18px;
+  font-size: 1em;
   max-width: 800px;
   text-align: justify;
   hyphens: auto;
@@ -25,9 +25,10 @@
 
 .icon-section {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center; 
   margin-top: 40px;
-  padding: 0 20px;
+  padding: 0 10%; 
 }
 
 .icon-box {
@@ -35,23 +36,44 @@
   flex-direction: column; 
   justify-content: space-between;
   padding: 20px; 
-  width: 300px; 
-  height: 250px; 
+  width: calc(33.33% - 40px); 
+  height: auto; 
   border-radius: 30px; 
-  margin: 0 100px;
+  margin: 20px; 
 }
 
 .icon-box h3 {
-  font-size: 24px;
+  font-size: 1.5em; 
   margin: 15px 0;
 }
 
 .icon-box p {
-  font-size: 16px;
+  font-size: 0.9em; 
 }
 
 .icon {
-  width: 80px; 
-  height: 80px; 
+  max-width: 20%; 
+  height: auto; 
   align-self: center;
+}
+
+
+@media (max-width: 768px) {
+  .about {
+    padding: 5vh 3%; 
+  }
+
+  .about h2 {
+    font-size: 2em;
+  }
+
+  .icon-box {
+    width: calc(50% - 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-box {
+    width: calc(100% - 40px);
+  }
 }
