@@ -7,7 +7,7 @@ class TestimonialsComponent extends HTMLElement {
         <div class="testimonial">
           <img src="assets/images/profile-user.svg" alt="Avatar usuário">
           <div class="testimonial-text">
-            <p>"A plataforma é super intuitiva e fácil de usar. Já fiz várias denúncias de situações que prejudicam o meio ambiente."</p>
+            <q>A plataforma é super intuitiva e fácil de usar. Já fiz várias denúncias de situações que prejudicam o meio ambiente.</q>
             <span class="user-name">João Silva</span>
           </div>
         </div>
@@ -15,7 +15,7 @@ class TestimonialsComponent extends HTMLElement {
         <div class="testimonial">
           <img src="assets/images/profile-user.svg" alt="Avatar usuário">
           <div class="testimonial-text">
-            <p>"É incrível poder acompanhar o status das denúncias em tempo real e também receber atualizações via e-mail."</p>
+            <q>É incrível poder acompanhar o status das denúncias em tempo real e também receber atualizações via e-mail.</q>
             <span class="user-name">Maria Fernandes</span>
           </div>
         </div>
@@ -23,8 +23,8 @@ class TestimonialsComponent extends HTMLElement {
         <div class="testimonial">
           <img src="assets/images/profile-user.svg" alt="Avatar usuário">
           <div class="testimonial-text">
-            <p>"Me sinto mais seguro podendo denunciar crimes ambientais, da região onde eu moro, em total anonimato."</p>
-            <span class="user-name">Carlos Oliveira</span>
+            <q>Me sinto mais seguro podendo denunciar crimes ambientais, da região onde eu moro, em total anonimato.</q>
+            <span class="user-name">Usuário Anônimo</span>
           </div>
         </div>
         

@@ -1,6 +1,7 @@
 /* Seção Sobre */
 .about {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 60px 100px;
@@ -17,9 +18,40 @@
 
 .about p {
   font-size: 18px;
-  font-family: "Open Sans", sans-serif;
-  line-height: 1.6;
   max-width: 800px;
   text-align: justify;
   hyphens: auto;
+}
+
+.icon-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.icon-box {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  padding: 20px; 
+  width: 300px; 
+  height: 250px; 
+  border-radius: 30px; 
+  margin: 0 100px;
+}
+
+.icon-box h3 {
+  font-size: 24px;
+  margin: 15px 0;
+}
+
+.icon-box p {
+  font-size: 16px;
+}
+
+.icon {
+  width: 80px; 
+  height: 80px; 
+  align-self: center;
 }

@@ -5,7 +5,7 @@ class FAQComponent extends HTMLElement {
     this.innerHTML = `
       <section id="faq" class="faq">
       
-        <h2>Dúvidas Frequentes</h2>
+        <h2>Dúvidas frequentes</h2>
 
         <div class="faq-item">
           <button class="faq-question">

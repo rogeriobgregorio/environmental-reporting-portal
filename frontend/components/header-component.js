@@ -12,9 +12,9 @@ class HeaderComponent extends HTMLElement {
         <nav class="menu">
           <ul>
             <li><a href="./index.html#">Início</a></li>
-            <li><a href="./index.html#sobre">Sobre</a></li>
+            <li><a href="./index.html#sobre">Sobre nós</a></li>
             <li><a href="./index.html#denuncias">Denúncias</a></li>
-            <li><a href="./index.html#informativos">Informativos</a></li>
+            <li><a href="./index.html#informativos">Informe-se</a></li>
             <li><a href="./index.html#contato">Contato</a></li>
           </ul>
         </nav>

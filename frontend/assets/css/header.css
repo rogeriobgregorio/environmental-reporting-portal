@@ -21,7 +21,7 @@ header {
 .menu a {
   text-decoration: none;
   color: #000000;
-  font-size: 30px;
+  font-size: 28px;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -41,9 +41,8 @@ header {
   border-radius: 30px;
   text-decoration: none;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 300;
   font-family: "Roboto", sans-serif;
-  letter-spacing: 2px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }

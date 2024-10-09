@@ -5,8 +5,8 @@ class FooterComponent extends HTMLElement {
 
         <div class="footer-links">
           <a href="./terms.html">Termos de Uso</a>
-          <a href="./policy.html">Políticas de Privacidade</a>
           <a href="./lgpd.html">LGPD</a>
+          <a href="./policy.html">Políticas de Privacidade</a>
         </div>
         
         <p>&copy; 2024 ECOAR - Todos os Direitos Reservados</p>

@@ -11,7 +11,7 @@ class ActionsComponent extends HTMLElement {
                 as alterações climáticas e seus impactos.
             </p>
 
-            <h2>Por que o ODS 13 é Importante?</h2>
+            <h2>Por que o ODS 13 é importante?</h2>
             <p>
                 A mudança climática é uma das maiores ameaças que o mundo enfrenta hoje. Seus impactos são globais 
                 e sem precedentes, afetando economias, meios de subsistência e ecossistemas em todo o planeta. Sem 
@@ -32,7 +32,7 @@ class ActionsComponent extends HTMLElement {
                 à mudança climática nos países menos desenvolvidos e nos pequenos Estados insulares em desenvolvimento.</li>
             </ul>
 
-            <h2>O Papel de Cada Um de Nós</h2>
+            <h2>O Papel de cada um de nós</h2>
             <p>
                 Todos têm um papel a desempenhar na luta contra as mudanças climáticas. Governos, 
                 empresas e cidadãos podem adotar práticas sustentáveis e reduzir as emissões de 
@@ -46,7 +46,7 @@ class ActionsComponent extends HTMLElement {
                 <li>Participar de iniciativas e movimentos que promovam a conscientização ambiental.</li>
             </ul>
 
-            <h2>Acordos e Iniciativas Globais</h2>
+            <h2>Acordos e iniciativas globais</h2>
             <p>
                 O Acordo de Paris, assinado em 2015, é um dos marcos mais importantes no combate às mudanças 
                 climáticas. Ele estabelece metas para limitar o aquecimento global a menos de 2°C em relação 

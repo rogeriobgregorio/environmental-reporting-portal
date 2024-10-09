@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 100px 150px;
+  padding: 70px 150px;
 }
 
 .hero h1 {
@@ -30,24 +30,44 @@
 .hero h2 {
   font-size: 30px;
   font-weight: 300;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .hero .cta-btn-report {
   background-color: #046245;
   color: #ffffff;
-  padding: 15px 30px;
+  padding: 10px 20px;
   border-radius: 30px;
   cursor: pointer;
   text-decoration: none;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 300;
   font-family: "Roboto", sans-serif;
-  letter-spacing: 2px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .hero .cta-btn-report:hover {
   background-color: #038a62;
   transform: scale(1.05);
+}
+
+.hero-details {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.hero-details p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.hero-details ul li {
+  font-size: 16px;
+  margin: 10px 0;
+  font-weight: 500;
 }

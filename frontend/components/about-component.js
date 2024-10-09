@@ -4,7 +4,7 @@ class AboutComponent extends HTMLElement {
       <section id="sobre" class="about">
 
         <div>
-          <h2>O Que é o ECOAR?</h2>
+          <h2>O que é o ECOAR?</h2>
 
           <p>
             O ECOAR (Espaço de Conscientização e Ação Ambiental Responsável) é uma plataforma digital dedicada 
@@ -20,7 +20,30 @@ class AboutComponent extends HTMLElement {
             sobre práticas sustentáveis, leis ambientais e mudanças climáticas, com o objetivo de conscientizar a 
             população sobre a importância da preservação ambiental.
           </p>
-        </div>        
+        </div>
+
+        <div class="icon-section">
+
+          <div class="icon-box">
+            <img src="./assets/images/mission-icon.png" alt="Missão" class="icon">
+            <h3>Missão</h3>
+            <p>Promover a conscientização e a ação coletiva na luta contra crimes ambientais, fortalecendo a preservação do planeta.</p>
+          </div>
+
+          <div class="icon-box">
+            <img src="./assets/images/vision-icon.png" alt="Visão" class="icon">
+            <h3>Visão</h3>
+            <p>Ser uma referência global em defesa ambiental, mobilizando comunidades em prol de um futuro sustentável.</p>
+          </div>
+
+          <div class="icon-box">
+            <img src="./assets/images/value-icon.png" alt="Valores" class="icon">
+            <h3>Valores</h3>
+            <p>Ética, transparência, responsabilidade ambiental e a importância da colaboração entre comunidades e instituições.</p>
+          </div>
+
+        </div>
+
       </section>
     `;
   }

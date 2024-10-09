@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -51,6 +52,8 @@ public class UserServiceImpl implements UserService {
 
         passwordHelper.validate(userRequest.getPassword());
         String encodedPassword = passwordHelper.enconde(userRequest.getPassword());
+
+        userRequest.setName(Objects.requireNonNullElse(userRequest.getName(), "Usuário Anônimo"));
 
         User user = User.newBuilder()
                 .withName(userRequest.getName())
