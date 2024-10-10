@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.5rem 6.5rem;
+  padding: 4.5rem 6.5rem;
 }
 
 .hero h1 {
@@ -51,43 +51,6 @@
   transform: scale(1.05);
 }
 
-.hero-details {
-  margin-top: 10.5rem;
-  text-align: center;
-}
-
-.hero-details p {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 1.5rem; 
-  justify-items: start; 
-  max-width: 800px; 
-  margin: 0 auto; 
-}
-
-.detail-item {
-  font-size: 1rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-}
-
-.detail-item i {
-  color: #046245;
-  margin-right: 0.7rem;
-  font-size: 1.5rem;
-}
-
-.hero-trust {
-  margin-top: 1rem;
-  font-size: 1rem;
-}
-
 @media (max-width: 1600px) {
   .hero {
     background-image: none;
@@ -118,30 +81,4 @@
   .hero .cta-btn-report {
     font-size: 16px;
   }
-
-  .hero-details {
-    margin-top: 50px;
-  }
-
-  .hero-details p {
-    font-size: 16px;
-  }
-
-  .details-grid {
-    grid-template-columns: 1fr; 
-    gap: 1rem;
-  }
-
-  .detail-item {
-    font-size: 14px;
-  }
-
-  .detail-item i {
-    font-size: 1.2rem;
-  }
-
-  .hero-trust {
-    font-size: 14px;
-  }
 }
-

@@ -23,10 +23,9 @@
   text-align: left;
 }
 
-.testimonial img {
-  width: 3.125rem; 
-  height: 3.125rem; 
-  border-radius: 50%;
+.testimonial i {
+  font-size: 3.125rem;
+  color: #046245; 
   margin: 0.625rem 1.25rem 0 0.625rem; 
   flex-shrink: 0;
 }
@@ -62,9 +61,8 @@
     padding: 0.5rem; 
   }
 
-  .testimonial img {
-    width: 2.5rem; 
-    height: 2.5rem; 
+  .testimonial i {
+    font-size: 2.5rem; 
   }
 
   .testimonial q {
@@ -89,9 +87,8 @@
     padding: 0.5rem; 
   }
 
-  .testimonial img {
-    width: 2rem; 
-    height: 2rem; 
+  .testimonial i {
+    font-size: 2rem;
   }
 
   .testimonial q {
