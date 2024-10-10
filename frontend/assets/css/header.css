@@ -10,6 +10,11 @@ header {
   width: 100%;
   top: 0;
   z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {

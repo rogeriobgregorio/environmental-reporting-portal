@@ -25,19 +25,19 @@ class AboutComponent extends HTMLElement {
         <div class="icon-section">
 
           <div class="icon-box">
-            <img src="./assets/images/mission-icon.png" alt="Missão" class="icon">
+            <i class="fas fa-bullseye icon"></i>
             <h3>Missão</h3>
             <p>Promover a conscientização e a ação coletiva na luta contra crimes ambientais, fortalecendo a preservação do planeta.</p>
           </div>
 
           <div class="icon-box">
-            <img src="./assets/images/vision-icon.png" alt="Visão" class="icon">
+            <i class="fas fa-eye icon"></i>
             <h3>Visão</h3>
             <p>Ser uma referência global em defesa ambiental, mobilizando comunidades em prol de um futuro sustentável.</p>
           </div>
 
           <div class="icon-box">
-            <img src="./assets/images/value-icon.png" alt="Valores" class="icon">
+            <i class="fas fa-hand-holding-heart icon"></i>
             <h3>Valores</h3>
             <p>Ética, transparência, responsabilidade ambiental e a importância da colaboração entre comunidades e instituições.</p>
           </div>

@@ -35,6 +35,15 @@ class HeaderComponent extends HTMLElement {
       hamburger.classList.toggle("active");
       menu.classList.toggle("active");
     });
+
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector("header");
+      if (window.scrollY > 50) {
+        header.classList.add("shadow");
+      } else {
+        header.classList.remove("shadow");
+      }
+    });
   }
 }
 customElements.define("header-component", HeaderComponent);

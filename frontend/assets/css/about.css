@@ -52,11 +52,10 @@
 }
 
 .icon {
-  max-width: 20%; 
-  height: auto; 
+  font-size: 2rem;  
+  color: #046245;
   align-self: center;
 }
-
 
 @media (max-width: 768px) {
   .about {
