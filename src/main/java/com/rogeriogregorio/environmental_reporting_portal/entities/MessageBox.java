@@ -1,9 +1,8 @@
 package com.rogeriogregorio.environmental_reporting_portal.entities;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import com.rogeriogregorio.environmental_reporting_portal.entities.enums.MessageStatus;
+import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
+import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -33,6 +32,9 @@ public class MessageBox implements Serializable {
     @NotBlank(message = "The message must not be blank.")
     private String message;
 
+    @NotNull(message = "The message status cannot be null.")
+    private Integer messageStatus;
+
     private Instant timestamp;
 
     public MessageBox() {
@@ -43,6 +45,7 @@ public class MessageBox implements Serializable {
         setName(builder.name);
         setEmail(builder.email);
         setMessage(builder.message);
+        messageStatus = builder.messageStatus;
         setTimestamp(builder.timestamp);
     }
 
@@ -82,6 +85,18 @@ public class MessageBox implements Serializable {
         this.message = message;
     }
 
+    public MessageStatus getMessageStatus() {
+        return MessageStatus.valueOf(messageStatus);
+    }
+
+    public void setMessageStatus(MessageStatus messageStatus) {
+        if (messageStatus == null) {
+            throw new IllegalArgumentException("The message status cannot be null.");
+        }
+
+        this.messageStatus = messageStatus.getCode();
+    }
+
     public Instant getTimestamp() {
         return timestamp;
     }
@@ -97,6 +112,7 @@ public class MessageBox implements Serializable {
                 .withName(this.name)
                 .withEmail(this.email)
                 .withMessage(this.message)
+                .withMessageStatus(this.messageStatus)
                 .withTimestamp(this.timestamp);
     }
 
@@ -105,6 +121,7 @@ public class MessageBox implements Serializable {
         private String name;
         private String email;
         private String message;
+        private Integer messageStatus;
         private Instant timestamp;
 
         private Builder() {
@@ -130,6 +147,11 @@ public class MessageBox implements Serializable {
             return this;
         }
 
+        public Builder withMessageStatus(Integer messageStatus) {
+            this.messageStatus = messageStatus;
+            return this;
+        }
+
         public Builder withTimestamp(Instant timestamp) {
             this.timestamp = timestamp;
             return this;
@@ -138,29 +160,5 @@ public class MessageBox implements Serializable {
         public MessageBox build() {
             return new MessageBox(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MessageBox that = (MessageBox) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "MessageBox{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", message='" + message + '\'' +
-                ", timestamp=" + timestamp +
-                '}';
     }
 }
