@@ -1,0 +1,166 @@
+package com.rogeriogregorio.environmental_reporting_portal.entities;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.Objects;
+
+@Document(collection = "messages")
+public class MessageBox implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private String id;
+
+    @NotBlank(message = "The name must not be blank.")
+    @Pattern(regexp = "^[\\p{L}\\s.]+$", message = "The name must contain only letters and spaces.")
+    @Size(min = 5, max = 250, message = "The name must have between 5 and 250 characters.")
+    private String name;
+
+    @NotBlank(message = "The email must not be blank.")
+    @Email(message = "Please enter a valid email address. Example: user@example.com")
+    private String email;
+
+    @NotBlank(message = "The message must not be blank.")
+    private String message;
+
+    private Instant timestamp;
+
+    public MessageBox() {
+    }
+
+    private MessageBox(Builder builder) {
+        setId(builder.id);
+        setName(builder.name);
+        setEmail(builder.email);
+        setMessage(builder.message);
+        setTimestamp(builder.timestamp);
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Builder toBuilder() {
+
+        return new Builder()
+                .withId(this.id)
+                .withName(this.name)
+                .withEmail(this.email)
+                .withMessage(this.message)
+                .withTimestamp(this.timestamp);
+    }
+
+    public static final class Builder {
+        private String id;
+        private String name;
+        private String email;
+        private String message;
+        private Instant timestamp;
+
+        private Builder() {
+        }
+
+        public Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder withMessage(String message) {
+            this.message = message;
+            return this;
+        }
+
+        public Builder withTimestamp(Instant timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
+        public MessageBox build() {
+            return new MessageBox(this);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MessageBox that = (MessageBox) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "MessageBox{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", message='" + message + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
+}
