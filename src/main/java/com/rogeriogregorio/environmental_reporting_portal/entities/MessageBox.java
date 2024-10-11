@@ -161,4 +161,29 @@ public class MessageBox implements Serializable {
             return new MessageBox(this);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MessageBox that = (MessageBox) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "MessageBox{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", message='" + message + '\'' +
+                ", messageStatus=" + messageStatus +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
