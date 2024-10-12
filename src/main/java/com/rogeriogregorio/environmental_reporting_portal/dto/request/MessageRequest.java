@@ -1,4 +1,4 @@
-package com.rogeriogregorio.environmental_reporting_portal.dto.response;
+package com.rogeriogregorio.environmental_reporting_portal.dto.request;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.MessageStatus;
 
@@ -6,40 +6,30 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 
-public class MessageBoxResponse implements Serializable {
+public class MessageRequest implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String id;
     private String name;
     private String email;
-    private String message;
+    private String content;
     private Integer messageStatus;
     private Instant timestamp;
 
-    public MessageBoxResponse() {
+    public MessageRequest() {
     }
 
-    private MessageBoxResponse(Builder builder) {
-        setId(builder.id);
+    private MessageRequest(Builder builder) {
         setName(builder.name);
         setEmail(builder.email);
-        setMessage(builder.message);
+        setContent(builder.content);
         messageStatus = builder.messageStatus;
         setTimestamp(builder.timestamp);
     }
 
     public static Builder newBuilder() {
         return new Builder();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -58,12 +48,12 @@ public class MessageBoxResponse implements Serializable {
         this.email = email;
     }
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public MessageStatus getMessageStatus() {
@@ -89,28 +79,21 @@ public class MessageBoxResponse implements Serializable {
     public Builder toBuilder() {
 
         return new Builder()
-                .withId(this.id)
                 .withName(this.name)
                 .withEmail(this.email)
-                .withMessage(this.message)
+                .withContent(this.content)
                 .withMessageStatus(this.messageStatus)
                 .withTimestamp(this.timestamp);
     }
 
     public static final class Builder {
-        private String id;
         private String name;
         private String email;
-        private String message;
+        private String content;
         private Integer messageStatus;
         private Instant timestamp;
 
         private Builder() {
-        }
-
-        public Builder withId(String id) {
-            this.id = id;
-            return this;
         }
 
         public Builder withName(String name) {
@@ -123,8 +106,8 @@ public class MessageBoxResponse implements Serializable {
             return this;
         }
 
-        public Builder withMessage(String message) {
-            this.message = message;
+        public Builder withContent(String content) {
+            this.content = content;
             return this;
         }
 
@@ -138,8 +121,8 @@ public class MessageBoxResponse implements Serializable {
             return this;
         }
 
-        public MessageBoxResponse build() {
-            return new MessageBoxResponse(this);
+        public MessageRequest build() {
+            return new MessageRequest(this);
         }
     }
 }

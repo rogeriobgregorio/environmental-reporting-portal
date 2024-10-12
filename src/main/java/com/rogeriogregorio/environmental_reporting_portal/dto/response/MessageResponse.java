@@ -1,50 +1,31 @@
-package com.rogeriogregorio.environmental_reporting_portal.entities;
+package com.rogeriogregorio.environmental_reporting_portal.dto.response;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.MessageStatus;
-import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
-import jakarta.validation.constraints.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
-@Document(collection = "messages")
-public class MessageBox implements Serializable {
+public class MessageResponse implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
     private String id;
-
-    @NotBlank(message = "The name must not be blank.")
-    @Pattern(regexp = "^[\\p{L}\\s.]+$", message = "The name must contain only letters and spaces.")
-    @Size(min = 5, max = 250, message = "The name must have between 5 and 250 characters.")
     private String name;
-
-    @NotBlank(message = "The email must not be blank.")
-    @Email(message = "Please enter a valid email address. Example: user@example.com")
     private String email;
-
-    @NotBlank(message = "The message must not be blank.")
-    private String message;
-
-    @NotNull(message = "The message status cannot be null.")
+    private String content;
     private Integer messageStatus;
-
     private Instant timestamp;
 
-    public MessageBox() {
+    public MessageResponse() {
     }
 
-    private MessageBox(Builder builder) {
+    private MessageResponse(Builder builder) {
         setId(builder.id);
         setName(builder.name);
         setEmail(builder.email);
-        setMessage(builder.message);
+        setContent(builder.content);
         messageStatus = builder.messageStatus;
         setTimestamp(builder.timestamp);
     }
@@ -77,12 +58,12 @@ public class MessageBox implements Serializable {
         this.email = email;
     }
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public MessageStatus getMessageStatus() {
@@ -111,7 +92,7 @@ public class MessageBox implements Serializable {
                 .withId(this.id)
                 .withName(this.name)
                 .withEmail(this.email)
-                .withMessage(this.message)
+                .withContent(this.content)
                 .withMessageStatus(this.messageStatus)
                 .withTimestamp(this.timestamp);
     }
@@ -120,7 +101,7 @@ public class MessageBox implements Serializable {
         private String id;
         private String name;
         private String email;
-        private String message;
+        private String content;
         private Integer messageStatus;
         private Instant timestamp;
 
@@ -142,8 +123,8 @@ public class MessageBox implements Serializable {
             return this;
         }
 
-        public Builder withMessage(String message) {
-            this.message = message;
+        public Builder withContent(String message) {
+            this.content = message;
             return this;
         }
 
@@ -157,33 +138,8 @@ public class MessageBox implements Serializable {
             return this;
         }
 
-        public MessageBox build() {
-            return new MessageBox(this);
+        public MessageResponse build() {
+            return new MessageResponse(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MessageBox that = (MessageBox) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "MessageBox{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", message='" + message + '\'' +
-                ", messageStatus=" + messageStatus +
-                ", timestamp=" + timestamp +
-                '}';
     }
 }
