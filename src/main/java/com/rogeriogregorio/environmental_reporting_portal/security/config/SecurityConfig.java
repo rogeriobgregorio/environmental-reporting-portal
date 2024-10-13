@@ -77,10 +77,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/reports/search/report-status").hasAnyRole(ADMIN, USER)
 
                         // comments
-                        .requestMatchers(HttpMethod.GET, "/message").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.POST, "/message").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/message/{id}").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.DELETE, "/message/{id}").hasAnyRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/messages").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/messages").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/messages/{id}").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.DELETE, "/messages/{id}").hasAnyRole(ADMIN)
 
                         .anyRequest()
                         .authenticated())
