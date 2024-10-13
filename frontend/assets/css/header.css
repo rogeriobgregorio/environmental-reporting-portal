@@ -1,4 +1,4 @@
-/* Cabeçalho (Header) */
+/* Estilos da Seção Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -18,22 +18,29 @@ header {
 }
 
 .logo img {
-  height: 40px;
+  height: 30px;
   width: auto;
+  margin: 0;
+  display: block;
+}
+
+.menu {
+  margin-left: auto;
 }
 
 .menu ul {
   display: flex;
-  gap: 30px;
+  gap: 50px;
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .menu a {
   text-decoration: none;
   color: #000000;
-  font-size: 28px;
+  font-size: 30px;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -42,24 +49,6 @@ header {
 .menu a:hover {
   color: #046245;
   transform: scale(1.1);
-}
-
-.cta-btn-register {
-  background-color: #046245;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 300;
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.cta-btn-register:hover {
-  background-color: #038a62;
-  transform: scale(1.05);
 }
 
 @media (max-width: 1024px) {
@@ -101,10 +90,6 @@ header {
     font-size: 20px;
     padding: 10px 0;
     text-align: center;
-  }
-
-  .cta-btn-register {
-    font-size: 14px;
   }
 }
 

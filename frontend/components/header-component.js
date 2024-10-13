@@ -1,3 +1,5 @@
+import { initHeaderEventListeners } from "../js/header-events.js";
+
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -10,15 +12,13 @@ class HeaderComponent extends HTMLElement {
 
         <nav class="menu">
           <ul>
-            <li><a href="./index.html#">Início</a></li>
-            <li><a href="./index.html#sobre">Sobre nós</a></li>
-            <li><a href="./index.html#denuncias">Denúncias</a></li>
-            <li><a href="./index.html#informativos">Informe-se</a></li>
+            <li><a href="./index.html#">Início</a></li>            
+            <li><a href="./index.html#denuncias">Denúncias</a></li>            
+            <li><a href="./index.html#informativos">Informativos</a></li>
+            <li><a href="./index.html#sobre">Sobre nós</a></li>            
             <li><a href="./index.html#contato">Contato</a></li>
           </ul>
         </nav>
-
-        <a href="#" class="cta-btn-register">Cadastre-se</a>
 
         <div class="hamburger">
           <span></span>
@@ -31,19 +31,7 @@ class HeaderComponent extends HTMLElement {
     const hamburger = this.querySelector(".hamburger");
     const menu = this.querySelector(".menu");
 
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      menu.classList.toggle("active");
-    });
-
-    window.addEventListener("scroll", function () {
-      const header = document.querySelector("header");
-      if (window.scrollY > 50) {
-        header.classList.add("shadow");
-      } else {
-        header.classList.remove("shadow");
-      }
-    });
+    initHeaderEventListeners(hamburger, menu);
   }
 }
 customElements.define("header-component", HeaderComponent);

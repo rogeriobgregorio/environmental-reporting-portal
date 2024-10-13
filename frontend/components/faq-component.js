@@ -1,4 +1,4 @@
-import { setupFAQToggle } from "../js/faq-toggle.js";
+import { setupFAQToggle } from "../js/faq-events.js";
 
 class FAQComponent extends HTMLElement {
   connectedCallback() {
