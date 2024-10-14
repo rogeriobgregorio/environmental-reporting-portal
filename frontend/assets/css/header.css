@@ -18,7 +18,7 @@ header {
 }
 
 .logo img {
-  height: 30px;
+  height: 2rem;
   width: auto;
   margin: 0;
   display: block;
@@ -40,9 +40,9 @@ header {
 .menu a {
   text-decoration: none;
   color: #000000;
-  font-size: 30px;
+  font-size: 1.5rem;
   font-family: "Roboto", sans-serif;
-  font-weight: 600;
+  font-weight: 300;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -124,5 +124,15 @@ header {
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu a {
+    font-size: 18px; 
+  }
+
+  .menu {
+    padding: 10px; 
   }
 }

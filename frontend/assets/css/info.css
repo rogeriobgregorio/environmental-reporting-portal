@@ -5,8 +5,8 @@
 }
 
 .info h2 {
-  font-size: 2.25rem; 
-  font-weight: 600;
+  font-size: 2.5rem; 
+  font-weight: 700;
   margin-bottom: 2.5rem; 
 }
 
@@ -20,6 +20,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  height: auto;
   justify-content: space-between;
   background-color: #f7f7f7;
   padding: 1.25rem;
@@ -32,12 +33,12 @@
 
 .card h3 {
   font-size: 1.5rem; 
-  font-weight: 600;
+  font-weight: 300;
   margin-bottom: 0.625rem; 
 }
 
 .card p {
-  font-size: 1rem; 
+  font-size: 1em; 
   text-align: justify;
   hyphens: auto;
 }
@@ -77,5 +78,6 @@
   .card {
     width: 90%; 
     height: auto; 
+    margin: 0.5rem;
   }
 }

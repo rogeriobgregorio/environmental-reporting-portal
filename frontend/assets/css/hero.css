@@ -21,13 +21,14 @@
 }
 
 .hero h1 {
-  font-size: 4rem;
+  color: #046245;
+  font-size: 4.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .hero h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
 }
@@ -62,7 +63,7 @@
   .hero {
     background-image: none;
     height: auto;
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   .hero-content {
@@ -81,3 +82,18 @@
     font-size: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 30px; 
+  }
+
+  .hero h2 {
+    font-size: 16px;
+  }
+
+  .hero .cta-btn-report {
+    font-size: 14px; 
+  }
+}
+

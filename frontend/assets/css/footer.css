@@ -60,3 +60,17 @@ footer p {
     font-size: 0.75rem; 
   }
 }
+
+@media (max-width: 360px) {
+  footer {
+    padding: 1.2rem 1.5%; 
+  }
+
+  .footer-links a {
+    font-size: 0.8rem; 
+  }
+
+  footer p {
+    font-size: 0.7rem; 
+  }
+}
