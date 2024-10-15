@@ -21,7 +21,7 @@ class InfoComponent extends HTMLElement {
 
           <div class="card">
             <h3>Ações Globais</h3>
-            <p>Conheça as iniciativas globais para combater a mudança do clima e seus impactos.</p>
+            <p>Conheça as iniciativas globais para combater as mudanças do climáticas.</p>
             <a href="./actions.html">Saiba mais</a>
           </div>
 

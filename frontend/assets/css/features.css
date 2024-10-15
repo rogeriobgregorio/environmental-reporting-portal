@@ -1,25 +1,24 @@
-/* Seção Sobre */
-.about {
+/* Seção Features */
+.features {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15vh 5%; 
+  padding: 10vh 5% 5vh; 
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
 
-.about h2 {
+.features h2 {
   color: #046245;
-  font-size: 2.5em; 
+  font-size: 2.5rem; 
   font-weight: 700;
-  margin-bottom: 1em; 
+  margin-bottom: 2.5rem; 
 }
 
-.about p {
-  font-size: 1em;
-  max-width: 800px;
+.features p {
+  font-size: 1em; 
   text-align: justify;
   hyphens: auto;
 }
@@ -27,69 +26,64 @@
 .icon-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; 
+  justify-content: center;
   margin-top: 40px;
-  padding: 0 6.5%; 
+  padding: 0 6.5%;
 }
 
 .icon-box {
   display: flex;
   background-color: #f7f7f7;
-  flex-direction: column; 
-  height: auto;
+  flex-direction: column;
   justify-content: space-between;
   padding: 1.25rem;
-  width: calc(33.33% - 55px); 
-  height: auto; 
-  border-radius: 1.875rem; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-  margin: 1.25rem; 
+  width: calc(33.33% - 55px);
+  height: auto;
+  border-radius: 1.875rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 1.25rem;
 }
 
 .icon-box h3 {
-  font-size: 1.5em; 
+  font-size: 1.5em;
   margin: 15px 0;
 }
 
-.icon-box p {
-  font-size: 1em; 
-}
-
 .icon {
-  font-size: 2rem;  
+  font-size: 2rem;
   color: #046245;
   align-self: center;
 }
 
 @media (max-width: 768px) {
-  .about {
-    padding: 5vh 3%; 
+  .features {
+    padding: 5vh 3%;
   }
 
-  .about h2 {
+  .features h2 {
     font-size: 2em;
   }
 
   .icon-box {
-    width: calc(50% - 20px); 
+    width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 480px) {
-  .about h2 {
-    font-size: 1.75em; 
+  .features h2 {
+    font-size: 1.75em;
   }
 
-  .about p {
-    font-size: 0.95em; 
+  .features p {
+    font-size: 0.95em;
   }
 
   .icon-section {
-    padding: 0 4%; 
+    padding: 0 4%;
   }
 
   .icon-box {
-    width: calc(100% - 20px); 
+    width: calc(100% - 20px);
     margin: 10px auto;
   }
 }
