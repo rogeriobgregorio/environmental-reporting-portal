@@ -13,7 +13,7 @@ class FAQComponent extends HTMLElement {
             <span class="faq-icon">+</span>
           </button>
           <p class="faq-answer">Para fazer uma denúncia, basta cadastrar-se na 
-          plataforma e seguir os passos indicados na seção de denúncias.</p>
+          plataforma e seguir os passos indicados na seção "Como funciona denunciar com o ECOAR".</p>
         </div>
 
         <div class="faq-item">

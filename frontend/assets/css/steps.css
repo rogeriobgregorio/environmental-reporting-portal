@@ -1,0 +1,142 @@
+/* Seção Steps */
+.ecoar-steps {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5vh 5%; 
+  text-align: center;
+}
+
+.ecoar-steps-title {
+  color: #046245;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.25rem; 
+}
+
+.ecoar-steps::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #046245;
+  top: 150px;
+  bottom: 0;
+  height: 1160px;
+  left: 50%;
+  margin-left: -2px;
+}
+
+.ecoar-container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+.ecoar-container .ecoar-icon {
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%); 
+  font-size: 25px;
+  color: #046245;
+  z-index: 1;
+}
+
+.ecoar-container.left .ecoar-icon {
+  right: 5px;
+}
+
+.ecoar-container.right .ecoar-icon {
+  left: 5px; 
+}
+
+.ecoar-container.left {
+  left: 0;
+}
+
+.ecoar-container.right {
+  left: 50%;
+}
+
+.ecoar-content {
+  padding: 20px 20px; 
+  width: 80%; 
+  background-color: #f7f7f7;
+  position: relative;
+  border-radius: 1.875rem; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.ecoar-container.left .ecoar-content {
+  padding-left: 40px;
+  margin-left: 5rem;
+}
+
+.ecoar-container.right .ecoar-content {
+  padding-right: 40px;
+}
+
+.ecoar-steps .cta-btn-report {
+  background-color: #046245;
+  color: #ffffff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  margin-top: 3rem;
+}
+
+.ecoar-steps .cta-btn-report:hover {
+  background-color: #038a62;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .ecoar-container {
+    width: 100%; 
+    padding: 10px 20px; 
+    text-align: center; 
+    position: relative; 
+    margin: 0 auto; 
+  }
+
+  .ecoar-container.left,
+  .ecoar-container.right {
+    left: auto; 
+    position: static; 
+  }
+
+  .ecoar-container .ecoar-icon {
+    display: none; 
+  }
+
+  .ecoar-steps::after {
+    display: none; 
+  }
+
+  .ecoar-content {
+    margin: 0; 
+    width: 100%; 
+    padding: 40px; 
+    background-color: #f7f7f7; 
+    border-radius: 1.875rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .ecoar-container.left .ecoar-content {
+    margin-left: 0; 
+    margin-right: 0; 
+  }
+
+  .ecoar-container.right .ecoar-content {
+    margin-left: 0; 
+    margin-right: 0; 
+  }
+}
+
+

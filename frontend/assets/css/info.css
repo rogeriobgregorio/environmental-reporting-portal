@@ -1,7 +1,11 @@
 /* Seção Informativos */
 .info {
+  display: flex;
+  flex-direction: column;
   padding: 15vh 5% 5vh; 
   text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .info h2 {
@@ -15,7 +19,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   margin-top: 40px;
+  max-width: 1200px;
   padding: 0 6.5%; 
 }
 
@@ -41,6 +47,7 @@
   font-size: 1em; 
   text-align: justify;
   hyphens: auto;
+  margin-bottom: 0.625rem; 
 }
 
 .card a {
