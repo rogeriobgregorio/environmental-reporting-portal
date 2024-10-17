@@ -10,7 +10,7 @@ class FeaturesComponent extends HTMLElement {
             <div class="icon-box">
                 <i class="fas fa-tachometer-alt icon"></i>
                 <h3>Monitoramento de Denúncias</h3>
-                <p>Acompanhe suas denúncias em tempo real, com atualizações sobre o status e a resolução, garantindo transparência no processo.</p>
+                <p>Acompanhe suas denúncias em tempo real, com atualizações sobre o status e a resolução via email, garantindo transparência no processo.</p>
             </div>
             
             <div class="icon-box">

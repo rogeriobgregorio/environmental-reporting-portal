@@ -41,7 +41,7 @@ class StepsComponent extends HTMLElement {
           <i class="fas fa-camera ecoar-icon"></i>
           <div class="ecoar-content">
             <h3>5. Adicionar Evidências</h3>
-            <p>Anexe fotos ou imagens que ajudem a corroborar sua denúncia.</p>
+            <p>Anexe fotos e/ou imagens que ajudem a corroborar sua denúncia.</p>
           </div>
         </div>
 
