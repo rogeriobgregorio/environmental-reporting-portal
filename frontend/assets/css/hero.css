@@ -51,14 +51,6 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 1600px) {
-  .hero {
-    background-image: none;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 @media (max-width: 768px) {
   .hero {
     background-image: none;
