@@ -18,7 +18,6 @@ class HeaderComponent extends HTMLElement {
             <li><a href="./about.html">Sobre nós</a></li>            
             <li><a href="./contact.html">Contato</a></li>
             <li><a href="./login.html">Entrar</a></li>
-            <li><a href="./register.html">Cadastrar-se</a></li>
           </ul>
         </nav>
 

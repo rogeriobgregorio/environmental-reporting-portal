@@ -11,10 +11,36 @@
   align-items: center;
   gap: 20px;
   width: 500px;
-  margin: 40px auto 160px auto;
+  margin: 40px auto 0px auto;
   padding: 1.25rem;
   border-radius: 1.875rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-section h2 {
+  color: #046245;
+  font-size: 2.5rem; 
+  font-weight: 700;
+  margin-bottom: 2.5rem; 
+}
+
+.login-section h3 {
+  font-size: 1.5rem; 
+  font-weight: 300;
+  margin-bottom: 0.625rem; 
+}
+
+.login-form a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.login-form a:hover {
+  color: #046245;
 }
 
 .form-group {
@@ -58,4 +84,44 @@
 .submit-btn:hover {
   background-color: #038a62;
   transform: scale(1.05);
+}
+
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 0.9;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast.success {
+  background-color: #038a62; 
+}
+
+.toast.error {
+  background-color: #f44336; 
+}
+
+.toast.fade-out {
+  opacity: 0;
+}
+
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  color: #046245;
+  position: absolute;
+  right: 10px; 
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem; 
 }

@@ -84,6 +84,14 @@
   font-size: 1rem;
 }
 
+.toast.success {
+  background-color: #038a62; 
+}
+
+.toast.error {
+  background-color: #f44336; 
+}
+
 @media (max-width: 768px) {
   .contact-section {
     padding: 5vh 3%;

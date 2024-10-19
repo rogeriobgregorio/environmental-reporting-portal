@@ -1,17 +1,17 @@
 export const validateForm = (data) => {
   if (data.name.trim() === "") {
-    showToast("Por favor, preencha o nome.");
+    showToast("Por favor, preencha o nome.", "error");
     return false;
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(data.email)) {
-    showToast("Por favor, insira um email válido.");
+    showToast("Por favor, insira um email válido.", "error");
     return false;
   }
 
   if (data.content.trim().length < 10) {
-    showToast("A mensagem deve ter pelo menos 10 caracteres.");
+    showToast("A mensagem deve ter pelo menos 10 caracteres.", "error");
     return false;
   }
 
@@ -44,27 +44,24 @@ export const handleSubmit = async (event) => {
     });
 
     if (response.ok) {
-      showToast("Mensagem enviada com sucesso!");
+      showToast("Mensagem enviada com sucesso!", "success");
       form.reset();
     } else {
-      showToast("Erro ao enviar a mensagem. Tente novamente.");
+      showToast("Erro ao enviar a mensagem. Tente novamente.", "error");
     }
   } catch (error) {
     console.error("Erro ao enviar a mensagem:", error);
-    showToast("Ocorreu um erro ao enviar a mensagem.");
+    showToast("Ocorreu um erro ao enviar a mensagem.", "error");
   }
 };
 
-function showToast(message) {
+function showToast(message, type = "info") {
   const toast = document.createElement("div");
-  toast.className = "toast";
+  toast.className = `toast ${type}`;
   toast.innerText = message;
-
   document.body.appendChild(toast);
 
   setTimeout(() => {
-    setTimeout(() => {
-      toast.remove(); 
-    }, 500);
-  }, 3000); 
+    toast.remove();
+  }, 3500); 
 }

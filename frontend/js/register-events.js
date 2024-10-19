@@ -1,25 +1,47 @@
-export const validateRegisterForm = (data) => {
-  if (data.name.trim() === "") {
-    showToast("Por favor, preencha o nome.");
-    return false;
-  }
+export const validatePassword = (password) => {
+  const lengthRequirement = document.getElementById("length");
+  const uppercaseRequirement = document.getElementById("uppercase");
+  const lowercaseRequirement = document.getElementById("lowercase");
+  const numberRequirement = document.getElementById("number");
+  const specialRequirement = document.getElementById("special");
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(data.email)) {
-    showToast("Por favor, insira um email válido.");
-    return false;
-  }
+  lengthRequirement.classList.toggle("valid", password.length >= 8);
+  lengthRequirement.classList.toggle("invalid", password.length < 8);
 
-  const passwordPattern =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (!passwordPattern.test(data.password)) {
-    showToast(
-      "A senha deve conter pelo menos 8 caracteres, incluindo 1 letra maiúscula, 1 minúscula, 1 número e 1 caractere especial."
-    );
-    return false;
-  }
+  uppercaseRequirement.classList.toggle("valid", /[A-Z]/.test(password));
+  uppercaseRequirement.classList.toggle("invalid", !/[A-Z]/.test(password));
 
-  return true;
+  lowercaseRequirement.classList.toggle("valid", /[a-z]/.test(password));
+  lowercaseRequirement.classList.toggle("invalid", !/[a-z]/.test(password));
+
+  numberRequirement.classList.toggle("valid", /\d/.test(password));
+  numberRequirement.classList.toggle("invalid", !/\d/.test(password));
+
+  specialRequirement.classList.toggle("valid", /[@#$!%*?&]/.test(password));
+  specialRequirement.classList.toggle("invalid", !/[@#$!%*?&]/.test(password));
+};
+
+export const toggleAnonymous = () => {
+  const nameInput = document.getElementById("name");
+  const isChecked = document.getElementById("anonymousCheckbox").checked;
+
+  if (isChecked) {
+    nameInput.value = "Usuário Anônimo";
+    nameInput.disabled = true;
+  } else {
+    nameInput.value = "";
+    nameInput.disabled = false;
+  }
+};
+
+export const togglePasswordVisibility = (toggleElement, passwordInput) => {
+  const type =
+    passwordInput.getAttribute("type") === "password" ? "text" : "password";
+  passwordInput.setAttribute("type", type);
+
+  const icon = toggleElement.querySelector("i");
+  icon.classList.toggle("fa-eye");
+  icon.classList.toggle("fa-eye-slash");
 };
 
 export const handleRegisterSubmit = async (event) => {
@@ -31,10 +53,6 @@ export const handleRegisterSubmit = async (event) => {
     email: form.email.value,
     password: form.password.value,
   };
-
-  if (!validateRegisterForm(formData)) {
-    return;
-  }
 
   showToast("Cadastrando...");
 
@@ -51,13 +69,31 @@ export const handleRegisterSubmit = async (event) => {
     );
 
     if (response.ok) {
-      showToast("Cadastro realizado com sucesso!");
+      showToast("Cadastro realizado com sucesso!", "success");
       form.reset();
     } else {
-      showToast("Erro ao realizar cadastro. Tente novamente.");
+      showToast("Erro ao realizar cadastro. Tente novamente.", "error");
     }
   } catch (error) {
     console.error("Erro ao realizar cadastro:", error);
-    showToast("Ocorreu um erro ao realizar o cadastro.");
+    showToast(
+      "Ocorreu um erro ao realizar o cadastro. Verifique suas credenciais.",
+      "error"
+    );
   }
+};
+
+const showToast = (message, type) => {
+  const toastContainer = document.createElement("div");
+  toastContainer.className = `toast ${type}`;
+  toastContainer.innerText = message;
+
+  document.body.appendChild(toastContainer);
+
+  setTimeout(() => {
+    toastContainer.classList.add("fade-out");
+    setTimeout(() => {
+      toastContainer.remove();
+    }, 500);
+  }, 3000);
 };
