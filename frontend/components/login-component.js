@@ -7,7 +7,7 @@ class LoginComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <section id="login" class="login-section">
-        <h2>Seja bem-vindo(a) de volta</h2>
+        <h2>Bem-vindo(a) de volta</h2>
         <h3>Por favor, insira seus dados de login</h3>
         
         <form id="loginForm" class="login-form">

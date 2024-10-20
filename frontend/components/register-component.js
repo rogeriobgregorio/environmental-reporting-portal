@@ -8,7 +8,7 @@ import {
 class RegisterComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `<section id="register" class="register-section">
-        <h2>Seja bem-vindo(a)</h2>
+        <h2>Bem-vindo(a)</h2>
         <h3>Por favor, insira seus dados de cadastro</h3>
         
         <form id="registerForm" class="register-form">
@@ -48,11 +48,10 @@ class RegisterComponent extends HTMLElement {
           <button type="submit" class="submit-btn">Cadastrar</button>
 
           <h5>
-          Ao se cadastrar você aceita os nossos <br>
-          Termos de Uso e Políticas de Privacidade
+          Ao se cadastrar você concorda com nossos Termos de Uso
           </h5>
 
-          <a href="./login.html">Já tem uma conta? Entrar</a>
+          <a href="./login.html" class="login-link">Já tem uma conta? Entrar</a>
         </form>
       </section>`;
 
@@ -63,13 +62,16 @@ class RegisterComponent extends HTMLElement {
     const passwordInput = this.querySelector("#password");
     const passwordRequirements = this.querySelector("#passwordRequirements");
     const togglePassword = this.querySelector("#togglePassword");
+    const submitButton = this.querySelector(".submit-btn");
 
     passwordInput.addEventListener("focus", () => {
       passwordRequirements.classList.remove("hidden");
     });
 
-    passwordInput.addEventListener("blur", () => {
-      passwordRequirements.classList.add("hidden");
+    passwordInput.addEventListener("blur", (event) => {
+      if (event.relatedTarget !== submitButton) {
+        passwordRequirements.classList.add("hidden");
+      }
     });
 
     passwordInput.addEventListener("input", () => {

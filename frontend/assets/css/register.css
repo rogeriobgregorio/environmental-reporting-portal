@@ -1,6 +1,6 @@
 /* Seção de Cadastro */
 .register-section {
-  padding: 15vh 5% 10vh;
+  padding: 15vh 5% 0vh;
   text-align: center;
 }
 
@@ -10,15 +10,38 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 500px;
+  max-width: 500px; 
+  width: 100%; 
   margin: 40px auto 60px auto;
   padding: 1.25rem;
   border-radius: 1.875rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 600px) {
+  .register-section h2 {
+    font-size: 2rem; 
+  }
+
+  .register-section h3 {
+    font-size: 1.2rem; 
+  }
+
+  .submit-btn {
+    font-size: 1rem; 
+  }
+
+  .password-requirements h4 {
+    font-size: 0.9rem; 
+  }
+
+  .password-requirements li {
+    font-size: 0.9rem; 
+  }
+}
+
 .form-group {
-  width: 100%;
+  width: 100%; 
 }
 
 .custom-checkbox-group {
@@ -32,9 +55,6 @@
 
 .custom-checkbox-label input {
   margin-right: 5px;
-}
-
-.custom-checkbox-label input {
   appearance: none;
   width: 14px;
   height: 14px;
@@ -67,7 +87,6 @@
   color: #046245;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2.5rem;
 }
 
 .register-section h3 {
@@ -84,7 +103,7 @@
 }
 
 .form-group input {
-  width: 100%;
+  width: 100%; 
   padding: 1rem;
   border: 1px solid #cccccc;
   border-radius: 1.875rem;
@@ -105,9 +124,11 @@
 
 .password-requirements h4 {
   padding-left: 5px;
+  font-weight: 300;
 }
 
 .password-requirements li {
+  font-size: 1em;
   margin-bottom: 0.25rem;
   position: relative;
   padding-left: 5px;
@@ -196,4 +217,3 @@
   transform: translate(-15px, -40px);
   font-size: 1.2rem; 
 }
-

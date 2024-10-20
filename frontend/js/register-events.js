@@ -77,7 +77,7 @@ export const handleRegisterSubmit = async (event) => {
   } catch (error) {
     console.error("Erro ao realizar cadastro:", error);
     showToast(
-      "Ocorreu um erro ao realizar o cadastro. Verifique suas credenciais.",
+      "Ocorreu um erro ao realizar o cadastro. Verifique seus dados.",
       "error"
     );
   }
