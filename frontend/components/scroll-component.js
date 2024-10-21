@@ -5,7 +5,6 @@ class ScrollComponent extends HTMLElement {
     this.innerHTML = `
       <a href="#" id="scrollToTop" class="scroll-to-top">
         <i class="fa-solid fa-circle-up"></i>
-        <h5>Voltar ao topo</h5>
       </a>
     `;
 

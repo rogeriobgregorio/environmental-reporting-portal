@@ -48,7 +48,7 @@ class RegisterComponent extends HTMLElement {
           <button type="submit" class="submit-btn">Cadastrar</button>
 
           <h5>
-          Ao se cadastrar você concorda com nossos Termos de Uso
+          Ao se cadastrar você concorda com nossos <a href="./terms.html" id="terms-link">Termos de Uso</a>
           </h5>
 
           <a href="./login.html" class="login-link">Já tem uma conta? Entrar</a>
