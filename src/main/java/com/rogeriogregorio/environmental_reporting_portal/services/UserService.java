@@ -24,5 +24,5 @@ public interface UserService {
 
     User getUserIfExists(String id);
 
-    Page<UserResponse> findUsersByNameOrEmail(String name, String email, Pageable pageable);
+    UserResponse findUserByEmail(String email);
 }

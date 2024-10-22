@@ -1,3 +1,4 @@
+// Função para exibir mensagens de toast
 const showToast = (message, type) => {
   const toastContainer = document.createElement("div");
   toastContainer.className = `toast ${type}`;
@@ -35,9 +36,17 @@ export const handleLoginSubmit = async (event) => {
 
     if (response.ok) {
       const data = await response.json();
+
+      console.log("Token recebido do servidor:", data.token);
+
+      localStorage.clear();
+
       localStorage.setItem("jwtToken", data.token);
-      showToast("Login realizado com sucesso!", "success");
-      form.reset();
+
+      console.log("Novo token armazenado:", localStorage.getItem("jwtToken"));
+
+      window.location.href =
+        "http://localhost:5500/environmental-reporting-portal/frontend/profile.html";
     } else {
       showToast("Erro ao realizar login. Verifique suas credenciais.", "error");
     }
@@ -53,6 +62,11 @@ export const togglePasswordVisibility = (toggleElement, passwordInput) => {
   passwordInput.setAttribute("type", type);
 
   const icon = toggleElement.querySelector("i");
-  icon.classList.toggle("fa-eye"); 
-  icon.classList.toggle("fa-eye-slash"); 
+  icon.classList.toggle("fa-eye");
+  icon.classList.toggle("fa-eye-slash");
 };
+
+window.addEventListener("DOMContentLoaded", () => {
+  localStorage.clear();
+  console.log("LocalStorage foi limpo ao carregar a página.");
+});

@@ -23,7 +23,7 @@ import java.util.List;
 @Service
 public class TokenServiceImpl implements TokenService {
 
-    private static final String ISSUER_NAME = "ecommerce-manager";
+    private static final String ISSUER_NAME = "environmental-reporting-portal";
     private static final Instant EXPIRY_TIME = Instant.now().plus(2, ChronoUnit.HOURS);
 
     @Value("${api.security.token.secret}")
@@ -51,6 +51,8 @@ public class TokenServiceImpl implements TokenService {
         return catchError.run(() -> JWT.create()
                 .withIssuer(ISSUER_NAME)
                 .withSubject(userAuthDetailsDto.getUsername())
+                .withClaim("role", userAuthDetailsDto.getRole())
+                .withClaim("id", userAuthDetailsDto.getUserId())
                 .withExpiresAt(EXPIRY_TIME)
                 .sign(getAlgorithm()));
     }

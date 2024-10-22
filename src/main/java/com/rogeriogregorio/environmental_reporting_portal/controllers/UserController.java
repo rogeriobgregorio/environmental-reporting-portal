@@ -123,8 +123,8 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso"),
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
-            @ApiResponse(responseCode = "404", description = "Nenhum livro encontrado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao deletar livro")
+            @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao deletar usuário")
     })
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
@@ -136,22 +136,21 @@ public class UserController {
                 .build();
     }
 
-    @Operation(summary = "Buscar usuário por nome ou email", description = "Endpoint para buscar usuários por nome ou email")
+    @Operation(summary = "Buscar usuário por email",
+            description = "Endpoint para buscar usuários por email")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
                     content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
-            @ApiResponse(responseCode = "500", description = "Erro ao buscar livro")
+            @ApiResponse(responseCode = "500", description = "Erro ao buscar usuário")
     })
-    @GetMapping(value = "/search/name-email")
-    public ResponseEntity<List<UserResponse>> getUsersByNameOrEmail(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email,
-            Pageable pageable) {
+    @GetMapping(value = "/search/email")
+    public ResponseEntity<UserResponse> getUserByEmail(
+            @RequestParam String email) {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userService.findUsersByNameOrEmail(name, email, pageable).getContent());
+                .body(userService.findUserByEmail(email));
     }
 }

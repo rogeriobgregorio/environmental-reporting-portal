@@ -148,8 +148,8 @@ public class ReportServiceImpl implements ReportService {
                 .orElseThrow(() -> new NotFoundException("Report not found with ID: " + id + "."));
     }
 
-    public Page<ReportResponse> findReportsByAuthorNameOrEmail(String name, String email, Pageable pageable) {
-        return catchError.run(() -> reportRepository.findByAuthorNameOrEmail(name, email, pageable))
+    public Page<ReportResponse> findReportsByAuthorId(String id, Pageable pageable) {
+        return catchError.run(() -> reportRepository.findByAuthorId(id, pageable))
                 .map(report -> dataMapper.map(report, ReportResponse.class));
     }
 

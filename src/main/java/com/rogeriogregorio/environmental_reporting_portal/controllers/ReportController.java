@@ -135,8 +135,8 @@ public class ReportController {
                 .build();
     }
 
-    @Operation(summary = "Buscar denúncia por nome ou email do autor",
-            description = "Endpoint para buscar denúncia por nome ou email do autor")
+    @Operation(summary = "Buscar denúncia por id do autor",
+            description = "Endpoint para buscar denúncia por id do autor")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
                     content = @Content(mediaType = "application/json",
@@ -144,15 +144,13 @@ public class ReportController {
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
             @ApiResponse(responseCode = "500", description = "Erro ao buscar denúncia")
     })
-    @GetMapping(value = "/search/name-email")
-    public ResponseEntity<List<ReportResponse>> getReportsByAuthorNameOrEmail(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email,
-            Pageable pageable) {
+    @GetMapping(value = "/search/author/id/{id}")
+    public ResponseEntity<List<ReportResponse>> getReportsByAuthorId(
+            @PathVariable String id, Pageable pageable) {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(reportService.findReportsByAuthorNameOrEmail(name, email, pageable).getContent());
+                .body(reportService.findReportsByAuthorId(id, pageable).getContent());
     }
 
     @Operation(summary = "Buscar denúncia por nível de severidade",

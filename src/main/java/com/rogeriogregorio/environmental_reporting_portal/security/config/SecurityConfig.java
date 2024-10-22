@@ -41,47 +41,36 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-
-                        // authenticate and mail
                         .requestMatchers(HttpMethod.POST, "/authenticate").permitAll()
                         .requestMatchers(HttpMethod.POST, "/mail/recover-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/mail/reset-password").hasAnyRole(ADMIN, USER)
-
-                        // users
                         .requestMatchers(HttpMethod.GET, "/users").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
                         .requestMatchers(HttpMethod.PATCH, "/users/roles/{id}").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.PUT, "/users/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAnyRole(ADMIN, USER)
-                        .requestMatchers(HttpMethod.GET, "/users/search/name-email").hasAnyRole(ADMIN, USER)
-
-                        // comments
+                        .requestMatchers(HttpMethod.GET, "/users/search/email").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/comments").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.POST, "/comments").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.PUT, "/comments/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/comments/{id}").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.DELETE, "/comments/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/comments/search/name-email").hasRole(ADMIN)
-
-                        // reports
                         .requestMatchers(HttpMethod.GET, "/reports").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.POST, "/reports").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.PUT, "/reports/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.PATCH, "/reports/{id}/status").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/reports/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.DELETE, "/reports/{id}").hasAnyRole(ADMIN, USER)
-                        .requestMatchers(HttpMethod.GET, "/reports/search/name-email").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/reports/search/author/id").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/reports/search/severity-level").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/reports/search/report-type").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/reports/search/report-status").hasAnyRole(ADMIN, USER)
-
-                        // comments
                         .requestMatchers(HttpMethod.GET, "/messages").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.POST, "/messages").permitAll()
                         .requestMatchers(HttpMethod.GET, "/messages/{id}").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.DELETE, "/messages/{id}").hasAnyRole(ADMIN)
-
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)

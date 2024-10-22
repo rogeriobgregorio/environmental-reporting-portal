@@ -31,6 +31,14 @@ public class UserAuthDetailsDto implements UserDetails {
         return Collections.<GrantedAuthority>singleton(roleAuthorityMap.get(user.getRole()));
     }
 
+    public String getRole() {
+        return getAuthorities().iterator().next().getAuthority();
+    }
+
+    public String getUserId() {
+        return user.getId();
+    }
+
     @Override
     public String getPassword() {
         return user.getPassword();

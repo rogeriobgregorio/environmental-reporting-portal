@@ -24,7 +24,7 @@ public interface ReportService {
 
     Report getReportIfExists(String id);
 
-    Page<ReportResponse> findReportsByAuthorNameOrEmail(String name, String email, Pageable pageable);
+    Page<ReportResponse> findReportsByAuthorId(String id, Pageable pageable);
 
     Page<ReportResponse> findReportsBySeverityLevel(Integer severityLevel, Pageable pageable);
 

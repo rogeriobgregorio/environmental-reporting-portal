@@ -10,9 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReportRepository extends MongoRepository<Report, String> {
 
-    @Query("{ '$or' : [ { 'author.name' : { '$regex' : ?0, '$options' : 'i' } }, " +
-            "{ 'author.email' : { '$regex' : ?1, '$options' : 'i' } } ] }")
-    Page<Report> findByAuthorNameOrEmail(String name, String email, Pageable pageable);
+    @Query("{ 'author.id': ?0 }")
+    Page<Report> findByAuthorId(String id, Pageable pageable);
 
     Page<Report> findBySeverityLevel(Integer severityLevel, Pageable pageable);
 
