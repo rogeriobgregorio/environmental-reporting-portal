@@ -104,7 +104,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "usuário atualizado com sucesso",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserResponse.class))),
+                    schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "403", description = "Não autorizado"),
             @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado"),
             @ApiResponse(responseCode = "500", description = "Erro ao atualizar usuário")

@@ -24,7 +24,7 @@ import java.util.List;
 public class TokenServiceImpl implements TokenService {
 
     private static final String ISSUER_NAME = "environmental-reporting-portal";
-    private static final Instant EXPIRY_TIME = Instant.now().plus(2, ChronoUnit.HOURS);
+    private static final Instant EXPIRY_TIME = Instant.now().plus(24, ChronoUnit.HOURS);
 
     @Value("${api.security.token.secret}")
     private String secretKey;

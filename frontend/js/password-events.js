@@ -13,7 +13,7 @@ export const handlePasswordSubmit = async (event) => {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/v1/mail/recover-password",
+      "http://127.0.0.1:8080/api/v1/mail/recover-password",
       {
         method: "POST",
         headers: {

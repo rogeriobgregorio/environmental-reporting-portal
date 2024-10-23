@@ -8,7 +8,7 @@ class ProfileComponent extends HTMLElement {
           <div class="profile-info">
             <i class="fa-solid fa-circle-user profile-icon"></i>
             <h2 class="username"></h2>
-            <button class="edit-profile-btn">Editar Perfil</button>
+            <button class="edit-profile-btn" id="editProfileBtn">Editar perfil</button>
           </div>
         </div>
 
@@ -33,7 +33,16 @@ class ProfileComponent extends HTMLElement {
       </section>
     `;
 
+    this.initEventListeners();
     initProfile(this);
+  }
+
+  initEventListeners() {
+    const editProfileBtn = this.querySelector("#editProfileBtn");
+    editProfileBtn.addEventListener("click", () => {
+      window.location.href =
+        "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
+    });
   }
 }
 customElements.define("profile-component", ProfileComponent);

@@ -26,7 +26,7 @@ export const handleLoginSubmit = async (event) => {
   showToast("Entrando...");
 
   try {
-    const response = await fetch("http://localhost:8080/api/v1/authenticate", {
+    const response = await fetch("http://127.0.0.1:8080/api/v1/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const handleLoginSubmit = async (event) => {
       console.log("Novo token armazenado:", localStorage.getItem("jwtToken"));
 
       window.location.href =
-        "http://localhost:5500/environmental-reporting-portal/frontend/profile.html";
+        "http://127.0.0.1:5500/environmental-reporting-portal/frontend/profile.html";
     } else {
       showToast("Erro ao realizar login. Verifique suas credenciais.", "error");
     }

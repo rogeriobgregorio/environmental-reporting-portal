@@ -1,3 +1,5 @@
+let userId; 
+
 export const validatePassword = (password) => {
   const lengthRequirement = document.getElementById("length");
   const uppercaseRequirement = document.getElementById("uppercase");
@@ -44,40 +46,102 @@ export const togglePasswordVisibility = (toggleElement, passwordInput) => {
   icon.classList.toggle("fa-eye-slash");
 };
 
-export const handleRegisterSubmit = async (event) => {
+export const initAccount = () => {
+  const token = localStorage.getItem("jwtToken");
+
+  if (!token) {
+    console.error("Token JWT não encontrado no localStorage.");
+    return;
+  }
+
+  const payload = parseJwt(token);
+  userId = payload.id;
+
+  fetchUserProfile(userId, token);
+};
+
+function parseJwt(token) {
+  const base64Payload = token.split(".")[1];
+  const jsonPayload = atob(base64Payload);
+  return JSON.parse(jsonPayload);
+}
+
+async function fetchUserProfile(userId, token) {
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/users/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Erro ao buscar perfil do usuário.");
+      return;
+    }
+
+    const userData = await response.json();
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+
+    nameInput.value = userData.name;
+    emailInput.value = userData.email;
+  } catch (error) {
+    console.error("Erro ao buscar perfil do usuário:", error);
+  }
+}
+
+export const handleUpdateSubmit = async (event) => {
   event.preventDefault();
 
   const form = event.target;
+  const token = localStorage.getItem("jwtToken");
+
+  if (!token) {
+    showToast(
+      "Token JWT não encontrado. Por favor, faça login novamente.",
+      "error"
+    );
+    return;
+  }
+
   const formData = {
     name: form.name.value,
     email: form.email.value,
-    password: form.password.value,
   };
 
-  showToast("Cadastrando...");
+  if (form.password.value) {
+    formData.password = form.password.value;
+  }
+
+  showToast("Atualizando..");
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8080/api/v1/users/register",
+      `http://127.0.0.1:8080/api/v1/users/${userId}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       }
     );
 
     if (response.ok) {
-      showToast("Cadastro realizado com sucesso!", "success");
+      showToast("Atualização realizada com sucesso!", "success");
       form.reset();
     } else {
-      showToast("Erro ao realizar cadastro. Tente novamente.", "error");
+      showToast("Erro ao atualizar usuário. Tente novamente.", "error");
     }
   } catch (error) {
-    console.error("Erro ao realizar cadastro:", error);
+    console.error("Erro ao realizar atualização:", error);
     showToast(
-      "Ocorreu um erro ao realizar o cadastro. Verifique seus dados.",
+      "Ocorreu um erro ao realizar a atualização. Verifique seus dados.",
       "error"
     );
   }
@@ -97,3 +161,4 @@ const showToast = (message, type) => {
     }, 500);
   }, 3000);
 };
+document.addEventListener("DOMContentLoaded", initAccount);

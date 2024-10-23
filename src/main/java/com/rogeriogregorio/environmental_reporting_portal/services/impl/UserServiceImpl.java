@@ -89,17 +89,16 @@ public class UserServiceImpl implements UserService {
 
     public UserResponse updateUser(String id, UserRequest userRequest) {
 
-        passwordHelper.validate(userRequest.getPassword());
-        String encodedPassword = passwordHelper.enconde(userRequest.getPassword());
+        if (Objects.nonNull(userRequest.getPassword())) {
+            passwordHelper.validate(userRequest.getPassword());
+            String encodedPassword = passwordHelper.enconde(userRequest.getPassword());
+            userRequest.setPassword(encodedPassword);
+        }
 
-        User updatedUser = getUserIfExists(id).toBuilder()
-                .withName(userRequest.getName())
-                .withEmail(userRequest.getEmail())
-                .withPassword(encodedPassword)
-                .withTimestamp(Instant.now())
-                .build();
+        User user = getUserIfExists(id);
+        dataMapper.map(userRequest, user);
 
-        User savedUser = catchError.run(() -> userRepository.save(updatedUser));
+        User savedUser = catchError.run(() -> userRepository.save(user));
         LOGGER.info("User updated: {}", savedUser);
         return dataMapper.map(savedUser, UserResponse.class);
     }

@@ -23,7 +23,7 @@ function parseJwt(token) {
 async function fetchUserProfile(userId, token, element, callback) {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/v1/users/${userId}`,
+      `http://127.0.0.1:8080/api/v1/users/${userId}`,
       {
         method: "GET",
         headers: {
@@ -50,7 +50,7 @@ async function fetchUserProfile(userId, token, element, callback) {
 async function fetchUserReports(userId, token, element) {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/v1/reports/search/author/id/${userId}`,
+      `http://127.0.0.1:8080/api/v1/reports/search/author/id/${userId}`,
       {
         method: "GET",
         headers: {
