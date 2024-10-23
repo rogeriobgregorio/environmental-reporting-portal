@@ -1,8 +1,9 @@
 import {
-  handleUpdateSubmit, 
+  handleUpdateSubmit,
   validatePassword,
   toggleAnonymous,
   togglePasswordVisibility,
+  handleDeleteAccount,
 } from "../js/account-events.js";
 
 class AccountComponent extends HTMLElement {
@@ -10,7 +11,7 @@ class AccountComponent extends HTMLElement {
     this.innerHTML = `<section id="account" class="account-section">
         <h2>Editar perfil</h2>
         <h3>Por favor, insira os dados que deseja atualizar</h3>
-        
+
         <form id="accountForm" class="account-form">
           <div class="custom-checkbox-group">
             <label class="custom-checkbox-label">
@@ -31,7 +32,7 @@ class AccountComponent extends HTMLElement {
           
           <div class="form-group password-group">
             <label for="password">Nova senha:</label>
-            <input type="password" id="password" name="password"> <!-- Removido o required aqui -->
+            <input type="password" id="password" name="password">
             <span id="togglePassword" class="toggle-password" role="button" tabindex="0">
               <i class="far fa-eye"></i>
             </span>
@@ -46,9 +47,18 @@ class AccountComponent extends HTMLElement {
           </div>
           
           <button type="submit" class="submit-btn">Atualizar</button>
+          <button type="button" class="delete-btn">Deletar conta</button>
 
           <a href="./profile.html" class="profile-link">Voltar para o perfil de usuário</a>
         </form>
+
+        <div id="deleteModal" class="modal hidden">
+          <div class="modal-content">
+            <h3>Você tem certeza que deseja deletar sua conta?</h3>
+            <button id="confirmDelete" class="confirm-btn">Deletar</button>
+            <button id="cancelDelete" class="cancel-btn">Cancelar</button>
+          </div>
+        </div>
       </section>`;
 
     this.initEventListeners();
@@ -59,6 +69,10 @@ class AccountComponent extends HTMLElement {
     const passwordRequirements = this.querySelector("#passwordRequirements");
     const togglePassword = this.querySelector("#togglePassword");
     const submitButton = this.querySelector(".submit-btn");
+    const deleteButton = this.querySelector(".delete-btn");
+    const modal = this.querySelector("#deleteModal");
+    const confirmDeleteButton = this.querySelector("#confirmDelete");
+    const cancelDeleteButton = this.querySelector("#cancelDelete");
 
     passwordInput.addEventListener("focus", () => {
       passwordRequirements.classList.remove("hidden");
@@ -82,6 +96,19 @@ class AccountComponent extends HTMLElement {
 
     togglePassword.addEventListener("click", () => {
       togglePasswordVisibility(togglePassword, passwordInput);
+    });
+
+    deleteButton.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+    });
+
+    cancelDeleteButton.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    confirmDeleteButton.addEventListener("click", async () => {
+      await handleDeleteAccount();
+      modal.classList.add("hidden");
     });
   }
 }

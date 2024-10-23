@@ -1,4 +1,18 @@
-let userId; 
+let userId;
+
+export const showToast = (message, type = "success") => {
+  const toast = document.createElement("div");
+  toast.classList.add("toast", type);
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("fade-out");
+    toast.addEventListener("transitionend", () => {
+      toast.remove();
+    });
+  }, 3000);
+};
 
 export const validatePassword = (password) => {
   const lengthRequirement = document.getElementById("length");
@@ -99,25 +113,11 @@ export const handleUpdateSubmit = async (event) => {
 
   const form = event.target;
   const token = localStorage.getItem("jwtToken");
-
-  if (!token) {
-    showToast(
-      "Token JWT não encontrado. Por favor, faça login novamente.",
-      "error"
-    );
-    return;
-  }
-
-  const formData = {
+  const updatedUserData = {
     name: form.name.value,
     email: form.email.value,
+    password: form.password.value || undefined, 
   };
-
-  if (form.password.value) {
-    formData.password = form.password.value;
-  }
-
-  showToast("Atualizando..");
 
   try {
     const response = await fetch(
@@ -128,37 +128,46 @@ export const handleUpdateSubmit = async (event) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(updatedUserData),
       }
     );
 
     if (response.ok) {
-      showToast("Atualização realizada com sucesso!", "success");
-      form.reset();
+      showToast("Perfil atualizado com sucesso!");
+      initAccount(); 
     } else {
-      showToast("Erro ao atualizar usuário. Tente novamente.", "error");
+      showToast(
+        "Erro ao atualizar perfil. Verifique os dados e tente novamente."
+      );
     }
   } catch (error) {
-    console.error("Erro ao realizar atualização:", error);
-    showToast(
-      "Ocorreu um erro ao realizar a atualização. Verifique seus dados.",
-      "error"
-    );
+    console.error("Erro ao atualizar perfil:", error);
   }
 };
 
-const showToast = (message, type) => {
-  const toastContainer = document.createElement("div");
-  toastContainer.className = `toast ${type}`;
-  toastContainer.innerText = message;
+export const handleDeleteAccount = async () => {
+  const token = localStorage.getItem("jwtToken");
 
-  document.body.appendChild(toastContainer);
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/users/${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-  setTimeout(() => {
-    toastContainer.classList.add("fade-out");
-    setTimeout(() => {
-      toastContainer.remove();
-    }, 500);
-  }, 3000);
+    if (response.ok) {
+      showToast("Conta deletada com sucesso!");
+      localStorage.removeItem("jwtToken");
+      window.location.href = "./index.html"; 
+    } else {
+      showToast("Erro ao deletar conta. Tente novamente.");
+    }
+  } catch (error) {
+    console.error("Erro ao deletar conta:", error);
+  }
 };
-document.addEventListener("DOMContentLoaded", initAccount);
+window.addEventListener("load", initAccount);
