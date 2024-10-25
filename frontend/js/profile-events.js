@@ -93,7 +93,7 @@ async function fetchUserReports(userId, token, element) {
     } else {
       reportListElement.innerHTML = `
         <div class="no-reports">
-          <i class="fa-regular fa-folder-open"></i> Ainda não há nenhuma denúncia
+          <i class="fa-regular fa-folder-open"></i> Você ainda não fez nenhuma denúncia
         </div>
       `;
     }

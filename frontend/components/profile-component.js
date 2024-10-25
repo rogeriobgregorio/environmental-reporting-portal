@@ -27,7 +27,7 @@ class ProfileComponent extends HTMLElement {
         <div class="report-list">
           <div class="no-reports">
             <i class="fa-regular fa-folder-open"></i> 
-            Ainda não há nenhuma denúncia
+            Você ainda não fez nenhuma denúncia
           </div>
         </div>
       </section>
