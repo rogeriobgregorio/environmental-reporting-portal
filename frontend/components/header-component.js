@@ -2,6 +2,9 @@ import { initHeaderEventListeners } from "../js/header-events.js";
 
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
+    const isLoggedIn = !!localStorage.getItem("jwtToken"); 
+    const isProfilePage = window.location.pathname.endsWith("profile.html"); 
+
     this.innerHTML = `
       <header>
         <div class="logo">
@@ -17,7 +20,14 @@ class HeaderComponent extends HTMLElement {
             <li><a href="./info.html">Informativos</a></li>
             <li><a href="./about.html">Sobre nós</a></li>            
             <li><a href="./contact.html">Contato</a></li>
-            <li><a href="./login.html">Entrar</a></li>
+            ${
+              isLoggedIn && !isProfilePage
+                ? '<li><a href="./profile.html">Meu perfil</a></li>'
+                : ""
+            }
+            <li><a href="${isLoggedIn ? "#" : "./login.html"}" id="authLink">${
+      isLoggedIn ? "Sair" : "Entrar"
+    }</a></li>
           </ul>
         </nav>
 
@@ -28,6 +38,15 @@ class HeaderComponent extends HTMLElement {
         </div>
       </header>
     `;
+
+    const authLink = this.querySelector("#authLink");
+
+    if (isLoggedIn) {
+      authLink.addEventListener("click", () => {
+        localStorage.removeItem("jwtToken"); 
+        window.location.href = "./login.html"; 
+      });
+    }
 
     const hamburger = this.querySelector(".hamburger");
     const menu = this.querySelector(".menu");

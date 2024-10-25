@@ -1,0 +1,90 @@
+.admin-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 840px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 110px;
+  margin-bottom: 2.5rem; 
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 900px;
+}
+
+.profile-icon {
+  color: #046245;
+  font-size: 5em;
+}
+
+.admin-username {
+  color: #046245;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.edit-profile-btn,
+.view-reports-btn {
+  background-color: #046245;
+  color: #ffffff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  border-style: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-profile-btn:hover,
+.view-reports-btn:hover {
+  background-color: #038a62;
+  transform: scale(1.05);
+}
+
+.admin-counters {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.counter i {
+  margin-right: 10px;
+  color: #046245;
+}
+
+.all-reports-list {
+  width: 100%;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.no-reports {
+  font-size: 1.5em;
+}
+
+.no-reports i {
+  color: #046245;
+  margin-right: 5px;
+}

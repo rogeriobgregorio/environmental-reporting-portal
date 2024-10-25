@@ -1,4 +1,3 @@
-// Função para exibir mensagens de toast
 const showToast = (message, type) => {
   const toastContainer = document.createElement("div");
   toastContainer.className = `toast ${type}`;
@@ -12,6 +11,11 @@ const showToast = (message, type) => {
       toastContainer.remove();
     }, 500);
   }, 3500);
+};
+
+const decodeToken = (token) => {
+  const payload = token.split(".")[1];
+  return JSON.parse(atob(payload));
 };
 
 export const handleLoginSubmit = async (event) => {
@@ -40,13 +44,19 @@ export const handleLoginSubmit = async (event) => {
       console.log("Token recebido do servidor:", data.token);
 
       localStorage.clear();
-
       localStorage.setItem("jwtToken", data.token);
-
       console.log("Novo token armazenado:", localStorage.getItem("jwtToken"));
 
-      window.location.href =
-        "http://127.0.0.1:5500/environmental-reporting-portal/frontend/profile.html";
+      const decodedToken = decodeToken(data.token);
+      const role = decodedToken.role;
+
+      if (role === "ROLE_ADMIN") {
+        window.location.href =
+          "http://127.0.0.1:5500/environmental-reporting-portal/frontend/admin.html";
+      } else {
+        window.location.href =
+          "http://127.0.0.1:5500/environmental-reporting-portal/frontend/profile.html";
+      }
     } else {
       showToast("Erro ao realizar login. Verifique suas credenciais.", "error");
     }

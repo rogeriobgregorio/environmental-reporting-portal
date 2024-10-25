@@ -118,7 +118,7 @@
 }
 
 .invalid::before {
-  color: red;
+  color: #f44336;
 }
 
 .hidden {
