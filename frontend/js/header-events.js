@@ -15,6 +15,6 @@ export function initHeaderEventListeners(hamburger, menu) {
 
   if (isLoginPage && authLink) {
     authLink.textContent = "Cadastrar-se";
-    authLink.href = "./register.html"; 
+    authLink.href = "./register.html";
   }
 }

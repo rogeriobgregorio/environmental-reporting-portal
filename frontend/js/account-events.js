@@ -71,6 +71,16 @@ export const initAccount = () => {
   const payload = parseJwt(token);
   userId = payload.id;
 
+  const profileLink = document.getElementById("profileLink");
+
+  if (payload.role === "ROLE_ADMIN") {
+    profileLink.textContent = "Voltar ao perfil administrador";
+    profileLink.setAttribute("href", "./admin.html");
+  } else {
+    profileLink.textContent = "Voltar ao perfil de usuário";
+    profileLink.setAttribute("href", "./profile.html");
+  }
+
   fetchUserProfile(userId, token);
 };
 
@@ -116,7 +126,7 @@ export const handleUpdateSubmit = async (event) => {
   const updatedUserData = {
     name: form.name.value,
     email: form.email.value,
-    password: form.password.value || undefined, 
+    password: form.password.value,
   };
 
   try {
@@ -134,11 +144,8 @@ export const handleUpdateSubmit = async (event) => {
 
     if (response.ok) {
       showToast("Perfil atualizado com sucesso!");
-      initAccount(); 
     } else {
-      showToast(
-        "Erro ao atualizar perfil. Verifique os dados e tente novamente."
-      );
+      showToast("Erro ao atualizar perfil.", "error");
     }
   } catch (error) {
     console.error("Erro ao atualizar perfil:", error);
@@ -160,14 +167,13 @@ export const handleDeleteAccount = async () => {
     );
 
     if (response.ok) {
-      showToast("Conta deletada com sucesso!");
       localStorage.removeItem("jwtToken");
-      window.location.href = "./index.html"; 
+      showToast("Conta deletada com sucesso.");
+      window.location.href = "./login.html";
     } else {
-      showToast("Erro ao deletar conta. Tente novamente.");
+      showToast("Erro ao deletar conta.", "error");
     }
   } catch (error) {
     console.error("Erro ao deletar conta:", error);
   }
 };
-window.addEventListener("load", initAccount);

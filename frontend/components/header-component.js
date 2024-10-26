@@ -2,8 +2,11 @@ import { initHeaderEventListeners } from "../js/header-events.js";
 
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
-    const isLoggedIn = !!localStorage.getItem("jwtToken"); 
-    const isProfilePage = window.location.pathname.endsWith("profile.html"); 
+    const isLoggedIn = !!localStorage.getItem("jwtToken");
+    const isRestrictedPage =
+      window.location.pathname.endsWith("profile.html") ||
+      window.location.pathname.endsWith("admin.html");
+    const userRole = isLoggedIn ? getUserRole() : null;
 
     this.innerHTML = `
       <header>
@@ -21,8 +24,12 @@ class HeaderComponent extends HTMLElement {
             <li><a href="./about.html">Sobre nós</a></li>            
             <li><a href="./contact.html">Contato</a></li>
             ${
-              isLoggedIn && !isProfilePage
-                ? '<li><a href="./profile.html">Meu perfil</a></li>'
+              isLoggedIn && !isRestrictedPage
+                ? `<li><a href="${
+                    userRole === "ROLE_ADMIN"
+                      ? "./admin.html"
+                      : "./profile.html"
+                  }">Meu perfil</a></li>`
                 : ""
             }
             <li><a href="${isLoggedIn ? "#" : "./login.html"}" id="authLink">${
@@ -43,8 +50,8 @@ class HeaderComponent extends HTMLElement {
 
     if (isLoggedIn) {
       authLink.addEventListener("click", () => {
-        localStorage.removeItem("jwtToken"); 
-        window.location.href = "./login.html"; 
+        localStorage.removeItem("jwtToken");
+        window.location.href = "./login.html";
       });
     }
 
@@ -54,4 +61,16 @@ class HeaderComponent extends HTMLElement {
     initHeaderEventListeners(hamburger, menu);
   }
 }
+
+function getUserRole() {
+  const token = localStorage.getItem("jwtToken");
+  if (!token) return null;
+
+  const payloadBase64 = token.split(".")[1];
+  const payloadDecoded = atob(payloadBase64);
+  const payload = JSON.parse(payloadDecoded);
+
+  return payload.role;
+}
+
 customElements.define("header-component", HeaderComponent);

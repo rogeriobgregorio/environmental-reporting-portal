@@ -4,6 +4,7 @@ import {
   toggleAnonymous,
   togglePasswordVisibility,
   handleDeleteAccount,
+  initAccount, // Import necessário para verificar e configurar o profile-link
 } from "../js/account-events.js";
 
 class AccountComponent extends HTMLElement {
@@ -49,7 +50,7 @@ class AccountComponent extends HTMLElement {
           <button type="submit" class="submit-btn">Atualizar</button>
           <button type="button" class="delete-btn">Deletar conta</button>
 
-          <a href="./profile.html" class="profile-link">Voltar para o perfil de usuário</a>
+          <a href="#" class="profile-link" id="profileLink">Voltar para o perfil</a>
         </form>
 
         <div id="deleteModal" class="modal hidden">
@@ -62,6 +63,7 @@ class AccountComponent extends HTMLElement {
       </section>`;
 
     this.initEventListeners();
+    initAccount(); // Chama initAccount para configurar o profile-link com base na role
   }
 
   initEventListeners() {
@@ -112,4 +114,5 @@ class AccountComponent extends HTMLElement {
     });
   }
 }
+
 customElements.define("account-component", AccountComponent);

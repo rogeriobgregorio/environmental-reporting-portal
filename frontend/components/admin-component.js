@@ -45,12 +45,6 @@ class AdminComponent extends HTMLElement {
       window.location.href =
         "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
     });
-
-    const viewReportsBtn = this.querySelector("#viewReportsBtn");
-    viewReportsBtn.addEventListener("click", () => {
-      window.location.href =
-        "http://127.0.0.1:5500/environmental-reporting-portal/frontend/admin-reports.html";
-    });
   }
 }
 customElements.define("admin-component", AdminComponent);

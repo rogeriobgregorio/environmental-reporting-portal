@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 @Service
 public class AuthorizationServiceImpl implements AuthorizationService {
 
@@ -46,6 +48,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
                 .withEmail("admin@email.com")
                 .withPassword(encodedPassword)
                 .withRole(UserRole.ADMIN)
+                .withTimestamp(Instant.now())
                 .build();
 
         catchError.run(() -> userRepository.save(admin));
