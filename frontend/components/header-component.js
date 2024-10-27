@@ -1,15 +1,15 @@
-import { initHeaderEventListeners } from "../js/header-events.js";
+import {
+  initHeaderEventListeners,
+  getAuthInfo,
+  getUserRole,
+  handleAuthLinkClick,
+} from "../js/header-events.js";
 
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
-    const isLoggedIn = !!localStorage.getItem("jwtToken");
-    const isRestrictedPage =
-      window.location.pathname.endsWith("profile.html") ||
-      window.location.pathname.endsWith("admin.html");
-    const userRole = isLoggedIn ? getUserRole() : null;
+    const { isLoggedIn, isRestrictedPage, userRole } = getAuthInfo();
 
-    this.innerHTML = `
-      <header>
+    this.innerHTML = `<header>
         <div class="logo">
           <a href="./index.html#">
             <img src="./assets/images/ecoar-logo.svg" alt="Logo ECOAR" id="logo">
@@ -43,34 +43,14 @@ class HeaderComponent extends HTMLElement {
           <span></span>
           <span></span>
         </div>
-      </header>
-    `;
+      </header>`;
 
     const authLink = this.querySelector("#authLink");
-
-    if (isLoggedIn) {
-      authLink.addEventListener("click", () => {
-        localStorage.removeItem("jwtToken");
-        window.location.href = "./login.html";
-      });
-    }
+    handleAuthLinkClick(authLink); 
 
     const hamburger = this.querySelector(".hamburger");
     const menu = this.querySelector(".menu");
-
     initHeaderEventListeners(hamburger, menu);
   }
 }
-
-function getUserRole() {
-  const token = localStorage.getItem("jwtToken");
-  if (!token) return null;
-
-  const payloadBase64 = token.split(".")[1];
-  const payloadDecoded = atob(payloadBase64);
-  const payload = JSON.parse(payloadDecoded);
-
-  return payload.role;
-}
-
 customElements.define("header-component", HeaderComponent);

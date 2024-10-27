@@ -1,3 +1,4 @@
+/* Seção Profile */
 .profile {
   display: flex;
   flex-direction: column;
@@ -32,6 +33,7 @@
   color: #046245;
   font-size: 2.5em;
   font-weight: 700;
+  text-align: center;
 }
 
 .edit-profile-btn {
@@ -85,4 +87,37 @@
 .no-reports i {
   color: #046245;
   margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .profile-icon {
+    font-size: 15vw; 
+  }
+  
+  .username {
+    font-size: 6vw; 
+  }
+  
+  .edit-profile-btn {
+    font-size: 1.2rem; 
+  }
+
+  .counters {
+    flex-direction: column; 
+    align-items: center; 
+  }
+  
+  .counter {
+    font-size: 1.2em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-profile-btn {
+    padding: 0.4rem 0.8rem; 
+  }
+
+  .username {
+    font-size: 8vw; 
+  }
 }

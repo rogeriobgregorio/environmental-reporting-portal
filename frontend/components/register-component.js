@@ -1,8 +1,5 @@
 import {
-  handleRegisterSubmit,
-  validatePassword,
-  toggleAnonymous,
-  togglePasswordVisibility,
+  initEventListeners,
 } from "../js/register-events.js";
 
 class RegisterComponent extends HTMLElement {
@@ -55,38 +52,7 @@ class RegisterComponent extends HTMLElement {
         </form>
       </section>`;
 
-    this.initEventListeners();
-  }
-
-  initEventListeners() {
-    const passwordInput = this.querySelector("#password");
-    const passwordRequirements = this.querySelector("#passwordRequirements");
-    const togglePassword = this.querySelector("#togglePassword");
-    const submitButton = this.querySelector(".submit-btn");
-
-    passwordInput.addEventListener("focus", () => {
-      passwordRequirements.classList.remove("hidden");
-    });
-
-    passwordInput.addEventListener("blur", (event) => {
-      if (event.relatedTarget !== submitButton) {
-        passwordRequirements.classList.add("hidden");
-      }
-    });
-
-    passwordInput.addEventListener("input", () => {
-      validatePassword(passwordInput.value);
-    });
-
-    const anonymousCheckbox = this.querySelector("#anonymousCheckbox");
-    anonymousCheckbox.addEventListener("change", toggleAnonymous);
-
-    const form = this.querySelector("#registerForm");
-    form.addEventListener("submit", handleRegisterSubmit);
-
-    togglePassword.addEventListener("click", () => {
-      togglePasswordVisibility(togglePassword, passwordInput);
-    });
+    initEventListeners(this);
   }
 }
 customElements.define("register-component", RegisterComponent);

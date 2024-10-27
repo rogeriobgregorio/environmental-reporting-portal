@@ -22,19 +22,10 @@ export const validatePassword = (password) => {
   const specialRequirement = document.getElementById("special");
 
   lengthRequirement.classList.toggle("valid", password.length >= 8);
-  lengthRequirement.classList.toggle("invalid", password.length < 8);
-
   uppercaseRequirement.classList.toggle("valid", /[A-Z]/.test(password));
-  uppercaseRequirement.classList.toggle("invalid", !/[A-Z]/.test(password));
-
   lowercaseRequirement.classList.toggle("valid", /[a-z]/.test(password));
-  lowercaseRequirement.classList.toggle("invalid", !/[a-z]/.test(password));
-
   numberRequirement.classList.toggle("valid", /\d/.test(password));
-  numberRequirement.classList.toggle("invalid", !/\d/.test(password));
-
   specialRequirement.classList.toggle("valid", /[@#$!%*?&]/.test(password));
-  specialRequirement.classList.toggle("invalid", !/[@#$!%*?&]/.test(password));
 };
 
 export const toggleAnonymous = () => {
@@ -62,7 +53,6 @@ export const togglePasswordVisibility = (toggleElement, passwordInput) => {
 
 export const initAccount = () => {
   const token = localStorage.getItem("jwtToken");
-
   if (!token) {
     console.error("Token JWT não encontrado no localStorage.");
     return;
@@ -72,14 +62,14 @@ export const initAccount = () => {
   userId = payload.id;
 
   const profileLink = document.getElementById("profileLink");
-
-  if (payload.role === "ROLE_ADMIN") {
-    profileLink.textContent = "Voltar ao perfil administrador";
-    profileLink.setAttribute("href", "./admin.html");
-  } else {
-    profileLink.textContent = "Voltar ao perfil de usuário";
-    profileLink.setAttribute("href", "./profile.html");
-  }
+  profileLink.textContent =
+    payload.role === "ROLE_ADMIN"
+      ? "Voltar ao perfil administrador"
+      : "Voltar ao perfil de usuário";
+  profileLink.setAttribute(
+    "href",
+    payload.role === "ROLE_ADMIN" ? "./admin.html" : "./profile.html"
+  );
 
   fetchUserProfile(userId, token);
 };
@@ -96,23 +86,17 @@ async function fetchUserProfile(userId, token) {
       `http://127.0.0.1:8080/api/v1/users/${userId}`,
       {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
-    if (!response.ok) {
+    if (response.ok) {
+      const userData = await response.json();
+      document.getElementById("name").value = userData.name;
+      document.getElementById("email").value = userData.email;
+    } else {
       console.error("Erro ao buscar perfil do usuário.");
-      return;
     }
-
-    const userData = await response.json();
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-
-    nameInput.value = userData.name;
-    emailInput.value = userData.email;
   } catch (error) {
     console.error("Erro ao buscar perfil do usuário:", error);
   }
@@ -120,14 +104,12 @@ async function fetchUserProfile(userId, token) {
 
 export const handleUpdateSubmit = async (event) => {
   event.preventDefault();
+  const name = document.querySelector("#name").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const password = document.querySelector("#password").value.trim();
 
-  const form = event.target;
-  const token = localStorage.getItem("jwtToken");
-  const updatedUserData = {
-    name: form.name.value,
-    email: form.email.value,
-    password: form.password.value,
-  };
+  const updatedUserData = { name, email };
+  if (password) updatedUserData.password = password;
 
   try {
     const response = await fetch(
@@ -136,17 +118,14 @@ export const handleUpdateSubmit = async (event) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
         },
         body: JSON.stringify(updatedUserData),
       }
     );
 
-    if (response.ok) {
-      showToast("Perfil atualizado com sucesso!");
-    } else {
-      showToast("Erro ao atualizar perfil.", "error");
-    }
+    if (response.ok) showToast("Perfil atualizado com sucesso!");
+    else showToast("Erro ao atualizar perfil.", "error");
   } catch (error) {
     console.error("Erro ao atualizar perfil:", error);
   }
@@ -160,9 +139,7 @@ export const handleDeleteAccount = async () => {
       `http://127.0.0.1:8080/api/v1/users/${userId}`,
       {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
@@ -176,4 +153,47 @@ export const handleDeleteAccount = async () => {
   } catch (error) {
     console.error("Erro ao deletar conta:", error);
   }
+};
+
+export const attachEventListeners = (component) => {
+  const passwordInput = component.querySelector("#password");
+  const passwordRequirements = component.querySelector("#passwordRequirements");
+  const togglePassword = component.querySelector("#togglePassword");
+  const submitButton = component.querySelector(".submit-btn");
+  const deleteButton = component.querySelector(".delete-btn");
+  const modal = component.querySelector("#deleteModal");
+  const confirmDeleteButton = component.querySelector("#confirmDelete");
+  const cancelDeleteButton = component.querySelector("#cancelDelete");
+
+  passwordInput.addEventListener("focus", () =>
+    passwordRequirements.classList.remove("hidden")
+  );
+  passwordInput.addEventListener("blur", (event) => {
+    if (event.relatedTarget !== submitButton)
+      passwordRequirements.classList.add("hidden");
+  });
+  passwordInput.addEventListener("input", () =>
+    validatePassword(passwordInput.value)
+  );
+
+  const anonymousCheckbox = component.querySelector("#anonymousCheckbox");
+  anonymousCheckbox.addEventListener("change", toggleAnonymous);
+
+  const form = component.querySelector("#accountForm");
+  form.addEventListener("submit", handleUpdateSubmit);
+
+  togglePassword.addEventListener("click", () =>
+    togglePasswordVisibility(togglePassword, passwordInput)
+  );
+
+  deleteButton.addEventListener("click", () =>
+    modal.classList.remove("hidden")
+  );
+  cancelDeleteButton.addEventListener("click", () =>
+    modal.classList.add("hidden")
+  );
+  confirmDeleteButton.addEventListener("click", async () => {
+    await handleDeleteAccount();
+    modal.classList.add("hidden");
+  });
 };

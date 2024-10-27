@@ -2,7 +2,7 @@ import { initProfile } from "../js/profile-events.js";
 
 class ProfileComponent extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `
+    this.innerHTML = ` 
       <section class="profile">
         <div class="profile-header">
           <div class="profile-info">
@@ -33,16 +33,7 @@ class ProfileComponent extends HTMLElement {
       </section>
     `;
 
-    this.initEventListeners();
-    initProfile(this);
-  }
-
-  initEventListeners() {
-    const editProfileBtn = this.querySelector("#editProfileBtn");
-    editProfileBtn.addEventListener("click", () => {
-      window.location.href =
-        "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
-    });
+    initProfile(this); 
   }
 }
 customElements.define("profile-component", ProfileComponent);

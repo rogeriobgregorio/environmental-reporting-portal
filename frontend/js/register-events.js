@@ -97,3 +97,34 @@ const showToast = (message, type) => {
     }, 500);
   }, 3000);
 };
+
+export const initEventListeners = (component) => {
+  const passwordInput = component.querySelector("#password");
+  const passwordRequirements = component.querySelector("#passwordRequirements");
+  const togglePassword = component.querySelector("#togglePassword");
+  const submitButton = component.querySelector(".submit-btn");
+
+  passwordInput.addEventListener("focus", () => {
+    passwordRequirements.classList.remove("hidden");
+  });
+
+  passwordInput.addEventListener("blur", (event) => {
+    if (event.relatedTarget !== submitButton) {
+      passwordRequirements.classList.add("hidden");
+    }
+  });
+
+  passwordInput.addEventListener("input", () => {
+    validatePassword(passwordInput.value);
+  });
+
+  const anonymousCheckbox = component.querySelector("#anonymousCheckbox");
+  anonymousCheckbox.addEventListener("change", toggleAnonymous);
+
+  const form = component.querySelector("#registerForm");
+  form.addEventListener("submit", handleRegisterSubmit);
+
+  togglePassword.addEventListener("click", () => {
+    togglePasswordVisibility(togglePassword, passwordInput);
+  });
+};

@@ -104,3 +104,11 @@ function reportStatusLabel(status) {
   };
   return statuses[status] || "Desconhecido";
 }
+
+export function initEditProfileButton(element) {
+  const editProfileBtn = element.querySelector("#editProfileBtn");
+  editProfileBtn.addEventListener("click", () => {
+    window.location.href =
+      "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
+  });
+}

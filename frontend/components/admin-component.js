@@ -1,18 +1,15 @@
-import { initAdminProfile } from "../js/admin-events.js";
+import { initAdminProfile, initEditProfileButton } from "../js/admin-events.js";
 
 class AdminComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <section class="admin-profile">
-
         <div class="profile-header">
-
           <div class="profile-info">
             <i class="fa-solid fa-user-shield profile-icon"></i>
             <h2 class="admin-username"></h2>
             <button class="edit-profile-btn" id="editProfileBtn">Editar Perfil</button>
           </div>
-          
         </div>
 
         <div class="admin-counters">
@@ -35,16 +32,8 @@ class AdminComponent extends HTMLElement {
       </section>
     `;
 
-    this.initEventListeners();
     initAdminProfile(this);
-  }
-
-  initEventListeners() {
-    const editProfileBtn = this.querySelector("#editProfileBtn");
-    editProfileBtn.addEventListener("click", () => {
-      window.location.href =
-        "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
-    });
+    initEditProfileButton(this); 
   }
 }
 customElements.define("admin-component", AdminComponent);

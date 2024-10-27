@@ -1,3 +1,4 @@
+/* Seção Administrador */
 .admin-profile {
   display: flex;
   flex-direction: column;
@@ -20,6 +21,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
+  flex-wrap: wrap;
   max-width: 900px;
 }
 
@@ -32,6 +34,7 @@
   color: #046245;
   font-size: 2.5em;
   font-weight: 700;
+  text-align: center;
 }
 
 .edit-profile-btn,
@@ -61,6 +64,7 @@
   width: 100%;
   max-width: 1200px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .counter {
@@ -87,4 +91,39 @@
 .no-reports i {
   color: #046245;
   margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column; 
+  }
+
+  .admin-username {
+    font-size: 2em; 
+  }
+
+  .profile-icon {
+    font-size: 4em; 
+  }
+
+  .admin-counters {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .counter {
+    font-size: 1.2em; 
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-username {
+    font-size: 1.5em; 
+  }
+
+  .edit-profile-btn,
+  .view-reports-btn {
+    font-size: 0.7rem; 
+    padding: 0.2rem 0.5rem; 
+  }
 }

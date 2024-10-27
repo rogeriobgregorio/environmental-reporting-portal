@@ -44,7 +44,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         String encodedPassword = new BCryptPasswordEncoder().encode(secretPassword);
 
         User admin = User.newBuilder()
-                .withName("admin")
+                .withName("Administrador")
                 .withEmail("admin@email.com")
                 .withPassword(encodedPassword)
                 .withRole(UserRole.ADMIN)

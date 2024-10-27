@@ -12,6 +12,8 @@ export function initProfile(element) {
   fetchUserProfile(userId, token, element, () => {
     fetchUserReports(userId, token, element);
   });
+
+  initEventListeners(element);
 }
 
 function parseJwt(token) {
@@ -112,4 +114,12 @@ function reportStatusLabel(status) {
     6: "Rejeitado",
   };
   return statuses[status] || "Desconhecido";
+}
+
+export function initEventListeners(element) {
+  const editProfileBtn = element.querySelector("#editProfileBtn");
+  editProfileBtn.addEventListener("click", () => {
+    window.location.href =
+      "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
+  });
 }
