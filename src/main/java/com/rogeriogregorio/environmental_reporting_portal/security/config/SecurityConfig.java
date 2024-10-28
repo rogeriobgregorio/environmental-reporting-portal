@@ -70,7 +70,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/messages").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.POST, "/messages").permitAll()
                         .requestMatchers(HttpMethod.GET, "/messages/{id}").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.DELETE, "/messages/{id}").hasAnyRole(ADMIN)
+                        .requestMatchers(HttpMethod.DELETE, "/messages/{id}").hasRole(ADMIN)
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)

@@ -1,7 +1,9 @@
 package com.rogeriogregorio.environmental_reporting_portal.controllers;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.MessageRequest;
+import com.rogeriogregorio.environmental_reporting_portal.dto.request.UserRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.MessageResponse;
+import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
 import com.rogeriogregorio.environmental_reporting_portal.services.MessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -61,6 +63,25 @@ public class MessageController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(messageService.createMessage(messageRequest));
+    }
+
+    @Operation(summary = "Atualizar status da mensagem", description = "Endpoint para atualizar status da mensagem")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Status da mensagem atualizado com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "403", description = "Não autorizado"),
+            @ApiResponse(responseCode = "404", description = "Nenhuma mensagem encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar status da mensagem")
+    })
+    @PatchMapping(value = "/message-status/{id}")
+    public ResponseEntity<MessageResponse> patchMessageStatus(
+            @PathVariable String id,
+            @Valid @RequestBody Integer messageStatus) {
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(messageService.updateMessageStatus(id, messageStatus));
     }
 
     @Operation(summary = "Buscar mensagem por Id",description = "Endpoint para buscar mensagem pelo Id")

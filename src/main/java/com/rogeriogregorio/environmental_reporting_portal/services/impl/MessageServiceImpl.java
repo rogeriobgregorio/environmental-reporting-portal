@@ -56,6 +56,18 @@ public class MessageServiceImpl implements MessageService {
         return dataMapper.map(messageSaved, MessageResponse.class);
     }
 
+    public MessageResponse updateMessageStatus(String id, Integer messageStatus) {
+
+        Message updateMessage = getMessageIfExists(id)
+                .toBuilder()
+                .withMessageStatus(messageStatus)
+                .build();
+
+        Message savedMessageStatus = catchError.run(() -> messageRepository.save(updateMessage));
+        LOGGER.info("Message status updated: {}", savedMessageStatus);
+        return dataMapper.map(savedMessageStatus, MessageResponse.class);
+    }
+
     public MessageResponse findMessageById(String id) {
 
         return catchError.run(() -> messageRepository.findById(id))

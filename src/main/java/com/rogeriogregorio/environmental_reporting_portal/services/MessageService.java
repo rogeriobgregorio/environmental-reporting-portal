@@ -14,6 +14,8 @@ public interface MessageService {
 
     MessageResponse createMessage(MessageRequest messageRequest);
 
+    MessageResponse updateMessageStatus(String id, Integer messageStatus);
+
     MessageResponse findMessageById(String id);
 
     void deleteMessage(String id);

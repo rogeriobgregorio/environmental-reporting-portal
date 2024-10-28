@@ -1,0 +1,113 @@
+.messages-container {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 200px;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.message {
+  padding: 1em;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.message:last-child {
+  border-bottom: none;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.message-content {
+  margin-top: 0.5em;
+}
+
+.message-status {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.message-actions {
+  margin-top: 0.5em;
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.message-actions button {
+  background-color: #046245;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 0.5em;
+  transition: background-color 0.3s;
+  flex: 1; 
+  min-width: 120px; 
+}
+
+.message-actions button:hover {
+  background-color: #034d3f;
+}
+
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 0.9;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast.success {
+  background-color: #038a62;
+}
+
+.toast.error {
+  background-color: #f44336;
+}
+
+.toast.fade-out {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .messages-container {
+    padding: 0.5em; 
+  }
+
+  .message {
+    padding: 0.75em; 
+  }
+
+  .message-header {
+    flex-direction: column; 
+
+  .message-status {
+    margin-top: 0.5em; 
+  }
+
+  .message-actions {
+    justify-content: center; 
+  }
+
+  .message-actions button {
+    flex: none; 
+    width: 100%; 
+    margin-bottom: 0.5em; 
+  }
+}

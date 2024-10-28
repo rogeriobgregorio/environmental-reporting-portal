@@ -63,9 +63,9 @@ public class UserServiceImpl implements UserService {
                 .withTimestamp(Instant.now())
                 .build();
 
-        User savedReport = catchError.run(() -> userRepository.save(user));
-        LOGGER.info("User registered: {}", savedReport);
-        return dataMapper.map(savedReport, UserResponse.class);
+        User savedUser = catchError.run(() -> userRepository.save(user));
+        LOGGER.info("User registered: {}", savedUser);
+        return dataMapper.map(savedUser, UserResponse.class);
     }
 
     public UserResponse updateUserRole(String id, UserRequest userRequest) {
@@ -75,9 +75,9 @@ public class UserServiceImpl implements UserService {
                 .withRole(userRequest.getRole())
                 .build();
 
-        User savedReport = catchError.run(() -> userRepository.save(updatedUser));
-        LOGGER.info("User role updated: {}", savedReport);
-        return dataMapper.map(savedReport, UserResponse.class);
+        User savedUser = catchError.run(() -> userRepository.save(updatedUser));
+        LOGGER.info("User role updated: {}", savedUser);
+        return dataMapper.map(savedUser, UserResponse.class);
     }
 
     public UserResponse findUserById(String id) {
