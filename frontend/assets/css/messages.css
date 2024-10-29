@@ -8,54 +8,33 @@
   background-color: #f9f9f9;
 }
 
-.message {
+.message-item {
   padding: 1em;
   border-bottom: 1px solid #e0e0e0;
-  display: flex;
-  flex-direction: column;
   margin-bottom: 1em;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
-.message:last-child {
+.message-item:last-child {
   border-bottom: none;
 }
 
-.message-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
+.message-item p {
+  margin: 0.5em 0;
 }
 
-.message-content {
-  margin-top: 0.5em;
-}
-
-.message-status {
-  font-size: 0.9em;
-  color: gray;
-}
-
-.message-actions {
-  margin-top: 0.5em;
-  display: flex;
-  flex-wrap: wrap; 
-}
-
-.message-actions button {
+.message-item button {
   background-color: #046245;
   color: white;
   border: none;
   padding: 0.5em 1em;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 0.5em;
   transition: background-color 0.3s;
-  flex: 1; 
-  min-width: 120px; 
 }
 
-.message-actions button:hover {
+.message-item button:hover {
   background-color: #034d3f;
 }
 
@@ -90,24 +69,12 @@
     padding: 0.5em; 
   }
 
-  .message {
+  .message-item {
     padding: 0.75em; 
   }
 
-  .message-header {
-    flex-direction: column; 
-
-  .message-status {
-    margin-top: 0.5em; 
-  }
-
-  .message-actions {
-    justify-content: center; 
-  }
-
-  .message-actions button {
-    flex: none; 
+  .message-item button {
     width: 100%; 
-    margin-bottom: 0.5em; 
+    margin-top: 0.5em; 
   }
 }

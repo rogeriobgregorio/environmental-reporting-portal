@@ -12,5 +12,4 @@ class MessagesComponent extends HTMLElement {
     setupMessagesEvents(this);
   }
 }
-
 customElements.define("messages-component", MessagesComponent);
