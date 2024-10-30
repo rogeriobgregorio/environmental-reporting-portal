@@ -1,7 +1,6 @@
 package com.rogeriogregorio.environmental_reporting_portal.controllers;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.MessageRequest;
-import com.rogeriogregorio.environmental_reporting_portal.dto.request.UserRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.MessageResponse;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
 import com.rogeriogregorio.environmental_reporting_portal.services.MessageService;

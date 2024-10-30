@@ -5,7 +5,10 @@ class MessagesComponent extends HTMLElement {
     this.innerHTML = `
       <div class="messages-container">
         <h2>Mensagens</h2>
-        <div id="messagesList" class="messages-list"></div>
+        <div class="messages-layout">
+          <div id="messagesList" class="messages-list"></div>
+          <div id="messageDetails" class="message-details"></div> 
+        </div>
       </div>
     `;
 

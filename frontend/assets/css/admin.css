@@ -93,6 +93,26 @@
   margin-right: 5px;
 }
 
+.messages-btn {
+  background-color: #046245;
+  color: #ffffff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  border-style: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.messages-btn:hover {
+  background-color: #038a62;
+  transform: scale(1.05);
+}
+
+
 @media (max-width: 768px) {
   .profile-header {
     flex-direction: column; 

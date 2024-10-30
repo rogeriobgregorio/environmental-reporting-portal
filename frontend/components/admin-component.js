@@ -1,4 +1,8 @@
-import { initAdminProfile, initEditProfileButton } from "../js/admin-events.js";
+import {
+  initAdminProfile,
+  initEditProfileButton,
+  initMessagesButton,
+} from "../js/admin-events.js";
 
 class AdminComponent extends HTMLElement {
   connectedCallback() {
@@ -9,6 +13,7 @@ class AdminComponent extends HTMLElement {
             <i class="fa-solid fa-user-shield profile-icon"></i>
             <h2 class="admin-username"></h2>
             <button class="edit-profile-btn" id="editProfileBtn">Editar Perfil</button>
+            <button class="messages-btn" id="messagesBtn">Mensagens</button>
           </div>
         </div>
 
@@ -33,7 +38,8 @@ class AdminComponent extends HTMLElement {
     `;
 
     initAdminProfile(this);
-    initEditProfileButton(this); 
+    initEditProfileButton(this);
+    initMessagesButton(this); 
   }
 }
 customElements.define("admin-component", AdminComponent);

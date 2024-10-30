@@ -38,6 +38,38 @@
   background-color: #034d3f;
 }
 
+.messages-container {
+  max-width: 1200px; /* Aumente a largura máxima se necessário */
+  margin: auto;
+  margin-top: 200px;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.messages-layout {
+  display: flex; /* Cria um layout flexível */
+  justify-content: space-between; /* Espaça os filhos uniformemente */
+}
+
+.messages-list {
+  flex: 1; /* Permite que a lista de mensagens ocupe mais espaço */
+  margin-right: 20px; /* Espaço entre a lista e os detalhes */
+}
+
+.message-details {
+  flex: 2; /* Permite que a área de detalhes ocupe mais espaço */
+  margin-top: 0; /* Remove a margem superior */
+  padding: 1em;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Restante do CSS que você já possui */
+
+
 .toast {
   position: fixed;
   top: 50%;
@@ -63,6 +95,19 @@
 .toast.fade-out {
   opacity: 0;
 }
+
+.message-details {
+  margin-top: 20px;
+  padding: 1em;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.message-details h3 {
+  margin-top: 0;
+}
+
 
 @media (max-width: 768px) {
   .messages-container {

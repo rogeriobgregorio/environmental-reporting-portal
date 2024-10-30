@@ -112,3 +112,11 @@ export function initEditProfileButton(element) {
       "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
   });
 }
+
+export function initMessagesButton(element) {
+  const messagesBtn = element.querySelector("#messagesBtn");
+  messagesBtn.addEventListener("click", () => {
+    window.location.href =
+      "http://127.0.0.1:5500/environmental-reporting-portal/frontend/messages.html";
+  });
+}

@@ -1,3 +1,5 @@
+let messages = []; 
+
 export const showToast = (message, type) => {
   const toastContainer = document.createElement("div");
   toastContainer.className = `toast ${type}`;
@@ -25,7 +27,7 @@ export async function fetchMessages() {
     });
 
     if (response.ok) {
-      const messages = await response.json();
+      messages = await response.json(); 
       renderMessages(messages);
     } else {
       throw new Error("Erro ao buscar mensagens.");
@@ -39,21 +41,41 @@ export async function fetchMessages() {
 // Função para renderizar as mensagens na interface
 function renderMessages(messages) {
   const messagesList = document.getElementById("messagesList");
-  if (!messagesList) return;
+  const messageDetails = document.getElementById("messageDetails"); 
+
+  if (!messagesList || !messageDetails) return;
 
   messagesList.innerHTML = messages
     .map(
       (message) => `
-      <div class="message-item">
-        <p><strong>De:</strong> ${message.name} (${message.email})</p>
-        <p>${message.content}</p>
+      <div class="message-item" onclick='showMessageDetails(${JSON.stringify(
+        message
+      )})'>
+        <p><strong>De:</strong> ${message.name}</p>
         <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
-        <button onclick="confirmDeleteMessage('${message.id}')">Excluir</button>
       </div>
     `
     )
     .join("");
+
+  messageDetails.innerHTML = ""; 
 }
+
+// Função para mostrar detalhes da mensagem ao clicar
+window.showMessageDetails = function (message) {
+  // Recebe a mensagem como argumento
+  const messageDetails = document.getElementById("messageDetails");
+
+  if (message) {
+    messageDetails.innerHTML = `
+      <h3>Mensagem Completa</h3>
+      <p><strong>De:</strong> ${message.name} (${message.email})</p>
+      <p><strong>Conteúdo:</strong> ${message.content}</p>
+      <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
+      <button onclick="confirmDeleteMessage('${message.id}')">Excluir</button>
+    `;
+  }
+};
 
 // Função para exibir o modal de confirmação de exclusão
 function confirmDeleteMessage(id) {
@@ -82,7 +104,7 @@ export async function deleteMessage(id) {
 
     if (response.ok) {
       showToast("Mensagem excluída com sucesso.", "success");
-      fetchMessages(); // Atualiza a lista de mensagens após exclusão
+      fetchMessages(); 
     } else {
       throw new Error("Erro ao excluir a mensagem.");
     }
@@ -96,6 +118,4 @@ export async function deleteMessage(id) {
 export function setupMessagesEvents(element) {
   fetchMessages();
 }
-
-// Tornando a função disponível globalmente para o HTML acessar
 window.confirmDeleteMessage = confirmDeleteMessage;

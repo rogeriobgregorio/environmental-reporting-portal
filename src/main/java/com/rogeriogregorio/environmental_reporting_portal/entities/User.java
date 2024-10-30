@@ -3,7 +3,6 @@ package com.rogeriogregorio.environmental_reporting_portal.entities;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
 import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.annotation.Collation;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
