@@ -1,4 +1,5 @@
-let messages = []; 
+let messages = [];
+let messageIdToDelete = null;
 
 export const showToast = (message, type) => {
   const toastContainer = document.createElement("div");
@@ -15,7 +16,6 @@ export const showToast = (message, type) => {
   }, 3500);
 };
 
-// Função para buscar todas as mensagens
 export async function fetchMessages() {
   const token = localStorage.getItem("jwtToken");
 
@@ -27,7 +27,7 @@ export async function fetchMessages() {
     });
 
     if (response.ok) {
-      messages = await response.json(); 
+      messages = await response.json();
       renderMessages(messages);
     } else {
       throw new Error("Erro ao buscar mensagens.");
@@ -38,10 +38,9 @@ export async function fetchMessages() {
   }
 }
 
-// Função para renderizar as mensagens na interface
 function renderMessages(messages) {
   const messagesList = document.getElementById("messagesList");
-  const messageDetails = document.getElementById("messageDetails"); 
+  const messageDetails = document.getElementById("messageDetails");
 
   if (!messagesList || !messageDetails) return;
 
@@ -51,19 +50,24 @@ function renderMessages(messages) {
       <div class="message-item" onclick='showMessageDetails(${JSON.stringify(
         message
       )})'>
-        <p><strong>De:</strong> ${message.name}</p>
-        <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
+        <div class="profile-icon">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="message-content">
+          <p class="message-name"><strong>${message.name}</strong></p>
+          <p class="message-timestamp">${new Date(
+            message.timestamp
+          ).toLocaleString()}</p>
+        </div>
       </div>
     `
     )
     .join("");
 
-  messageDetails.innerHTML = ""; 
+  messageDetails.innerHTML = "";
 }
 
-// Função para mostrar detalhes da mensagem ao clicar
 window.showMessageDetails = function (message) {
-  // Recebe a mensagem como argumento
   const messageDetails = document.getElementById("messageDetails");
 
   if (message) {
@@ -72,28 +76,25 @@ window.showMessageDetails = function (message) {
       <p><strong>De:</strong> ${message.name} (${message.email})</p>
       <p><strong>Conteúdo:</strong> ${message.content}</p>
       <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
-      <button onclick="confirmDeleteMessage('${message.id}')">Excluir</button>
+      <button class="btn-delete" onclick="confirmDeleteMessage('${
+        message.id
+      }')">Excluir</button>
     `;
   }
 };
 
-// Função para exibir o modal de confirmação de exclusão
-function confirmDeleteMessage(id) {
-  const confirmation = window.confirm(
-    "Tem certeza que deseja excluir esta mensagem?"
-  );
-  if (confirmation) {
-    deleteMessage(id);
-  }
-}
+window.confirmDeleteMessage = function (id) {
+  messageIdToDelete = id;
+  const modal = document.getElementById("deleteMessageModal");
+  modal.classList.remove("hidden");
+};
 
-// Função para excluir uma mensagem
-export async function deleteMessage(id) {
+export async function deleteMessage() {
   const token = localStorage.getItem("jwtToken");
 
   try {
     const response = await fetch(
-      `http://127.0.0.1:8080/api/v1/messages/${id}`,
+      `http://127.0.0.1:8080/api/v1/messages/${messageIdToDelete}`,
       {
         method: "DELETE",
         headers: {
@@ -104,18 +105,33 @@ export async function deleteMessage(id) {
 
     if (response.ok) {
       showToast("Mensagem excluída com sucesso.", "success");
-      fetchMessages(); 
+      fetchMessages();
+      messageIdToDelete = null;
     } else {
       throw new Error("Erro ao excluir a mensagem.");
     }
   } catch (error) {
     console.error("Erro ao excluir a mensagem:", error);
     showToast("Erro ao excluir a mensagem.", "error");
+  } finally {
+    const modal = document.getElementById("deleteMessageModal");
+    modal.classList.add("hidden");
   }
 }
 
-// Função de configuração dos eventos
 export function setupMessagesEvents(element) {
   fetchMessages();
+
+  const cancelDeleteButton = element.querySelector("#cancelDeleteMessage");
+  const confirmDeleteButton = element.querySelector("#confirmDeleteMessage");
+
+  cancelDeleteButton.addEventListener("click", () => {
+    const modal = document.getElementById("deleteMessageModal");
+    modal.classList.add("hidden");
+    messageIdToDelete = null;
+  });
+
+  confirmDeleteButton.addEventListener("click", async () => {
+    await deleteMessage();
+  });
 }
-window.confirmDeleteMessage = confirmDeleteMessage;
