@@ -72,13 +72,18 @@ window.showMessageDetails = function (message) {
 
   if (message) {
     messageDetails.innerHTML = `
-      <h3>Mensagem Completa</h3>
-      <p><strong>De:</strong> ${message.name} (${message.email})</p>
-      <p><strong>Conteúdo:</strong> ${message.content}</p>
-      <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
-      <button class="btn-delete" onclick="confirmDeleteMessage('${
-        message.id
-      }')">Excluir</button>
+      <div class="message-header">
+        <p><strong>${message.name}</strong> (${message.email})</p>
+      </div>
+      <div class="message-content">
+        <p>${message.content}</p>
+      </div>
+      <div class="message-footer">
+        <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
+        <button class="btn-delete" onclick="confirmDeleteMessage('${
+          message.id
+        }')">Excluir</button>
+      </div>
     `;
   }
 };
@@ -135,3 +140,4 @@ export function setupMessagesEvents(element) {
     await deleteMessage();
   });
 }
+
