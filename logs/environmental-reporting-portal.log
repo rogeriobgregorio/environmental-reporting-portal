@@ -8666,3 +8666,185 @@ org.springframework.dao.IncorrectResultSizeDataAccessException: Query { "$java" 
 ', messageStatus=2, timestamp=2024-11-01T13:06:46.581913200Z}
 2024-11-01T15:38:14,022 WARN  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message deleted: Message{id='6724d26641b7f41b64e3e579', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='<p>Lorem ipsum dolor sit amet. Ea pariatur tenetur At dolore iure aut ducimus mollitia qui dolor consequuntur. Est possimus cumque ut voluptas dolore ut omnis ratione qui quia quae est assumenda minus vel voluptas explicabo hic culpa quia. </p><p>Qui consectetur officiis et quaerat blanditiis non fugit modi. Vel molestiae consectetur eos modi omnis vel dolore dolore. Et quibusdam architecto At debitis internos sed consectetur delectus et ipsam quasi qui atque amet. Ut voluptatem omnis qui tempora quas sed deleniti quas quo laboriosam reprehenderit. </p><p>Id internos maiores id autem animi quo sint quis aut nemo rerum in voluptas exercitationem et nemo accusantium. Eos dolorum adipisci ut nihil Quis ut autem ducimus eum ipsum animi non explicabo voluptatibus. Non libero molestiae aut soluta voluptatibus 33 quia ducimus. </p><p>Aut suscipit velit sed sint soluta rem galisum omnis sit quas voluptas a minima quaerat! Qui voluptatem porro non optio magni 33 magnam molestiae non atque cumque sed rerum magnam et nulla aliquid. </p><p>Hic magni ducimus ut dolores praesentium est quidem omnis in ratione totam id earum perspiciatis ut molestiae repellat. Vel officiis explicabo eum sunt sint aut deleniti velit. Aut quibusdam omnis eos quis voluptatibus nam rerum enim eos praesentium deserunt eos consequuntur sunt. </p><p>Aut adipisci ducimus est recusandae facere aut praesentium culpa vel voluptatem tempore At quibusdam modi nam consequatur quae aut eligendi saepe! Sed officiis iure ut quaerat fugit qui explicabo magnam non quia itaque non reprehenderit mollitia. Aut impedit Quis nam sunt dolore id neque blanditiis. Et velit dignissimos ut facilis aliquid ad velit debitis qui totam quasi in libero sequi. </p><p>Nam velit modi qui illum pariatur ea iusto nulla. Sed sunt pariatur aut sapiente sequi qui quae porro aut rerum enim qui consequuntur voluptatem! Eos odio autem a quidem quia hic voluptates molestias vel eligendi labore ut modi autem et officiis itaque et illum eaque. Et consequatur beatae At itaque tempora est ullam vitae sed dolor quasi At perspiciatis maxime. </p><p>33 quia temporibus quo quae alias aut molestiae quam et neque nihil et amet odio in illo fuga. Et commodi deleniti aut enim aliquid vel galisum quia est iure odio et reiciendis consequatur est officia accusamus. Non praesentium omnis qui fuga eligendi ut fugiat atque. Sed velit possimus ut deserunt quia est modi quas aut cupiditate sunt et enim illum et sequi quam ut Quis iste! </p><p>Ut aperiam dolorem ex ducimus deleniti et nulla libero qui libero praesentium est aspernatur eius. Aut minima omnis id autem animi sed ducimus consequatur non quisquam temporibus qui amet nesciunt ea temporibus facilis? </p><p>In nesciunt fugit nam ipsum dolorem quo esse asperiores rem sint tempora et omnis nihil ut porro praesentium sed nulla soluta. Et perferendis quibusdam et maiores commodi ut totam dolorum sed voluptatem pariatur est voluptatem consequatur et voluptate vero quo fugit earum. Et voluptate eius aut possimus asperiores At doloremque magni est unde iusto qui veniam necessitatibus. </p>
 ', messageStatus=2, timestamp=2024-11-01T13:06:46.581Z}
+2024-11-01T15:40:56,331 INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-11-01T15:40:56,368 INFO  com.rogeriogregorio.environmental_reporting_portal.EnvironmentalReportingPortalApplication - Starting EnvironmentalReportingPortalApplication using Java 17.0.6 with PID 10408 (C:\Users\Pichau\Desktop\Estudo\environmental-reporting-portal\target\classes started by Rogério Gregório in C:\Users\Pichau\Desktop\Estudo\environmental-reporting-portal)
+2024-11-01T15:40:56,371 INFO  com.rogeriogregorio.environmental_reporting_portal.EnvironmentalReportingPortalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-01T15:40:56,413 INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-01T15:40:56,413 INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-01T15:40:57,250 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-11-01T15:40:57,314 INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 4 MongoDB repository interfaces.
+2024-11-01T15:40:57,787 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-11-01T15:40:57,797 INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-11-01T15:40:57,801 INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-01T15:40:57,802 INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-01T15:40:57,852 INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/api/v1] - Initializing Spring embedded WebApplicationContext
+2024-11-01T15:40:57,854 INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1438 ms
+2024-11-01T15:40:58,019 INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Eclipse Adoptium/17.0.6+10"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@4fb0fbeb, com.mongodb.Jep395RecordCodecProvider@13e89640, com.mongodb.KotlinCodecProvider@73ea2d0d]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-11-01T15:40:58,033 INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=23354800}
+2024-11-01T15:40:58,361 INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2024-11-01T15:40:58,574 INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authorizationServiceImpl
+2024-11-01T15:40:59,166 INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-11-01T15:40:59,182 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
+2024-11-01T15:40:59,191 INFO  com.rogeriogregorio.environmental_reporting_portal.EnvironmentalReportingPortalApplication - Started EnvironmentalReportingPortalApplication in 3.19 seconds (process running for 3.865)
+2024-11-01T15:41:26,752 INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-01T15:41:26,752 INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-01T15:41:26,753 INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-01T17:57:41,845 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message created: Message{id='67251695188451394e84345c', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='testetestetetetetetetetsttste', messageStatus=2, timestamp=2024-11-01T17:57:41.833711Z}
+2024-11-01T17:57:59,136 WARN  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message deleted: Message{id='67251695188451394e84345c', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='testetestetetetetetetetsttste', messageStatus=2, timestamp=2024-11-01T17:57:41.833Z}
+2024-11-01T18:52:48,672 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message created: Message{id='67252380188451394e84345d', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', messageStatus=2, timestamp=2024-11-01T18:52:48.670506900Z}
+2024-11-01T18:54:09,024 WARN  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message deleted: Message{id='67252380188451394e84345d', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', messageStatus=2, timestamp=2024-11-01T18:52:48.670Z}
+2024-11-01T19:04:03,967 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message created: Message{id='67252623188451394e84345e', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='let messages = [];
+let messageIdToDelete = null;
+
+export const showToast = (message, type) => {
+  const toastContainer = document.createElement("div");
+  toastContainer.className = `toast ${type}`;
+  toastContainer.innerText = message;
+
+  document.body.appendChild(toastContainer);
+
+  setTimeout(() => {
+    toastContainer.classList.add("fade-out");
+    setTimeout(() => {
+      toastContainer.remove();
+    }, 500);
+  }, 3500);
+};
+
+export async function fetchMessages() {
+  const token = localStorage.getItem("jwtToken");
+
+  try {
+    const response = await fetch("http://127.0.0.1:8080/api/v1/messages", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      messages = await response.json();
+      renderMessages(messages);
+    } else {
+      throw new Error("Erro ao buscar mensagens.");
+    }
+  } catch (error) {
+    console.error("Erro ao buscar mensagens:", error);
+    showToast("Erro ao buscar mensagens.", "error");
+  }
+}
+
+function renderMessages(messages) {
+  const messagesList = document.getElementById("messagesList");
+  const messageDetails = document.getElementById("messageDetails");
+
+  if (!messagesList || !messageDetails) return;
+
+  messagesList.innerHTML = messages
+    .map(
+      (message) => `
+      <div class="message-item" onclick='showMessageDetails(${JSON.stringify(
+        message
+      )})'>
+        <div class="profile-icon">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="message-content">
+          <p class="message-name"><strong>${message.name}</strong></p>
+          <p class="message-timestamp">${new Date(
+            message.timestamp
+          ).toLocaleString()}</p>
+        </div>
+      </div>
+    `
+    )
+    .join("");
+
+  messageDetails.innerHTML = "";
+}
+
+window.showMessageDetails = function (message) {
+  const messageDetails = document.getElementById("messageDetails");
+
+  if (message) {
+    messageDetails.innerHTML = `
+      <div class="message-header">
+        <p><strong>${message.name}</strong> (${message.email})</p>
+      </div>
+      <div class="message-content">
+        <p>${message.content}</p>
+      </div>
+      <div class="message-footer">
+        <p><small>${new Date(message.timestamp).toLocaleString()}</small></p>
+        <button class="btn-delete" onclick="confirmDeleteMessage('${
+          message.id
+        }')">Excluir</button>
+      </div>
+    `;
+  }
+};
+
+window.confirmDeleteMessage = function (id) {
+  messageIdToDelete = id;
+  const modal = document.getElementById("deleteMessageModal");
+  modal.classList.remove("hidden");
+};
+
+export async function deleteMessage() {
+  const token = localStorage.getItem("jwtToken");
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/messages/${messageIdToDelete}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.ok) {
+      showToast("Mensagem excluída com sucesso.", "success");
+      fetchMessages();
+      messageIdToDelete = null;
+    } else {
+      throw new Error("Erro ao excluir a mensagem.");
+    }
+  } catch (error) {
+    console.error("Erro ao excluir a mensagem:", error);
+    showToast("Erro ao excluir a mensagem.", "error");
+  } finally {
+    const modal = document.getElementById("deleteMessageModal");
+    modal.classList.add("hidden");
+  }
+}
+
+export function setupMessagesEvents(element) {
+  fetchMessages();
+
+  const cancelDeleteButton = element.querySelector("#cancelDeleteMessage");
+  const confirmDeleteButton = element.querySelector("#confirmDeleteMessage");
+
+  cancelDeleteButton.addEventListener("click", () => {
+    const modal = document.getElementById("deleteMessageModal");
+    modal.classList.add("hidden");
+    messageIdToDelete = null;
+  });
+
+  confirmDeleteButton.addEventListener("click", async () => {
+    await deleteMessage();
+  });
+}
+
+', messageStatus=2, timestamp=2024-11-01T19:04:03.965843100Z}
+2024-11-01T19:05:12,447 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message created: Message{id='67252668188451394e84345f', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='<p>Lorem ipsum dolor sit amet. Et libero nostrum et consequatur doloribus ut molestias magnam quo rerum autem nam totam illum. Sit magnam alias At maiores enim et adipisci adipisci At reprehenderit assumenda est labore aperiam id quae dolor. Ea voluptatem voluptate sit minus quod ut molestiae autem. Sed rerum odio eum earum labore rem doloremque quia ut beatae deserunt vel beatae voluptatem. </p><p>Sit officia illo id eaque magni et voluptatibus pariatur. Vel quia molestiae est doloribus illo est beatae itaque. </p><p>Qui architecto possimus et dolore esse est nisi natus et quis officia sit laboriosam animi sit libero corrupti. Sit aperiam explicabo ut Quis dolorem sit quia sapiente rem mollitia voluptatem. </p><p>Aut debitis temporibus aut unde neque aut molestiae sunt est explicabo aliquid qui temporibus sunt non quis laboriosam. Et architecto repellat et aperiam repellat et laborum consequatur qui laboriosam possimus qui corrupti aliquid. Qui voluptatem architecto in nihil odio id rerum officia. </p><p>Vel eius voluptatum est consequatur laboriosam nam ipsam quaerat cum unde autem aut Quis quas ut provident corporis sit delectus possimus. Ab asperiores nihil ea quia maxime ab illum commodi eos consequatur dicta? Sed amet sint et magnam adipisci cum reiciendis fuga 33 magni repellat a necessitatibus architecto. Ut quia accusantium aut culpa veritatis sit laborum aliquam aut beatae adipisci non omnis nihil At dolores vero qui porro molestias. </p><p>Ut voluptatibus reiciendis aut nihil corrupti id eligendi sint qui consequuntur repellat sed quasi voluptas ea nobis dolore. Aut asperiores quos et dolore velit est soluta quas ad iste natus non corporis deserunt At eaque nobis. Vel excepturi nihil qui iure libero aut illum fugit est architecto impedit qui cumque inventore non cumque voluptatem. Et impedit quidem sed nobis consequatur est nostrum enim ut saepe fugit ut dolores accusamus a debitis labore. </p><p>Hic dolore fuga aut velit dolores qui sapiente mollitia aut beatae galisum. Aut fuga dolor eos magni quis id officiis commodi. Aut quos amet et voluptas odio aut facilis voluptas ex exercitationem debitis cum quibusdam veritatis. Rem sint reprehenderit non omnis doloribus qui sequi ratione nam galisum repellat non inventore obcaecati. </p><p>Et molestiae error sed officiis ipsum qui enim eaque eos placeat voluptate ea consectetur quaerat qui exercitationem cupiditate et saepe voluptatem. Et commodi labore quo molestiae incidunt aut ullam quas ut exercitationem illo. Aut ipsum sint sit sint porro est galisum consequuntur. </p><p>Ut repudiandae nisi a quidem numquam eum temporibus nihil At dignissimos voluptatem ea natus numquam est magnam neque. Sit galisum illo et aspernatur omnis rem animi omnis. Ex deserunt asperiores quo architecto velit et Quis aliquam ea omnis quasi. At sunt illo id sint aliquam hic incidunt quasi qui ipsa culpa vel illum labore? </p><p>Sed perferendis debitis id expedita distinctio qui quis autem id aliquam consectetur ea alias deserunt et repellat galisum et pariatur placeat? Et voluptate sapiente ut dicta consequatur ex placeat atque aut sint dolor est iste possimus aut quam fugiat ut iure voluptatem. Et provident iusto vel quis galisum in debitis deleniti sit nemo quod et internos autem. </p>
+', messageStatus=2, timestamp=2024-11-01T19:05:12.445056Z}
+2024-11-01T19:53:41,817 WARN  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message deleted: Message{id='67252668188451394e84345f', name='Rogério Bernardo Gregório', email='bernardo.rogerio93@gmail.com', content='<p>Lorem ipsum dolor sit amet. Et libero nostrum et consequatur doloribus ut molestias magnam quo rerum autem nam totam illum. Sit magnam alias At maiores enim et adipisci adipisci At reprehenderit assumenda est labore aperiam id quae dolor. Ea voluptatem voluptate sit minus quod ut molestiae autem. Sed rerum odio eum earum labore rem doloremque quia ut beatae deserunt vel beatae voluptatem. </p><p>Sit officia illo id eaque magni et voluptatibus pariatur. Vel quia molestiae est doloribus illo est beatae itaque. </p><p>Qui architecto possimus et dolore esse est nisi natus et quis officia sit laboriosam animi sit libero corrupti. Sit aperiam explicabo ut Quis dolorem sit quia sapiente rem mollitia voluptatem. </p><p>Aut debitis temporibus aut unde neque aut molestiae sunt est explicabo aliquid qui temporibus sunt non quis laboriosam. Et architecto repellat et aperiam repellat et laborum consequatur qui laboriosam possimus qui corrupti aliquid. Qui voluptatem architecto in nihil odio id rerum officia. </p><p>Vel eius voluptatum est consequatur laboriosam nam ipsam quaerat cum unde autem aut Quis quas ut provident corporis sit delectus possimus. Ab asperiores nihil ea quia maxime ab illum commodi eos consequatur dicta? Sed amet sint et magnam adipisci cum reiciendis fuga 33 magni repellat a necessitatibus architecto. Ut quia accusantium aut culpa veritatis sit laborum aliquam aut beatae adipisci non omnis nihil At dolores vero qui porro molestias. </p><p>Ut voluptatibus reiciendis aut nihil corrupti id eligendi sint qui consequuntur repellat sed quasi voluptas ea nobis dolore. Aut asperiores quos et dolore velit est soluta quas ad iste natus non corporis deserunt At eaque nobis. Vel excepturi nihil qui iure libero aut illum fugit est architecto impedit qui cumque inventore non cumque voluptatem. Et impedit quidem sed nobis consequatur est nostrum enim ut saepe fugit ut dolores accusamus a debitis labore. </p><p>Hic dolore fuga aut velit dolores qui sapiente mollitia aut beatae galisum. Aut fuga dolor eos magni quis id officiis commodi. Aut quos amet et voluptas odio aut facilis voluptas ex exercitationem debitis cum quibusdam veritatis. Rem sint reprehenderit non omnis doloribus qui sequi ratione nam galisum repellat non inventore obcaecati. </p><p>Et molestiae error sed officiis ipsum qui enim eaque eos placeat voluptate ea consectetur quaerat qui exercitationem cupiditate et saepe voluptatem. Et commodi labore quo molestiae incidunt aut ullam quas ut exercitationem illo. Aut ipsum sint sit sint porro est galisum consequuntur. </p><p>Ut repudiandae nisi a quidem numquam eum temporibus nihil At dignissimos voluptatem ea natus numquam est magnam neque. Sit galisum illo et aspernatur omnis rem animi omnis. Ex deserunt asperiores quo architecto velit et Quis aliquam ea omnis quasi. At sunt illo id sint aliquam hic incidunt quasi qui ipsa culpa vel illum labore? </p><p>Sed perferendis debitis id expedita distinctio qui quis autem id aliquam consectetur ea alias deserunt et repellat galisum et pariatur placeat? Et voluptate sapiente ut dicta consequatur ex placeat atque aut sint dolor est iste possimus aut quam fugiat ut iure voluptatem. Et provident iusto vel quis galisum in debitis deleniti sit nemo quod et internos autem. </p>
+', messageStatus=2, timestamp=2024-11-01T19:05:12.445Z}
+2024-11-01T20:07:49,819 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b695f3a55e48b3a2eb37', name='Mariana Soares', email='soares.mariana@gmail.com', content='Preciso de ajuda para denunciar um despejo de lixo ilegal.', messageStatus=1, timestamp=2024-10-31T16:55:49.980Z}
+2024-11-01T20:09:09,185 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b6b0f3a55e48b3a2eb38', name='Marcos Paulo', email='marcospaulo123@gmail.com', content='Gostaria de saber mais sobre como proteger áreas de preservação.', messageStatus=1, timestamp=2024-10-31T16:56:16.196Z}
+2024-11-01T20:09:13,336 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b6cef3a55e48b3a2eb39', name='Miguel Mendes', email='mendes.miguel@gmail.com', content='Denunciei uma poluição sonora, mas não sei o que acontece agora.', messageStatus=1, timestamp=2024-10-31T16:56:46.636Z}
+2024-11-01T20:12:04,320 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b6e5f3a55e48b3a2eb3a', name='Danilo Almeida', email='danilo123almeida@gmail.com', content='Quais são as áreas de maior preservação na minha região?', messageStatus=1, timestamp=2024-10-31T16:57:09.499Z}
+2024-11-01T20:18:58,312 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b6fcf3a55e48b3a2eb3b', name='Livia Loretto', email='loretto.livia@gmail.com', content='Um caminhão descarregou resíduos tóxicos no rio.', messageStatus=1, timestamp=2024-10-31T16:57:32.875Z}
+2024-11-01T20:19:02,608 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b714f3a55e48b3a2eb3c', name='Daniela Albuquerque', email='danialbuquerque@gmail.com', content='Como posso contribuir com o ECOAR como voluntário?', messageStatus=1, timestamp=2024-10-31T16:57:56.365Z}
+2024-11-01T20:19:05,016 INFO  com.rogeriogregorio.environmental_reporting_portal.services.impl.MessageServiceImpl - Message status updated: Message{id='6723b738f3a55e48b3a2eb3d', name='Gael Moraes', email='morasgael123@gmail.com', content='Denúncia: invasão de área protegida por caçadores.', messageStatus=1, timestamp=2024-10-31T16:58:32.556Z}

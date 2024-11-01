@@ -45,32 +45,47 @@ function renderMessages(messages) {
   if (!messagesList || !messageDetails) return;
 
   messagesList.innerHTML = messages
-    .map(
-      (message) => `
-      <div class="message-item" onclick='showMessageDetails(${JSON.stringify(
-        message
-      )})'>
-        <div class="profile-icon">
-          <i class="fas fa-user-circle"></i>
+    .map((message) => {
+      const statusIcon =
+        message.messageStatus === "UNREAD"
+          ? '<p>Não lida</p>'
+          : "";
+
+      return `
+        <div class="message-item" onclick='showMessageDetails(${JSON.stringify(
+          message
+        )})'>
+          <div class="profile-icon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="message-content">
+            <p class="message-name">
+               <strong>${message.name}</strong> 
+            </p>
+            <p class="message-timestamp">${new Date(
+              message.timestamp
+            ).toLocaleString()}</p>
+          </div>
+          <div class="unread-icon">
+            ${statusIcon}
+          </div>
         </div>
-        <div class="message-content">
-          <p class="message-name"><strong>${message.name}</strong></p>
-          <p class="message-timestamp">${new Date(
-            message.timestamp
-          ).toLocaleString()}</p>
-        </div>
-      </div>
-    `
-    )
+      `;
+    })
     .join("");
 
   messageDetails.innerHTML = "";
 }
 
-window.showMessageDetails = function (message) {
+window.showMessageDetails = async function (message) {
   const messageDetails = document.getElementById("messageDetails");
 
   if (message) {
+    if (message.messageStatus === "UNREAD") {
+      await updateMessageStatus(message.id, 1);
+      await fetchMessages(); 
+    }
+
     messageDetails.innerHTML = `
       <div class="message-header">
         <p><strong>${message.name}</strong> (${message.email})</p>
@@ -87,6 +102,32 @@ window.showMessageDetails = function (message) {
     `;
   }
 };
+
+async function updateMessageStatus(messageId, status) {
+  const token = localStorage.getItem("jwtToken");
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/messages/message-status/${messageId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(status),
+      }
+    );
+
+    if (response.ok) {
+      fetchMessages();
+    } else {
+      throw new Error("Erro ao atualizar o status da mensagem.");
+    }
+  } catch (error) {
+    console.error("Erro ao atualizar o status da mensagem:", error);
+  }
+}
 
 window.confirmDeleteMessage = function (id) {
   messageIdToDelete = id;
@@ -140,4 +181,3 @@ export function setupMessagesEvents(element) {
     await deleteMessage();
   });
 }
-
