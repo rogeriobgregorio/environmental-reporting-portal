@@ -6,7 +6,7 @@ class RegisterComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `<section id="register" class="register-section">
         <h2>Bem-vindo(a)</h2>
-        <h3>Por favor, insira seus dados de cadastro</h3>
+        <h3>Insira seus dados de cadastro</h3>
         
         <form id="registerForm" class="register-form">
           <div class="custom-checkbox-group">

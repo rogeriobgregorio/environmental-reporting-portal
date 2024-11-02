@@ -8,7 +8,7 @@ class AccountComponent extends HTMLElement {
     this.innerHTML = `
       <section id="account" class="account-section">
         <h2>Editar perfil</h2>
-        <h3>Por favor, insira os dados que deseja atualizar</h3>
+        <h3>Insira os dados que deseja atualizar</h3>
 
         <form id="accountForm" class="account-form">
           <div class="custom-checkbox-group">

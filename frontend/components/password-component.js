@@ -5,7 +5,7 @@ class PasswordComponent extends HTMLElement {
     this.innerHTML = `
       <section id="senha" class="password-section">
         <h2>Solicitar redefinição de senha</h2>
-        <h3>Por favor, insira seu email para receber uma mensagem de redefinição</h3>
+        <h3>Insira seu email para receber uma mensagem de redefinição</h3>
         
         <form id="passwordForm" class="password-form">
           <div class="form-group">

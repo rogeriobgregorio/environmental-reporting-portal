@@ -4,8 +4,8 @@ class RoleComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <section id="account" class="account-section">
-        <h2>Gerenciar Usuários</h2>
-        <h3>Por favor, insira o email para buscar o usuário e selecionar a autorização</h3>
+        <h2>Editar permissões</h2>
+        <h3>Insira o email do usuário para alterar autorização ou banir</h3>
 
         <form id="accountForm" class="account-form">
 
@@ -22,7 +22,7 @@ class RoleComponent extends HTMLElement {
             </select>
           </div>
 
-          <button type="submit" class="submit-btn">Atualizar autorização</button>
+          <button type="submit" class="submit-btn">Alterar autorização</button>
           <button type="button" class="delete-btn">Banir usuário</button>
 
           <a href="./admin.html" class="profile-link" id="profileLink">Voltar para o perfil administrador</a>

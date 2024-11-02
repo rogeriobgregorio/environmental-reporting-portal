@@ -27,7 +27,7 @@ class AdminComponent extends HTMLElement {
           </div>
           <div class="counter">
             <i class="fa-solid fa-check-circle"></i>
-            <span class="resolved-reports">Denúncias resolvidas: <span class="count">0</span></span>
+            <span class="resolved-reports">Denúncias concluídas: <span class="count">0</span></span>
           </div>
         </div>
 
