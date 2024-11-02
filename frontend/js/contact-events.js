@@ -32,8 +32,6 @@ export const handleSubmit = async (event) => {
     return;
   }
 
-  showToast("Enviando mensagem...");
-
   try {
     const response = await fetch("http://127.0.0.1:8080/api/v1/messages", {
       method: "POST",

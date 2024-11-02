@@ -27,8 +27,6 @@ export const handleLoginSubmit = async (event) => {
     password: form.password.value,
   };
 
-  showToast("Entrando...");
-
   try {
     const response = await fetch("http://127.0.0.1:8080/api/v1/authenticate", {
       method: "POST",
@@ -68,7 +66,7 @@ export const handleLoginSubmit = async (event) => {
 
 export const togglePasswordVisibility = (toggleElement, passwordInput) => {
   const type =
-    passwordInput.getAttribute("type") === "password" ? "text" : "password";
+  passwordInput.getAttribute("type") === "password" ? "text" : "password";
   passwordInput.setAttribute("type", type);
 
   const icon = toggleElement.querySelector("i");
@@ -78,5 +76,4 @@ export const togglePasswordVisibility = (toggleElement, passwordInput) => {
 
 window.addEventListener("DOMContentLoaded", () => {
   localStorage.clear();
-  console.log("LocalStorage foi limpo ao carregar a página.");
 });

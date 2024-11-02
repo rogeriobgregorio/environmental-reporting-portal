@@ -14,7 +14,7 @@ public interface UserService {
 
     UserResponse registerUser(UserRequest userRequest);
 
-    UserResponse updateUserRole(String id, UserRequest userRequest);
+    UserResponse updateUserRole(String id, String userRole);
 
     UserResponse findUserById(String id);
 

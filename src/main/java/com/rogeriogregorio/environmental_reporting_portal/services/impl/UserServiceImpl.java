@@ -68,11 +68,11 @@ public class UserServiceImpl implements UserService {
         return dataMapper.map(savedUser, UserResponse.class);
     }
 
-    public UserResponse updateUserRole(String id, UserRequest userRequest) {
+    public UserResponse updateUserRole(String id, String userRole) {
 
         User updatedUser = getUserIfExists(id)
                 .toBuilder()
-                .withRole(userRequest.getRole())
+                .withRole(UserRole.valueOf(userRole))
                 .build();
 
         User savedUser = catchError.run(() -> userRepository.save(updatedUser));

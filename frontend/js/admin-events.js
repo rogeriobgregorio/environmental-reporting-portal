@@ -120,3 +120,11 @@ export function initMessagesButton(element) {
       "http://127.0.0.1:5500/environmental-reporting-portal/frontend/messages.html";
   });
 }
+
+export function initRoleButton(element) {
+  const messagesBtn = element.querySelector("#roleBtn");
+  messagesBtn.addEventListener("click", () => {
+    window.location.href =
+      "http://127.0.0.1:5500/environmental-reporting-portal/frontend/role.html";
+  });
+}

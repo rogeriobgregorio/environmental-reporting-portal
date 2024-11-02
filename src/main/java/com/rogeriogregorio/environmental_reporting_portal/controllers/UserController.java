@@ -76,11 +76,11 @@ public class UserController {
     @PatchMapping(value = "/roles/{id}")
     public ResponseEntity<UserResponse> patchUserRole(
             @PathVariable String id,
-            @Valid @RequestBody UserRequest userRequest) {
+            @Valid @RequestBody String userRole) {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userService.updateUserRole(id, userRequest));
+                .body(userService.updateUserRole(id, userRole));
     }
 
     @Operation(summary = "Buscar usuário por Id",description = "Endpoint para buscar usuário pelo Id")

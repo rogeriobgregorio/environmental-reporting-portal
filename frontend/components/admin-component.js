@@ -2,17 +2,20 @@ import {
   initAdminProfile,
   initEditProfileButton,
   initMessagesButton,
+  initRoleButton,
 } from "../js/admin-events.js";
 
 class AdminComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <section class="admin-profile">
+
         <div class="profile-header">
           <div class="profile-info">
             <i class="fa-solid fa-user-shield profile-icon"></i>
             <h2 class="admin-username"></h2>
-            <button class="edit-profile-btn" id="editProfileBtn">Editar Perfil</button>
+            <button class="edit-profile-btn" id="editProfileBtn">Editar perfil</button>
+            <button class="role-btn" id="roleBtn">Editar permissões</button>
             <button class="messages-btn" id="messagesBtn">Mensagens</button>
           </div>
         </div>
@@ -34,12 +37,14 @@ class AdminComponent extends HTMLElement {
             Nenhuma denúncia para exibir.
           </div>
         </div>
+
       </section>
     `;
 
     initAdminProfile(this);
     initEditProfileButton(this);
-    initMessagesButton(this); 
+    initMessagesButton(this);
+    initRoleButton(this); 
   }
 }
 customElements.define("admin-component", AdminComponent);

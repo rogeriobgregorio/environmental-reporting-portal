@@ -64,5 +64,4 @@ class AccountComponent extends HTMLElement {
     initAccount();
   }
 }
-
 customElements.define("account-component", AccountComponent);
