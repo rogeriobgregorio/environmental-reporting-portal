@@ -1,6 +1,6 @@
 /* Seção de Contato */
 .contact-section {
-  padding: 15vh 5% 9.1vh; 
+  padding: 15vh 5% 6.4vh; 
   text-align: center;
 }
 
@@ -8,7 +8,12 @@
   color: #046245;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+}
+
+.contact-section h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 0.625rem;
 }
 
 .contact-form {

@@ -5,6 +5,7 @@ class ContactComponent extends HTMLElement {
     this.innerHTML = `
       <section id="contato" class="contact-section">
         <h2>Entre em contato conosco</h2>
+        <h3>Dúvidas, críticas, elogios ou sugestões? Nos envie uma mensagem</h3>
         
         <form id="contactForm" class="contact-form">
           <div class="form-group">
