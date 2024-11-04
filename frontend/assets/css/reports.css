@@ -1,0 +1,45 @@
+/* Seção de Denúncias */
+.reports {
+  display: flex;
+  flex-direction: column;
+  padding: 15vh 5% 5vh;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.reports h2 {
+  color: #046245;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  display: flex;
+  background-color: #f7f7f7;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  width: 100%;
+  max-width: 18rem;
+  border-radius: 1.875rem;
+  margin: 1.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+}
+
+.carousel-image {
+  width: 100%;
+  max-width: 100px;
+  border-radius: 8px;
+  margin-right: 5px;
+}
+
+.carousel-image.active {
+  border: 2px solid #046245;
+}
