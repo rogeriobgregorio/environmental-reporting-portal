@@ -4,6 +4,7 @@ import com.rogeriogregorio.environmental_reporting_portal.dto.request.ReportRequ
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.ReportResponse;
 import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
+import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
 import com.rogeriogregorio.environmental_reporting_portal.mail.MailService;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.ReportRepository;
@@ -67,6 +68,7 @@ public class ReportServiceImpl implements ReportService {
                 .withLocation(reportRequest.getLocation())
                 .withSeverityLevel(reportRequest.getSeverityLevel())
                 .withReportType(reportRequest.getReportType())
+                .withReportStatus(ReportStatus.PENDING.getCode())
                 .withTimeStamp(Instant.now())
                 .build();
 
