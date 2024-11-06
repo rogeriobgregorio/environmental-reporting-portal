@@ -9,11 +9,6 @@ class ReportingComponent extends HTMLElement {
         <form id="reportForm" class="report-form">
 
           <div class="form-group">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-
-          <div class="form-group">
             <label for="location">Local:</label>
             <input type="text" id="location" name="location" required>
           </div>
