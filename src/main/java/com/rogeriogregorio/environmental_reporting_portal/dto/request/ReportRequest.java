@@ -67,8 +67,8 @@ public class ReportRequest implements Serializable {
         this.location = location;
     }
 
-    public Integer getSeverityLevel() {
-        return severityLevel;
+    public SeverityLevel getSeverityLevel() {
+        return SeverityLevel.valueOf(severityLevel);
     }
 
     public void setSeverityLevel(SeverityLevel severityLevel) {
@@ -79,8 +79,8 @@ public class ReportRequest implements Serializable {
         this.severityLevel = severityLevel.getCode();
     }
 
-    public Integer getReportType() {
-        return reportType;
+    public ReportType getReportType() {
+        return ReportType.valueOf(reportType);
     }
 
     public void setReportType(ReportType reportType) {
@@ -91,8 +91,8 @@ public class ReportRequest implements Serializable {
         this.reportType = reportType.getCode();
     }
 
-    public Integer getReportStatus() {
-        return reportStatus;
+    public ReportStatus getReportStatus() {
+        return ReportStatus.valueOf(reportStatus);
     }
 
     public void setReportStatus(ReportStatus reportStatus) {

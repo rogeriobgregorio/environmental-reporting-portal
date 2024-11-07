@@ -66,8 +66,8 @@ public class ReportServiceImpl implements ReportService {
                 .withDescription(reportRequest.getDescription())
                 .withImageURLs(imageURLs)
                 .withLocation(reportRequest.getLocation())
-                .withSeverityLevel(reportRequest.getSeverityLevel())
-                .withReportType(reportRequest.getReportType())
+                .withSeverityLevel(reportRequest.getSeverityLevel().getCode())
+                .withReportType(reportRequest.getReportType().getCode())
                 .withReportStatus(ReportStatus.PENDING.getCode())
                 .withTimeStamp(Instant.now())
                 .build();
@@ -95,8 +95,8 @@ public class ReportServiceImpl implements ReportService {
                 .withDescription(reportRequest.getDescription())
                 .withImageURLs(newImageURLs)
                 .withLocation(reportRequest.getLocation())
-                .withSeverityLevel(reportRequest.getSeverityLevel())
-                .withReportType(reportRequest.getReportType())
+                .withSeverityLevel(reportRequest.getSeverityLevel().getCode())
+                .withReportType(reportRequest.getReportType().getCode())
                 .build();
 
         Report savedReport = catchError.run(() -> reportRepository.save(updatedReport));

@@ -16,33 +16,33 @@ class ReportingComponent extends HTMLElement {
           <div class="form-group">
             <label for="reportType">Tipo da Denúncia:</label>
             <select id="reportType" name="reportType" required>
-              <option value="1">Poluição do Ar</option>
-              <option value="2">Maus-tratos de Animais</option>
-              <option value="3">Desmatamento</option>
-              <option value="4">Invasão de área verde</option>
-              <option value="5">Drenagem ilegal</option>
-              <option value="6">Cercamento ilegal</option>
-              <option value="7">Caça ilegal</option>
-              <option value="8">Mineração ilegal</option>
-              <option value="9">Poda ilegal</option>
-              <option value="10">Remoção ilegal de árvores</option>
-              <option value="11">Descarte ilegal de resíduos</option>
-              <option value="12">Contaminação do solo</option>
-              <option value="13">Contaminação da água</option>
-              <option value="14">Desequilibrio ecológico</option>
-              <option value="15">Incêndio florestal</option>
-              <option value="16">Outro</option>
+              <option value="AIR_POLLUTION">Poluição do Ar</option>
+              <option value="ANIMAL_ABUSE">Maus-tratos de Animais</option>
+              <option value="DEFORESTATION">Desmatamento</option>
+              <option value="GREEN_AREA_INVASION">Invasão de área verde</option>
+              <option value="ILLEGAL_DRAINAGE">Drenagem ilegal</option>
+              <option value="ILLEGAL_FENCING">Cercamento ilegal</option>
+              <option value="ILLEGAL_HUNTING">Caça ilegal</option>
+              <option value="ILLEGAL_MINING">Mineração ilegal</option>
+              <option value="ILLEGAL_PRUNING">Poda ilegal</option>
+              <option value="ILLEGAL_TREE_REMOVAL">Remoção ilegal de árvores</option>
+              <option value="ILLEGAL_WASTE_DISPOSAL">Descarte ilegal de resíduos</option>
+              <option value="SOIL_CONTAMINATION">Contaminação do solo</option>
+              <option value="WATER_CONTAMINATION">Contaminação da água</option>
+              <option value="ECOLOGICAL_IMBALANCE">Desequilibrio ecológico</option>
+              <option value="WILDFIRE">Incêndio florestal</option>
+              <option value="">OTHER</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="severityLevel">Nível de Severidade:</label>
             <select id="severityLevel" name="severityLevel" required>
-              <option value="1">Muito Baixo</option>
-              <option value="2">Baixo</option>
-              <option value="3">Médio</option>
-              <option value="4">Alto</option>
-              <option value="5">Muito Alto</option>
+              <option value="VERY_LOW">Muito Baixo</option>
+              <option value="LOW">Baixo</option>
+              <option value="MEDIUM">Médio</option>
+              <option value="HIGH">Alto</option>
+              <option value="VERY_HIGH">Muito Alto</option>
             </select>
           </div>
 

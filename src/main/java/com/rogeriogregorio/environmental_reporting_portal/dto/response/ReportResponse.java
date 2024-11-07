@@ -2,6 +2,9 @@ package com.rogeriogregorio.environmental_reporting_portal.dto.response;
 
 import com.rogeriogregorio.environmental_reporting_portal.entities.Comment;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
+import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportStatus;
+import com.rogeriogregorio.environmental_reporting_portal.entities.enums.ReportType;
+import com.rogeriogregorio.environmental_reporting_portal.entities.enums.SeverityLevel;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -33,9 +36,9 @@ public class ReportResponse implements Serializable {
         setAuthor(builder.author);
         setDescription(builder.description);
         setLocation(builder.location);
-        setSeverityLevel(builder.severityLevel);
-        setReportType(builder.reportType);
-        setReportStatus(builder.reportStatus);
+        severityLevel = builder.severityLevel;
+        reportType = builder.reportType;
+        reportStatus = builder.reportStatus;
         setTimeStamp(builder.timeStamp);
         setImageURLs(builder.imageURLs);
         setComments(builder.comments);
@@ -77,28 +80,40 @@ public class ReportResponse implements Serializable {
         this.location = location;
     }
 
-    public Integer getSeverityLevel() {
-        return severityLevel;
+    public SeverityLevel getSeverityLevel() {
+        return SeverityLevel.valueOf(severityLevel);
     }
 
-    public void setSeverityLevel(Integer severityLevel) {
-        this.severityLevel = severityLevel;
+    public void setSeverityLevel(SeverityLevel severityLevel) {
+        if (severityLevel == null) {
+            throw new IllegalArgumentException("The severity level cannot be null.");
+        }
+
+        this.severityLevel = severityLevel.getCode();
     }
 
-    public Integer getReportType() {
-        return reportType;
+    public ReportType getReportType() {
+        return ReportType.valueOf(reportType);
     }
 
-    public void setReportType(Integer reportType) {
-        this.reportType = reportType;
+    public void setReportType(ReportType reportType) {
+        if (reportType == null) {
+            throw new IllegalArgumentException("The report type cannot be null.");
+        }
+
+        this.reportType = reportType.getCode();
     }
 
-    public Integer getReportStatus() {
-        return reportStatus;
+    public ReportStatus getReportStatus() {
+        return ReportStatus.valueOf(reportStatus);
     }
 
-    public void setReportStatus(Integer reportStatus) {
-        this.reportStatus = reportStatus;
+    public void setReportStatus(ReportStatus reportStatus) {
+        if (reportStatus == null) {
+            throw new IllegalArgumentException("The report status cannot be null.");
+        }
+
+        this.reportStatus = reportStatus.getCode();
     }
 
     public Instant getTimeStamp() {

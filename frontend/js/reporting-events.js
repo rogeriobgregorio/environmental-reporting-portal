@@ -65,8 +65,8 @@ export const handleReportSubmit = async (event) => {
   formData.append("authorName", userName); 
   formData.append("description", document.querySelector("#description").value.trim());
   formData.append("location", document.querySelector("#location").value.trim());
-  formData.append("severityLevel", document.querySelector("#severityLevel").value);
   formData.append("reportType", document.querySelector("#reportType").value);
+  formData.append("severityLevel", document.querySelector("#severityLevel").value);
 
   const images = document.querySelector("#images").files;
   for (let i = 0; i < images.length; i++) {
