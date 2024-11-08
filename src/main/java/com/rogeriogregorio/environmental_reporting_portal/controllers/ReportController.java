@@ -56,7 +56,7 @@ public class ReportController {
     })
     @PostMapping
     public ResponseEntity<ReportResponse> postReport(
-            @Valid @RequestBody ReportRequest reportRequest) {
+            @Valid @ModelAttribute ReportRequest reportRequest) {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)

@@ -1,11 +1,11 @@
 import { fetchReports, renderReportCard } from "../js/reports-events.js";
 
-class ReportComponent extends HTMLElement {
+class ReportsComponent extends HTMLElement {
   async connectedCallback() {
     const reports = await fetchReports();
     this.innerHTML = `
       <section id="denuncias" class="reports">
-        <h2>Denúncias Recentes</h2>
+        <h2>Denúncias</h2>
         <div class="cards">
           ${reports.map((report) => renderReportCard(report)).join("")}
         </div>
@@ -13,4 +13,4 @@ class ReportComponent extends HTMLElement {
     `;
   }
 }
-customElements.define("report-component", ReportComponent);
+customElements.define("reports-component", ReportsComponent);

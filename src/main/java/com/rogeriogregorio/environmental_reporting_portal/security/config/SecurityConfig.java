@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/authenticate").permitAll()
                         .requestMatchers(HttpMethod.POST, "/mail/recover-password").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/mail/reset-password").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/users").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.POST, "/users/register").permitAll()

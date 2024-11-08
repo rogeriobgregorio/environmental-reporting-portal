@@ -2,6 +2,7 @@ export async function fetchReports() {
   const token = localStorage.getItem("jwtToken");
   try {
     const response = await fetch("http://127.0.0.1:8080/api/v1/reports", {
+      method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.ok) {
