@@ -15,6 +15,10 @@
   margin-bottom: 2.5rem;
 }
 
+.reports h3 {
+  color: #046245;
+}
+
 .card {
   display: flex;
   background-color: #f7f7f7;
@@ -22,20 +26,97 @@
   justify-content: space-between;
   padding: 1.25rem;
   width: 100%;
-  max-width: 18rem;
+  max-width: 49.5rem;
   border-radius: 1.875rem;
   margin: 1.25rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  justify-content: flex-start;
+}
+
+.card-header i.fa-ellipsis {
+  margin-left: auto; 
+}
+
+.card-header span::before {
+  content: "•";
+  margin-right: 0.5em;
+}
+
+.profile-icon {
+  color: #046245;
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.expandable-text {
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.expandable-text.expanded {
+  white-space: normal;
+  overflow: visible;
+}
+
+.read-more {
+  color: #046245;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.card p {
+  display: flex; 
+  align-items: center;  
+  flex-wrap: wrap; 
+  margin: 0;
+}
+
+.card p strong {
+  margin-right: 0.5rem;  
+}
+
+.card p span {
+  display: inline;  
+}
+
+.card p span.read-more {
+  display: none;
+}
+
+.card p span.read-more.show {
+  display: inline;
+  margin-left: 0;
+}
+
+.card-info p {
+  word-wrap: break-word; 
 }
 
 .carousel {
   display: flex;
   overflow-x: auto;
+  margin-top: 1rem;
 }
 
 .carousel-image {
-  width: 100%;
-  max-width: 100px;
+  width: 100px;
   border-radius: 8px;
   margin-right: 5px;
 }
