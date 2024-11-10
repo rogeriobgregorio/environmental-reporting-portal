@@ -13982,3 +13982,6 @@ Caused by: com.auth0.jwt.exceptions.JWTDecodeException: The token was expected t
 2024-11-10T18:22:58,630 INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
 2024-11-10T18:22:58,648 INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api/v1'
 2024-11-10T18:22:58,658 INFO  com.rogeriogregorio.environmental_reporting_portal.EnvironmentalReportingPortalApplication - Started EnvironmentalReportingPortalApplication in 4.029 seconds (process running for 4.896)
+2024-11-10T18:24:07,540 INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/api/v1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T18:24:07,540 INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-10T18:24:07,541 INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
