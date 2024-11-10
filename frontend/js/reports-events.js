@@ -31,7 +31,7 @@ const translateReportType = (type) =>
     SOIL_CONTAMINATION: "Contaminação do solo",
     WATER_CONTAMINATION: "Contaminação da água",
     ECOLOGICAL_IMBALANCE: "Desequilíbrio ecológico",
-    WILDFIRE: "Incêndio florestal",
+    WILDFIRE: "Queimada ilegal",
     OTHER: "Outros",
   }[type] || type);
 
@@ -59,35 +59,29 @@ function toggleExpand(element) {
   element.nextElementSibling.textContent = element.classList.contains(
     "expanded"
   )
-    ? "ver menos"
-    : "continuar lendo";
+    ? "ler menos"
+    : "ler mais";
 }
 
 window.toggleExpand = toggleExpand;
 
 export function renderReportCard(report) {
-  const images =
+  const image =
     report.imageURLs.length > 0
-      ? report.imageURLs
-          .map(
-            (url, index) =>
-              `<img src="${url}" class="carousel-image ${
-                index === 0 ? "active" : ""
-              }" />`
-          )
-          .join(" ")
+      ? `<img src="${report.imageURLs[0]}" class="carousel-image" />`
       : "<p>Sem imagens</p>";
 
-  const locationText = report.location.length >= 100 ? "show" : ""; 
-  const descriptionText = report.description.length >= 100 ? "show" : ""; 
+  const locationText = report.location.length >= 100 ? "show" : "";
+  const descriptionText = report.description.length >= 100 ? "show" : "";
 
   return `
     <div class="card">
       <div class="card-header">
         <i class="fa-solid fa-circle-user profile-icon"></i>
         <h3>${report.author.name}</h3>
-        <span>${new Date(report.timeStamp).toLocaleString()}</span>
-        <i class="fa-solid fa-ellipsis"></i>
+        <span class="timestamp">${new Date(
+          report.timeStamp
+        ).toLocaleString()}</span>
       </div>
 
       <div class="card-info">
@@ -100,18 +94,17 @@ export function renderReportCard(report) {
 
       <p><strong>Localização:</strong>
         <span class="expandable-text">${report.location}</span>
-        <span class="read-more ${locationText}" onclick="toggleExpand(this.previousElementSibling)">continuar lendo</span>
+        <span class="read-more ${locationText}" onclick="toggleExpand(this.previousElementSibling)">ler mais</span>
       </p>
 
       <p><strong>Descrição:</strong>
         <span class="expandable-text">${report.description}</span>
-        <span class="read-more ${descriptionText}" onclick="toggleExpand(this.previousElementSibling)">continuar lendo</span>
+        <span class="read-more ${descriptionText}" onclick="toggleExpand(this.previousElementSibling)">ler mais</span>
       </p>
 
-      <div class="carousel">
-        ${images}
+      <div class="image-container">
+        ${image}
       </div>
     </div>
   `;
 }
-

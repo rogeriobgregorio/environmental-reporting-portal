@@ -30,7 +30,7 @@ class ReportingComponent extends HTMLElement {
               <option value="SOIL_CONTAMINATION">Contaminação do solo</option>
               <option value="WATER_CONTAMINATION">Contaminação da água</option>
               <option value="ECOLOGICAL_IMBALANCE">Desequilibrio ecológico</option>
-              <option value="WILDFIRE">Incêndio florestal</option>
+              <option value="WILDFIRE">Queimada ilegal</option>
               <option value="">OTHER</option>
             </select>
           </div>
