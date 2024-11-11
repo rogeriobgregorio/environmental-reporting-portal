@@ -1,3 +1,5 @@
+import { initializeHeroEvents } from "../js/hero-events.js";
+
 class HeroComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -10,11 +12,15 @@ class HeroComponent extends HTMLElement {
             propagar ações em defesa do planeta.
           </h2>
 
-          <a href="#about" class="cta-btn-report">Quero fazer uma denúncia</a>
+          <a href="#" id="cta-btn-report" class="cta-btn-report">Quero fazer uma denúncia</a>
 
         </div>
       </section>
     `;
+
+    // Inicializa os eventos do botão após o conteúdo ser renderizado
+    initializeHeroEvents();
   }
 }
+
 customElements.define("hero-component", HeroComponent);

@@ -57,6 +57,9 @@ class ReportingComponent extends HTMLElement {
           </div>
 
           <button type="submit" class="submit-btn">Enviar Denúncia</button>
+
+          <a href="http://127.0.0.1:5500/environmental-reporting-portal/frontend/profile.html" 
+          class="profile-link" id="profileLink">Voltar ao perfil de usuário</a>
         </form>
       </section>
     `;

@@ -6,9 +6,10 @@ class ProfileComponent extends HTMLElement {
       <section class="profile">
         <div class="profile-header">
           <div class="profile-info">
-            <i class="fa-solid fa-circle-user profile-icon"></i>
+            <i class="fa-solid fa-circle-user user-profile-icon"></i>
             <h2 class="username"></h2>
             <button class="edit-profile-btn" id="editProfileBtn">Editar perfil</button>
+            <button class="reporting-btn" id="reportingBtn">Criar denúncia</button>
           </div>
         </div>
 
@@ -20,7 +21,7 @@ class ProfileComponent extends HTMLElement {
 
           <div class="counter">
             <i class="fa-solid fa-check-circle"></i>
-            <span class="resolved-reports">Denúncias atendidas: <span class="count">0</span></span>
+            <span class="resolved-reports">Denúncias concluídas: <span class="count">0</span></span>
           </div>
         </div>
 
@@ -33,7 +34,7 @@ class ProfileComponent extends HTMLElement {
       </section>
     `;
 
-    initProfile(this); 
+    initProfile(this);
   }
 }
 customElements.define("profile-component", ProfileComponent);

@@ -59,8 +59,8 @@ function toggleExpand(element) {
   element.nextElementSibling.textContent = element.classList.contains(
     "expanded"
   )
-    ? "ler menos"
-    : "ler mais";
+    ? "ver menos"
+    : "ver mais";
 }
 
 window.toggleExpand = toggleExpand;
@@ -86,7 +86,7 @@ export function renderReportCard(report) {
 
       <div class="card-info">
         <p><strong>Tipo:</strong> ${translateReportType(report.reportType)}</p>
-        <p><strong>Severidade:</strong> ${translateSeverity(
+        <p><strong>Gravidade:</strong> ${translateSeverity(
           report.severityLevel
         )}</p>
         <p><strong>Status:</strong> ${translateStatus(report.reportStatus)}</p>
@@ -94,12 +94,12 @@ export function renderReportCard(report) {
 
       <p><strong>Localização:</strong>
         <span class="expandable-text">${report.location}</span>
-        <span class="read-more ${locationText}" onclick="toggleExpand(this.previousElementSibling)">ler mais</span>
+        <span class="read-more ${locationText}" onclick="toggleExpand(this.previousElementSibling)">ver mais</span>
       </p>
 
       <p><strong>Descrição:</strong>
         <span class="expandable-text">${report.description}</span>
-        <span class="read-more ${descriptionText}" onclick="toggleExpand(this.previousElementSibling)">ler mais</span>
+        <span class="read-more ${descriptionText}" onclick="toggleExpand(this.previousElementSibling)">ver mais</span>
       </p>
 
       <div class="image-container">

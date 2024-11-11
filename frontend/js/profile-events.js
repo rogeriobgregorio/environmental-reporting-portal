@@ -1,3 +1,5 @@
+import { renderReportCard } from "../js/reports-events.js";
+
 export function initProfile(element) {
   const token = localStorage.getItem("jwtToken");
 
@@ -66,31 +68,25 @@ async function fetchUserReports(userId, token, element) {
     }
 
     const reportsData = await response.json();
-    const openReportsCount = reportsData.filter(
-      (report) => report.reportStatus === 1
-    ).length;
+
+    const openReportsCount = reportsData.length;
+
     const resolvedReportsCount = reportsData.filter(
-      (report) => report.reportStatus === 5
+      (report) => report.reportStatus === "RESOLVED"
     ).length;
 
     const openReportsElement = element.querySelector(".open-reports .count");
     const resolvedReportsElement = element.querySelector(
       ".resolved-reports .count"
     );
+
     openReportsElement.textContent = openReportsCount;
     resolvedReportsElement.textContent = resolvedReportsCount;
 
     const reportListElement = element.querySelector(".report-list");
     if (reportsData.length > 0) {
       reportListElement.innerHTML = reportsData
-        .map(
-          (report) => `
-        <div class="report-item">
-          <p>${report.description}</p>
-          <span>Status: ${reportStatusLabel(report.reportStatus)}</span>
-        </div>
-      `
-        )
+        .map((report) => renderReportCard(report))
         .join("");
     } else {
       reportListElement.innerHTML = `
@@ -104,22 +100,16 @@ async function fetchUserReports(userId, token, element) {
   }
 }
 
-function reportStatusLabel(status) {
-  const statuses = {
-    1: "Pendente",
-    2: "Em Análise",
-    3: "Verificado",
-    4: "Ação Tomada",
-    5: "Resolvido",
-    6: "Rejeitado",
-  };
-  return statuses[status] || "Desconhecido";
-}
-
 export function initEventListeners(element) {
   const editProfileBtn = element.querySelector("#editProfileBtn");
   editProfileBtn.addEventListener("click", () => {
     window.location.href =
       "http://127.0.0.1:5500/environmental-reporting-portal/frontend/account.html";
+  });
+
+  const reportingBtn = element.querySelector("#reportingBtn");
+  reportingBtn.addEventListener("click", () => {
+    window.location.href =
+      "http://127.0.0.1:5500/environmental-reporting-portal/frontend/reporting.html";
   });
 }
