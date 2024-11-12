@@ -76,15 +76,19 @@ async function fetchUserReports(userId, token, element) {
     ).length;
 
     const openReportsElement = element.querySelector(".open-reports .count");
-    const resolvedReportsElement = element.querySelector(".resolved-reports .count");
+    const resolvedReportsElement = element.querySelector(
+      ".resolved-reports .count"
+    );
 
     openReportsElement.textContent = openReportsCount;
     resolvedReportsElement.textContent = resolvedReportsCount;
 
     const reportListElement = element.querySelector(".report-list");
     if (reportsData.length > 0) {
+      const token = localStorage.getItem("jwtToken");
+      const role = parseJwt(token).role;
       reportListElement.innerHTML = reportsData
-        .map((report) => renderReportCard(report))
+        .map((report) => renderReportCard(report, role))
         .join("");
     } else {
       reportListElement.innerHTML = `

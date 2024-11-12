@@ -74,8 +74,10 @@ async function fetchAllReports(token, element) {
 
     const allReportsListElement = element.querySelector(".all-reports-list");
     if (reportsData.length > 0) {
+      const token = localStorage.getItem("jwtToken");
+      const role = parseJwt(token).role;
       allReportsListElement.innerHTML = reportsData
-        .map((report) => renderReportCard(report))
+        .map((report) => renderReportCard(report, role))
         .join("");
     } else {
       allReportsListElement.innerHTML = `
