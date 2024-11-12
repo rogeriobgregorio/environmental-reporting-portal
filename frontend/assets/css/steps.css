@@ -76,7 +76,7 @@
   padding-right: 40px;
 }
 
-.ecoar-steps .cta-btn-report {
+.ecoar-steps .step-cta-btn-report {
   background-color: #046245;
   color: #ffffff;
   padding: 0.6rem 1.5rem;
@@ -91,7 +91,7 @@
   margin-top: 3rem;
 }
 
-.ecoar-steps .cta-btn-report:hover {
+.ecoar-steps .step-cta-btn-report:hover {
   background-color: #038a62;
   transform: scale(1.05);
 }

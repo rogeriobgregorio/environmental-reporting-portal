@@ -6,6 +6,7 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+  min-height: 800px;
 }
 
 .reports h2 {

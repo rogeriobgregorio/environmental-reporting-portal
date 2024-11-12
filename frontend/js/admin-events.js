@@ -1,3 +1,5 @@
+import { renderReportCard } from "../js/reports-events.js";
+
 export function initAdminProfile(element) {
   const token = localStorage.getItem("jwtToken");
 
@@ -55,11 +57,12 @@ async function fetchAllReports(token, element) {
     if (!response.ok) throw new Error("Erro ao buscar todas as denúncias");
 
     const reportsData = await response.json();
+
     const openReportsCount = reportsData.filter(
-      (report) => report.reportStatus === 1
+      (report) => report.reportStatus === "PENDING"
     ).length;
     const resolvedReportsCount = reportsData.filter(
-      (report) => report.reportStatus === 5
+      (report) => report.reportStatus === "RESOLVED"
     ).length;
 
     const openReportsElement = element.querySelector(".open-reports .count");
@@ -72,14 +75,7 @@ async function fetchAllReports(token, element) {
     const allReportsListElement = element.querySelector(".all-reports-list");
     if (reportsData.length > 0) {
       allReportsListElement.innerHTML = reportsData
-        .map(
-          (report) => `
-          <div class="report-item">
-            <p>${report.description}</p>
-            <span>Status: ${reportStatusLabel(report.reportStatus)}</span>
-          </div>
-        `
-        )
+        .map((report) => renderReportCard(report))
         .join("");
     } else {
       allReportsListElement.innerHTML = `
@@ -91,18 +87,6 @@ async function fetchAllReports(token, element) {
   } catch (error) {
     console.error("Erro ao buscar todas as denúncias:", error);
   }
-}
-
-function reportStatusLabel(status) {
-  const statuses = {
-    1: "Pendente",
-    2: "Em Análise",
-    3: "Verificado",
-    4: "Ação Tomada",
-    5: "Resolvido",
-    6: "Rejeitado",
-  };
-  return statuses[status] || "Desconhecido";
 }
 
 export function initEditProfileButton(element) {

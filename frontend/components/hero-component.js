@@ -18,7 +18,6 @@ class HeroComponent extends HTMLElement {
       </section>
     `;
 
-    // Inicializa os eventos do botão após o conteúdo ser renderizado
     initializeHeroEvents();
   }
 }

@@ -12,7 +12,7 @@ class AdminComponent extends HTMLElement {
 
         <div class="profile-header">
           <div class="profile-info">
-            <i class="fa-solid fa-user-shield profile-icon"></i>
+            <i class="fa-solid fa-user-shield admin-profile-icon"></i>
             <h2 class="admin-username"></h2>
             <button class="edit-profile-btn" id="editProfileBtn">Editar perfil</button>
             <button class="role-btn" id="roleBtn">Editar permissões</button>
@@ -23,11 +23,11 @@ class AdminComponent extends HTMLElement {
         <div class="admin-counters">
           <div class="counter">
             <i class="fa-solid fa-exclamation-triangle"></i>
-            <span class="open-reports">Denúncias pendentes: <span class="count">0</span></span>
+            <span class="open-reports">Denúncias pendentes: <span class="count" id="openReportsCount">0</span></span>
           </div>
           <div class="counter">
             <i class="fa-solid fa-check-circle"></i>
-            <span class="resolved-reports">Denúncias concluídas: <span class="count">0</span></span>
+            <span class="resolved-reports">Denúncias concluídas: <span class="count" id="resolvedReportsCount">0</span></span>
           </div>
         </div>
 

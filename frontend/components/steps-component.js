@@ -1,3 +1,5 @@
+import { initializeStepEvents } from "../js/step-events.js";
+
 class StepsComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -61,10 +63,12 @@ class StepsComponent extends HTMLElement {
           </div>
         </div>
 
-        <a href="#about" class="cta-btn-report">Quero fazer uma denúncia</a>
+        <a href="#" id="step-cta-btn-report" class="step-cta-btn-report">Quero fazer uma denúncia</a>
 
       </div>
     `;
+
+    initializeStepEvents();
   }
 }
 customElements.define("steps-component", StepsComponent);

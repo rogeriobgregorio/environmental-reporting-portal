@@ -76,9 +76,7 @@ async function fetchUserReports(userId, token, element) {
     ).length;
 
     const openReportsElement = element.querySelector(".open-reports .count");
-    const resolvedReportsElement = element.querySelector(
-      ".resolved-reports .count"
-    );
+    const resolvedReportsElement = element.querySelector(".resolved-reports .count");
 
     openReportsElement.textContent = openReportsCount;
     resolvedReportsElement.textContent = resolvedReportsCount;
