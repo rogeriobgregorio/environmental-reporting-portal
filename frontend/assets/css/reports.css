@@ -212,3 +212,17 @@
   background-color: #038a62;
   transform: scale(1.05);
 }
+
+.edit-icon {
+  cursor: pointer;
+  color: #046245;
+  font-size: 1rem;
+  margin-left: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-icon:hover {
+  color: #038a62;
+  transform: scale(1.05);
+}
+

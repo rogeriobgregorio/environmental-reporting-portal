@@ -74,14 +74,18 @@ export function renderReportCard(report, role) {
   const token = localStorage.getItem("jwtToken");
   const userId = token ? parseJwt(token).id : null;
 
-  const canDelete =
+  const canEditAndDelete =
     role === "ROLE_ADMIN" ||
     (role === "ROLE_USER" &&
       report.reportStatus === "PENDING" &&
       report.author.id === userId);
 
-  const trashIcon = canDelete
-    ? `<i class="fa-solid fa-trash-can delete-icon" onclick="showDeleteModal('${report.id}')"></i>`
+  const editIcon = canEditAndDelete
+    ? `<i class="fa-solid fa-pen-to-square edit-icon"></i>`
+    : "";
+
+  const trashIcon = canEditAndDelete
+    ? `<i class="fa-solid fa-trash delete-icon" onclick="showDeleteModal('${report.id}')"></i>`
     : "";
 
   const image =
@@ -100,7 +104,10 @@ export function renderReportCard(report, role) {
         <span class="timestamp">${new Date(
           report.timeStamp
         ).toLocaleString()}</span>
-        ${trashIcon}
+        <div class="action-icons">
+          ${editIcon}
+          ${trashIcon}
+        </div>
       </div>
 
       <div class="card-info">
@@ -165,12 +172,15 @@ async function deleteReport(reportId) {
   const token = localStorage.getItem("jwtToken");
 
   try {
-    const response = await fetch(`http://127.0.0.1:8080/api/v1/reports/${reportId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/reports/${reportId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (response.ok) {
       return true;

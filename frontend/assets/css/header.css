@@ -43,12 +43,12 @@ header {
   font-size: 1.5rem;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .menu a:hover {
   color: #046245;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 @media (max-width: 1024px) {
