@@ -81,7 +81,7 @@ export function renderReportCard(report, role) {
       report.author.id === userId);
 
   const editIcon = canEditAndDelete
-    ? `<i class="fa-solid fa-pen-to-square edit-icon"></i>`
+    ? `<i class="fa-solid fa-pen-to-square edit-icon" onclick="showEditModal('${report.id}')"></i>`
     : "";
 
   const trashIcon = canEditAndDelete
@@ -135,7 +135,6 @@ export function renderReportCard(report, role) {
   `;
 }
 
-// Função para exibir o modal de confirmação de exclusão
 export function showDeleteModal(reportId, onDeleteCallback) {
   const modalHtml = `
     <div id="deleteModal" class="modal">
@@ -167,7 +166,6 @@ export function showDeleteModal(reportId, onDeleteCallback) {
   }
 }
 
-// Função para deletar a denúncia
 async function deleteReport(reportId) {
   const token = localStorage.getItem("jwtToken");
 
@@ -183,6 +181,7 @@ async function deleteReport(reportId) {
     );
 
     if (response.ok) {
+      location.reload();
       return true;
     } else {
       throw new Error("Erro ao deletar a denúncia.");
@@ -193,7 +192,6 @@ async function deleteReport(reportId) {
   }
 }
 
-// Função para exibir os toasts de confirmação e erro
 function showToast(message, type) {
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
@@ -205,3 +203,125 @@ function showToast(message, type) {
   }, 3000);
 }
 window.showDeleteModal = showDeleteModal;
+
+export function showEditModal(reportId) {
+  const modalHtml = `
+    <div id="editModal" class="edit-modal">
+      <div class="edit-modal-content">
+        <h2>Editar Denúncia</h2>
+        <h3>Altere as informações acerca da denúncia</h3>
+        <form id="editForm" class="edit-report-form">
+          <div class="edit-form-group">
+            <label for="location">Local:</label>
+            <input type="text" id="editLocation" name="location" required>
+          </div>
+          <div class="edit-form-group">
+            <label for="reportType">Tipo da Denúncia:</label>
+            <select id="editReportType" name="reportType" required>
+              <option value="AIR_POLLUTION">Poluição do Ar</option>
+              <option value="ANIMAL_ABUSE">Maus-tratos de Animais</option>
+              <option value="DEFORESTATION">Desmatamento</option>
+              <option value="GREEN_AREA_INVASION">Invasão de área verde</option>
+              <option value="ILLEGAL_DRAINAGE">Drenagem ilegal</option>
+              <option value="ILLEGAL_FENCING">Cercamento ilegal</option>
+              <option value="ILLEGAL_HUNTING">Caça ilegal</option>
+              <option value="ILLEGAL_MINING">Mineração ilegal</option>
+              <option value="ILLEGAL_PRUNING">Poda ilegal</option>
+              <option value="ILLEGAL_TREE_REMOVAL">Remoção ilegal de árvores</option>
+              <option value="ILLEGAL_WASTE_DISPOSAL">Descarte ilegal de resíduos</option>
+              <option value="SOIL_CONTAMINATION">Contaminação do solo</option>
+              <option value="WATER_CONTAMINATION">Contaminação da água</option>
+              <option value="ECOLOGICAL_IMBALANCE">Desequilibrio ecológico</option>
+              <option value="WILDFIRE">Queimada ilegal</option>
+              <option value="">OTHER</option>
+            </select>
+          </div>
+          <div class="edit-form-group">
+            <label for="severityLevel">Nível de Severidade:</label>
+            <select id="editSeverityLevel" name="severityLevel" required>
+              <option value="VERY_LOW">Muito Baixo</option>
+              <option value="LOW">Baixo</option>
+              <option value="MEDIUM">Médio</option>
+              <option value="HIGH">Alto</option>
+              <option value="VERY_HIGH">Muito Alto</option>
+            </select>
+          </div>
+          <div class="edit-form-group">
+            <label for="description">Descrição:</label>
+            <textarea id="editDescription" name="description" required></textarea>
+          </div>
+          <button type="submit" class="edit-submit-btn">Salvar Alterações</button>
+          <button type="button" class="edit-modal-button edit-cancel-button" onclick="closeEditModal()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", modalHtml);
+  fetchReportDetails(reportId);
+  document.getElementById("editForm").onsubmit = (e) => submitEditForm(e, reportId);
+}
+
+async function fetchReportDetails(reportId) {
+  const token = localStorage.getItem("jwtToken");
+  try {
+    const response = await fetch(`http://127.0.0.1:8080/api/v1/reports/${reportId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      const report = await response.json();
+      document.getElementById("editLocation").value = report.location;
+      document.getElementById("editReportType").value = report.reportType;
+      document.getElementById("editSeverityLevel").value = report.severityLevel;
+      document.getElementById("editDescription").value = report.description;
+    } else {
+      throw new Error("Erro ao buscar detalhes da denúncia.");
+    }
+  } catch (error) {
+    console.error("Erro ao buscar detalhes da denúncia:", error);
+  }
+}
+
+async function submitEditForm(event, reportId) {
+  event.preventDefault();
+  const token = localStorage.getItem("jwtToken");
+
+  const updatedData = {
+    location: document.getElementById("editLocation").value,
+    reportType: document.getElementById("editReportType").value,
+    severityLevel: document.getElementById("editSeverityLevel").value,
+    description: document.getElementById("editDescription").value,
+  };
+
+  try {
+    const response = await fetch(`http://127.0.0.1:8080/api/v1/reports/${reportId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (response.ok) {
+      location.reload();
+      closeEditModal();
+    } else {
+      throw new Error("Erro ao atualizar a denúncia.");
+    }
+  } catch (error) {
+    console.error("Erro ao atualizar a denúncia:", error);
+    showToast("Erro ao atualizar a denúncia.", "error");
+  }
+}
+
+function closeEditModal() {
+  const modal = document.getElementById("editModal");
+  if (modal) modal.remove();
+}
+window.closeEditModal = closeEditModal;
+window.showEditModal = showEditModal;

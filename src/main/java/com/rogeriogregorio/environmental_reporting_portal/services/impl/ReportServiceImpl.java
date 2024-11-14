@@ -81,19 +81,8 @@ public class ReportServiceImpl implements ReportService {
 
         Report existingReport = getReportIfExists(id);
 
-        List<String> existingImageNames = existingReport
-                .getImageURLs()
-                .stream()
-                .map(url -> url.substring(url.lastIndexOf("/") + 1))
-                .toList();
-
-        catchError.run(() -> fileStorage.deleteFiles(existingImageNames));
-
-        List<String> newImageURLs = fileStorage.saveFilesAndGetUrls(reportRequest.getImages());
-
         Report updatedReport = existingReport.toBuilder()
                 .withDescription(reportRequest.getDescription())
-                .withImageURLs(newImageURLs)
                 .withLocation(reportRequest.getLocation())
                 .withSeverityLevel(reportRequest.getSeverityLevel().getCode())
                 .withReportType(reportRequest.getReportType().getCode())

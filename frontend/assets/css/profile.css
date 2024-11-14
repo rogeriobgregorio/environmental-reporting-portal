@@ -297,6 +297,127 @@
   transform: scale(1.05);
 }
 
+/* modal de edição */
+
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.edit-modal.hidden {
+  display: none;
+}
+
+.edit-modal-content {
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 500px;
+  width: 100%;
+  margin: 40px auto 60px auto;
+  padding: 1.25rem;
+  border-radius: 1.875rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.edit-report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: auto auto auto auto;
+}
+
+.edit-report-form label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.edit-report-form input[type="text"],
+.edit-report-form input[type="file"],
+.edit-report-form select,
+.edit-report-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 1.875rem;
+  font-size: 1rem;
+}
+
+.edit-report-form textarea {
+  resize: vertical;
+  height: 120px;
+}
+
+.edit-report-form input:focus,
+.edit-report-form select:focus,
+.edit-report-form textarea:focus {
+  border-color: #046245;
+  outline: none;
+}
+
+.edit-submit-btn {
+  background-color: #046245;
+  color: #ffffff;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  cursor: pointer;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-submit-btn:hover {
+  background-color: #038a62;
+  transform: scale(1.05);
+}
+
+.edit-cancel-button {
+  background-color: #620404;
+  color: #ffffff;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  cursor: pointer;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-cancel-button:hover {
+  background-color: #8a0303;
+  transform: scale(1.05);
+}
+
+.edit-modal h2 {
+  color: #046245;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.edit-modal h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+
 @media (max-width: 768px) {
   .profile-icon {
     font-size: 15vw; 
