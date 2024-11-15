@@ -6,11 +6,22 @@ class ReportsComponent extends HTMLElement {
     const role = token ? parseJwt(token).role : null;
     const reports = await fetchReports();
 
+    const reportsHtml = reports.length
+      ? reports.map((report) => renderReportCard(report, role)).join("")
+      : `
+        <div class="all-reports-list">
+          <div class="no-reports">
+            <i class="fa-regular fa-folder-open"></i>
+            Nenhuma denúncia para exibir.
+          </div>
+        </div>
+      `;
+
     this.innerHTML = `
       <section id="denuncias" class="reports">
         <h2>Denúncias</h2>
         <div class="cards">
-          ${reports.map((report) => renderReportCard(report, role)).join("")}
+          ${reportsHtml}
         </div>
       </section>
     `;

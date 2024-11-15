@@ -2,13 +2,16 @@ package com.rogeriogregorio.environmental_reporting_portal.services.impl;
 
 import com.rogeriogregorio.environmental_reporting_portal.dto.request.UserRequest;
 import com.rogeriogregorio.environmental_reporting_portal.dto.response.UserResponse;
+import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
+import com.rogeriogregorio.environmental_reporting_portal.repositories.ReportRepository;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.UserRepository;
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
 import com.rogeriogregorio.environmental_reporting_portal.utils.CatchError;
 import com.rogeriogregorio.environmental_reporting_portal.utils.DataMapper;
+import com.rogeriogregorio.environmental_reporting_portal.utils.FileStorage;
 import com.rogeriogregorio.environmental_reporting_portal.utils.PasswordHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,25 +21,31 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final ReportRepository reportRepository;
     private final PasswordHelper passwordHelper;
+    private final FileStorage fileStorage;
     private final CatchError catchError;
     private final DataMapper dataMapper;
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
+                           ReportRepository reportRepository,
                            PasswordHelper passwordHelper,
-                           CatchError catchError,
+                           FileStorage fileStorage, CatchError catchError,
                            DataMapper dataMapper) {
 
         this.userRepository = userRepository;
+        this.reportRepository = reportRepository;
         this.passwordHelper = passwordHelper;
+        this.fileStorage = fileStorage;
         this.catchError = catchError;
         this.dataMapper = dataMapper;
     }
@@ -106,8 +115,21 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String id) {
 
         User user = getUserIfExists(id);
-        catchError.run(() -> userRepository.delete(user));
-        LOGGER.warn("User deleted: {}", user);
+
+        List<Report> reports = reportRepository.findByAuthorId(user.getId());
+
+        List<String> imageNames = reports.stream()
+                .flatMap(report -> report.getImageURLs().stream())
+                .map(url -> url.substring(url.lastIndexOf("/") + 1))
+                .toList();
+
+        reportRepository.deleteAllByAuthorId(user.getId());
+
+        catchError.run(() -> {
+            userRepository.delete(user);
+            fileStorage.deleteFiles(imageNames);
+        });
+        LOGGER.warn("User and associated reports deleted: {}", user);
     }
 
     public User getUserIfExists(String id) {
