@@ -14,6 +14,12 @@ export async function fetchReports() {
   }
 }
 
+  function parseJwt(token) {
+    const base64Payload = token.split(".")[1];
+    const jsonPayload = atob(base64Payload);
+    return JSON.parse(jsonPayload);
+  }
+
 const translateReportType = (type) =>
   ({
     AIR_POLLUTION: "Poluição do ar",
@@ -205,6 +211,9 @@ function showToast(message, type) {
 window.showDeleteModal = showDeleteModal;
 
 export function showEditModal(reportId) {
+  const token = localStorage.getItem("jwtToken");
+  const role = token ? parseJwt(token).role : null;
+
   const modalHtml = `
     <div id="editModal" class="edit-modal">
       <div class="edit-modal-content">
@@ -231,9 +240,9 @@ export function showEditModal(reportId) {
               <option value="ILLEGAL_WASTE_DISPOSAL">Descarte ilegal de resíduos</option>
               <option value="SOIL_CONTAMINATION">Contaminação do solo</option>
               <option value="WATER_CONTAMINATION">Contaminação da água</option>
-              <option value="ECOLOGICAL_IMBALANCE">Desequilibrio ecológico</option>
+              <option value="ECOLOGICAL_IMBALANCE">Desequilíbrio ecológico</option>
               <option value="WILDFIRE">Queimada ilegal</option>
-              <option value="">OTHER</option>
+              <option value="">Outros</option>
             </select>
           </div>
           <div class="edit-form-group">
@@ -250,6 +259,21 @@ export function showEditModal(reportId) {
             <label for="description">Descrição:</label>
             <textarea id="editDescription" name="description" required></textarea>
           </div>
+          ${
+            role === "ROLE_ADMIN"
+              ? `<div class="edit-form-group">
+                  <label for="status">Status da Denúncia:</label>
+                  <select id="editStatus" name="status" required>
+                    <option value="1">Pendente</option>
+                    <option value="2">Em Análise</option>
+                    <option value="3">Verificado</option>
+                    <option value="4">Ação Tomada</option>
+                    <option value="5">Resolvido</option>
+                    <option value="6">Rejeitado</option>
+                  </select>
+                </div>`
+              : ""
+          }
           <button type="submit" class="edit-submit-btn">Salvar Alterações</button>
           <button type="button" class="edit-modal-button edit-cancel-button" onclick="closeEditModal()">Cancelar</button>
         </form>
@@ -258,19 +282,25 @@ export function showEditModal(reportId) {
   `;
 
   document.body.insertAdjacentHTML("beforeend", modalHtml);
+
   fetchReportDetails(reportId);
-  document.getElementById("editForm").onsubmit = (e) => submitEditForm(e, reportId);
+
+  document.getElementById("editForm").onsubmit = (e) =>
+    submitEditForm(e, reportId);
 }
 
 async function fetchReportDetails(reportId) {
   const token = localStorage.getItem("jwtToken");
   try {
-    const response = await fetch(`http://127.0.0.1:8080/api/v1/reports/${reportId}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/reports/${reportId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (response.ok) {
       const report = await response.json();
@@ -278,6 +308,19 @@ async function fetchReportDetails(reportId) {
       document.getElementById("editReportType").value = report.reportType;
       document.getElementById("editSeverityLevel").value = report.severityLevel;
       document.getElementById("editDescription").value = report.description;
+
+      const statusSelect = document.getElementById("editStatus");
+      if (statusSelect) {
+        const statusMap = {
+          PENDING: 1,
+          UNDER_REVIEW: 2,
+          VERIFIED: 3,
+          ACTION_TAKEN: 4,
+          RESOLVED: 5,
+          REJECTED: 6,
+        };
+        statusSelect.value = statusMap[report.reportStatus];
+      }
     } else {
       throw new Error("Erro ao buscar detalhes da denúncia.");
     }
@@ -297,15 +340,37 @@ async function submitEditForm(event, reportId) {
     description: document.getElementById("editDescription").value,
   };
 
+  const role = parseJwt(token).role;
+  if (role === "ROLE_ADMIN") {
+    const status = document.getElementById("editStatus").value;
+    try {
+      await fetch(`http://127.0.0.1:8080/api/v1/reports/${reportId}/status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(parseInt(status)),
+      });
+    } catch (error) {
+      console.error("Erro ao atualizar o status da denúncia:", error);
+      showToast("Erro ao atualizar o status da denúncia.", "error");
+      return;
+    }
+  }
+
   try {
-    const response = await fetch(`http://127.0.0.1:8080/api/v1/reports/${reportId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(updatedData),
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/reports/${reportId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedData),
+      }
+    );
 
     if (response.ok) {
       location.reload();
