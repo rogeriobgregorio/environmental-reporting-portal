@@ -1,5 +1,6 @@
 package com.rogeriogregorio.environmental_reporting_portal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -23,6 +24,7 @@ public class Comment implements Serializable {
     private User author;
 
     @DBRef
+    @JsonIgnore
     private Report report;
 
     @NotBlank(message = "The comment content must not be blank.")

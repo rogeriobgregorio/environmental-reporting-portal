@@ -7,6 +7,7 @@ import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
 import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.CommentRepository;
+import com.rogeriogregorio.environmental_reporting_portal.repositories.ReportRepository;
 import com.rogeriogregorio.environmental_reporting_portal.services.CommentService;
 import com.rogeriogregorio.environmental_reporting_portal.services.ReportService;
 import com.rogeriogregorio.environmental_reporting_portal.services.UserService;
@@ -27,6 +28,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final UserService userService;
     private final ReportService reportService;
+    private final ReportRepository reportRepository;
     private final CatchError catchError;
     private final DataMapper dataMapper;
     private static final Logger LOGGER = LogManager.getLogger(CommentServiceImpl.class);
@@ -36,12 +38,13 @@ public class CommentServiceImpl implements CommentService {
     public CommentServiceImpl(CommentRepository commentRepository,
                               UserService userService,
                               ReportService reportService,
-                              CatchError catchError,
+                              ReportRepository reportRepository, CatchError catchError,
                               DataMapper dataMapper) {
 
         this.commentRepository = commentRepository;
         this.userService = userService;
         this.reportService = reportService;
+        this.reportRepository = reportRepository;
         this.catchError = catchError;
         this.dataMapper = dataMapper;
     }
@@ -63,6 +66,9 @@ public class CommentServiceImpl implements CommentService {
                 .withTimestamp(Instant.now())
                 .withContent(commentRequest.getContent())
                 .build();
+
+        report.getComments().add(comment);
+        reportRepository.save(report);
 
         Comment commentSaved = catchError.run(() -> commentRepository.save(comment));
         LOGGER.info("Comment created: {}", commentSaved);

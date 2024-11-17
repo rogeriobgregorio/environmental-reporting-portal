@@ -1,5 +1,6 @@
 package com.rogeriogregorio.environmental_reporting_portal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rogeriogregorio.environmental_reporting_portal.entities.enums.UserRole;
 import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.Id;
@@ -31,6 +32,7 @@ public class User implements Serializable {
     @Email(message = "Please enter a valid email address. Example: user@example.com")
     private String email;
 
+    @JsonIgnore
     @NotBlank(message = "The password must not be blank.")
     private String password;
 
@@ -40,9 +42,11 @@ public class User implements Serializable {
     private Instant timestamp;
 
     @DBRef
+    @JsonIgnore
     private List<Report> reports = new ArrayList<>();
 
     @DBRef
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     public User() {
