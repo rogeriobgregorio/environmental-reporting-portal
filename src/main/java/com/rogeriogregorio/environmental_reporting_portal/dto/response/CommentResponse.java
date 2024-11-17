@@ -14,7 +14,6 @@ public class CommentResponse implements Serializable {
 
     private String id;
     private User author;
-    private Report report;
     private String content;
     private Instant timestamp;
 
@@ -24,7 +23,6 @@ public class CommentResponse implements Serializable {
     private CommentResponse(Builder builder) {
         setId(builder.id);
         setAuthor(builder.author);
-        setReport(builder.report);
         setContent(builder.content);
         setTimestamp(builder.timestamp);
     }
@@ -49,14 +47,6 @@ public class CommentResponse implements Serializable {
         this.author = author;
     }
 
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
-
     public String getContent() {
         return content;
     }
@@ -78,7 +68,6 @@ public class CommentResponse implements Serializable {
         return new Builder()
                 .withId(this.id)
                 .withAuthor(this.author)
-                .withReport(this.report)
                 .withContent(this.content)
                 .withTimestamp(this.timestamp);
     }
@@ -86,7 +75,6 @@ public class CommentResponse implements Serializable {
     public static final class Builder {
         private String id;
         private User author;
-        private Report report;
         private String content;
         private Instant timestamp;
 
@@ -100,11 +88,6 @@ public class CommentResponse implements Serializable {
 
         public Builder withAuthor(User author) {
             this.author = author;
-            return this;
-        }
-
-        public Builder withReport(Report report) {
-            this.report = report;
             return this;
         }
 

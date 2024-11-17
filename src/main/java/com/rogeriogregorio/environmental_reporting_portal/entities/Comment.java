@@ -23,10 +23,6 @@ public class Comment implements Serializable {
     @DBRef
     private User author;
 
-    @DBRef
-    @JsonIgnore
-    private Report report;
-
     @NotBlank(message = "The comment content must not be blank.")
     private String content;
 
@@ -38,7 +34,6 @@ public class Comment implements Serializable {
     private Comment(Builder builder) {
         setId(builder.id);
         setAuthor(builder.author);
-        setReport(builder.report);
         setContent(builder.content);
         setTimestamp(builder.timestamp);
     }
@@ -63,14 +58,6 @@ public class Comment implements Serializable {
         this.author = author;
     }
 
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
-
     public String getContent() {
         return content;
     }
@@ -92,7 +79,6 @@ public class Comment implements Serializable {
         return new Builder()
                 .withId(this.id)
                 .withAuthor(this.author)
-                .withReport(this.report)
                 .withContent(this.content)
                 .withTimestamp(this.timestamp);
     }
@@ -100,7 +86,6 @@ public class Comment implements Serializable {
     public static final class Builder {
         private String id;
         private User author;
-        private Report report;
         private String content;
         private Instant timestamp;
 
@@ -114,11 +99,6 @@ public class Comment implements Serializable {
 
         public Builder withAuthor(User author) {
             this.author = author;
-            return this;
-        }
-
-        public Builder withReport(Report report) {
-            this.report = report;
             return this;
         }
 
@@ -155,7 +135,6 @@ public class Comment implements Serializable {
         return "Comment{" +
                 "id=" + id +
                 ", author=" + author +
-                ", report=" + report +
                 ", content='" + content + '\'' +
                 ", timestamp=" + timestamp +
                 '}';

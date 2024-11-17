@@ -62,7 +62,6 @@ public class CommentServiceImpl implements CommentService {
 
         Comment comment = Comment.newBuilder()
                 .withAuthor(author)
-                .withReport(report)
                 .withTimestamp(Instant.now())
                 .withContent(commentRequest.getContent())
                 .build();
