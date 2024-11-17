@@ -14,11 +14,11 @@ export async function fetchReports() {
   }
 }
 
-  function parseJwt(token) {
-    const base64Payload = token.split(".")[1];
-    const jsonPayload = atob(base64Payload);
-    return JSON.parse(jsonPayload);
-  }
+function parseJwt(token) {
+  const base64Payload = token.split(".")[1];
+  const jsonPayload = atob(base64Payload);
+  return JSON.parse(jsonPayload);
+}
 
 const translateReportType = (type) =>
   ({
@@ -386,34 +386,13 @@ function closeEditModal() {
   if (modal) modal.remove();
 }
 
-
 // Função para abrir o modal com os comentários
 export function showCommentsModal(report) {
-  const comments = report.comments;
   const modalHtml = `
     <div id="commentsModal" class="modal">
       <div class="modal-content">
         <h3>Comentários</h3>
-        <div id="commentsList">
-          ${
-            comments.length
-              ? comments
-                  .map(
-                    (comment) => `
-                    <div class="comment">
-                      <p><strong>${comment.author.name}:</strong> ${
-                      comment.content
-                    }</p>
-                      <span class="timestamp">${new Date(
-                        comment.timestamp
-                      ).toLocaleString()}</span>
-                    </div>
-                  `
-                  )
-                  .join("")
-              : "<p>Seja o primeiro a comentar</p>"
-          }
-        </div>
+        <div id="commentsList"></div>
         <form id="commentForm">
           <textarea id="commentContent" placeholder="Digite seu comentário..." required></textarea>
           <button type="submit" class="submit-comment-btn">Enviar</button>
@@ -426,10 +405,10 @@ export function showCommentsModal(report) {
   document.body.insertAdjacentHTML("beforeend", modalHtml);
   const modal = document.getElementById("commentsModal");
 
-  // Fechar o modal
   document.getElementById("closeModalBtn").onclick = () => modal.remove();
 
-  // Submeter o formulário
+  fetchReportDetailsAndUpdateModal(report.id);
+
   document.getElementById("commentForm").onsubmit = (e) => {
     e.preventDefault();
     const content = document.getElementById("commentContent").value.trim();
@@ -438,6 +417,7 @@ export function showCommentsModal(report) {
     }
   };
 }
+
 
 async function submitComment(reportId, content) {
   const token = localStorage.getItem("jwtToken");
@@ -467,9 +447,8 @@ async function submitComment(reportId, content) {
     });
 
     if (response.ok) {
-      const newComment = await response.json();
-      addCommentToModal(newComment);
-      document.getElementById("commentContent").value = ""; // Limpar o campo de comentário
+      fetchReportDetailsAndUpdateModal(reportId);
+      document.getElementById("commentContent").value = ""; 
     } else {
       throw new Error("Erro ao criar comentário.");
     }
@@ -477,6 +456,49 @@ async function submitComment(reportId, content) {
     console.error("Erro ao criar comentário:", error);
     alert("Não foi possível enviar o comentário. Tente novamente.");
   }
+}
+
+async function fetchReportDetailsAndUpdateModal(reportId) {
+  const token = localStorage.getItem("jwtToken");
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/reports/${reportId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.ok) {
+      const report = await response.json();
+      updateCommentsInModal(report.comments);
+    } else {
+      throw new Error("Erro ao buscar detalhes da denúncia.");
+    }
+  } catch (error) {
+    console.error("Erro ao buscar detalhes da denúncia:", error);
+  }
+}
+
+function updateCommentsInModal(comments) {
+  const commentsList = document.getElementById("commentsList");
+  commentsList.innerHTML = comments.length
+    ? comments
+        .map(
+          (comment) => `
+          <div class="comment">
+            <p><strong>${comment.author.name}:</strong> ${comment.content}</p>
+            <span class="timestamp">${new Date(
+              comment.timestamp
+            ).toLocaleString()}</span>
+          </div>
+        `
+        )
+        .join("")
+    : "<p>Seja o primeiro a comentar</p>";
 }
 
 export function addCommentToModal(comment) {
@@ -491,7 +513,6 @@ export function addCommentToModal(comment) {
   `;
 
   if (commentsList.querySelector("p")) {
-    // Remove o texto "Seja o primeiro a comentar" se existir
     commentsList.innerHTML = "";
   }
 
@@ -499,7 +520,6 @@ export function addCommentToModal(comment) {
 }
 
 window.addCommentToModal = addCommentToModal;
-
 window.showCommentsModal = showCommentsModal;
 window.closeEditModal = closeEditModal;
 window.showEditModal = showEditModal;

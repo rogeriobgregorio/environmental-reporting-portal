@@ -1,7 +1,6 @@
 import {
   fetchReports,
   renderReportCard,
-  showCommentsModal,
 } from "../js/reports-events.js";
 
 class ReportsComponent extends HTMLElement {
