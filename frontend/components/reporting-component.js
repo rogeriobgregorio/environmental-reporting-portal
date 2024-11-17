@@ -31,7 +31,7 @@ class ReportingComponent extends HTMLElement {
               <option value="WATER_CONTAMINATION">Contaminação da água</option>
               <option value="ECOLOGICAL_IMBALANCE">Desequilibrio ecológico</option>
               <option value="WILDFIRE">Queimada ilegal</option>
-              <option value="">OTHER</option>
+              <option value="OTHER">Outro</option>
             </select>
           </div>
 

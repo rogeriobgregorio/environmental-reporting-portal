@@ -37,7 +37,7 @@ const translateReportType = (type) =>
     WATER_CONTAMINATION: "Contaminação da água",
     ECOLOGICAL_IMBALANCE: "Desequilíbrio ecológico",
     WILDFIRE: "Queimada ilegal",
-    OTHER: "Outros",
+    OTHER: "Outro",
   }[type] || type);
 
 const translateSeverity = (severity) =>
@@ -71,12 +71,6 @@ function toggleExpand(element) {
 window.toggleExpand = toggleExpand;
 
 export function renderReportCard(report, role) {
-  function parseJwt(token) {
-    const base64Payload = token.split(".")[1];
-    const jsonPayload = atob(base64Payload);
-    return JSON.parse(jsonPayload);
-  }
-
   const token = localStorage.getItem("jwtToken");
   const userId = token ? parseJwt(token).id : null;
 
@@ -137,6 +131,9 @@ export function renderReportCard(report, role) {
       <div class="image-container">
         ${image}
       </div>
+      <button class="comments-button" onclick="showCommentsModal(${JSON.stringify(
+        report
+      ).replace(/"/g, "&quot;")})">Ler comentários</button>
     </div>
   `;
 }
@@ -242,7 +239,7 @@ export function showEditModal(reportId) {
               <option value="WATER_CONTAMINATION">Contaminação da água</option>
               <option value="ECOLOGICAL_IMBALANCE">Desequilíbrio ecológico</option>
               <option value="WILDFIRE">Queimada ilegal</option>
-              <option value="">Outros</option>
+              <option value="OTHER">Outro</option>
             </select>
           </div>
           <div class="edit-form-group">
@@ -388,5 +385,121 @@ function closeEditModal() {
   const modal = document.getElementById("editModal");
   if (modal) modal.remove();
 }
+
+
+// Função para abrir o modal com os comentários
+export function showCommentsModal(report) {
+  const comments = report.comments;
+  const modalHtml = `
+    <div id="commentsModal" class="modal">
+      <div class="modal-content">
+        <h3>Comentários</h3>
+        <div id="commentsList">
+          ${
+            comments.length
+              ? comments
+                  .map(
+                    (comment) => `
+                    <div class="comment">
+                      <p><strong>${comment.author.name}:</strong> ${
+                      comment.content
+                    }</p>
+                      <span class="timestamp">${new Date(
+                        comment.timestamp
+                      ).toLocaleString()}</span>
+                    </div>
+                  `
+                  )
+                  .join("")
+              : "<p>Seja o primeiro a comentar</p>"
+          }
+        </div>
+        <form id="commentForm">
+          <textarea id="commentContent" placeholder="Digite seu comentário..." required></textarea>
+          <button type="submit" class="submit-comment-btn">Enviar</button>
+        </form>
+        <button id="closeModalBtn" class="modal-button close-button">Fechar</button>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", modalHtml);
+  const modal = document.getElementById("commentsModal");
+
+  // Fechar o modal
+  document.getElementById("closeModalBtn").onclick = () => modal.remove();
+
+  // Submeter o formulário
+  document.getElementById("commentForm").onsubmit = (e) => {
+    e.preventDefault();
+    const content = document.getElementById("commentContent").value.trim();
+    if (content) {
+      submitComment(report.id, content);
+    }
+  };
+}
+
+async function submitComment(reportId, content) {
+  const token = localStorage.getItem("jwtToken");
+
+  if (!token) {
+    alert("Você precisa estar logado para comentar.");
+    return;
+  }
+
+  const authorId = parseJwt(token).id;
+
+  const commentRequest = {
+    authorId,
+    reportId,
+    content,
+    timestamp: new Date().toISOString(),
+  };
+
+  try {
+    const response = await fetch("http://127.0.0.1:8080/api/v1/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(commentRequest),
+    });
+
+    if (response.ok) {
+      const newComment = await response.json();
+      addCommentToModal(newComment);
+      document.getElementById("commentContent").value = ""; // Limpar o campo de comentário
+    } else {
+      throw new Error("Erro ao criar comentário.");
+    }
+  } catch (error) {
+    console.error("Erro ao criar comentário:", error);
+    alert("Não foi possível enviar o comentário. Tente novamente.");
+  }
+}
+
+export function addCommentToModal(comment) {
+  const commentsList = document.getElementById("commentsList");
+  const commentHtml = `
+    <div class="comment">
+      <p><strong>${comment.author.name}:</strong> ${comment.content}</p>
+      <span class="timestamp">${new Date(
+        comment.timestamp
+      ).toLocaleString()}</span>
+    </div>
+  `;
+
+  if (commentsList.querySelector("p")) {
+    // Remove o texto "Seja o primeiro a comentar" se existir
+    commentsList.innerHTML = "";
+  }
+
+  commentsList.insertAdjacentHTML("beforeend", commentHtml);
+}
+
+window.addCommentToModal = addCommentToModal;
+
+window.showCommentsModal = showCommentsModal;
 window.closeEditModal = closeEditModal;
 window.showEditModal = showEditModal;

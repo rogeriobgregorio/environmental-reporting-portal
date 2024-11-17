@@ -1,4 +1,8 @@
-import { fetchReports, renderReportCard } from "../js/reports-events.js";
+import {
+  fetchReports,
+  renderReportCard,
+  showCommentsModal,
+} from "../js/reports-events.js";
 
 class ReportsComponent extends HTMLElement {
   async connectedCallback() {

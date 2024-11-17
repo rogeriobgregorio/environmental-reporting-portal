@@ -18,6 +18,9 @@ public class CommentResponse implements Serializable {
     private String content;
     private Instant timestamp;
 
+    public CommentResponse() {
+    }
+
     private CommentResponse(Builder builder) {
         setId(builder.id);
         setAuthor(builder.author);

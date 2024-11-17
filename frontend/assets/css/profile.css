@@ -100,6 +100,7 @@
   padding: 1.25rem;
   width: 100%;
   max-width: 49.5rem;
+  max-height: 39.5rem;
   border-radius: 1.875rem;
   margin: 1.25rem;
   margin-bottom: 3rem;
@@ -141,6 +142,7 @@
   white-space: normal;
   overflow: visible;
   hyphens: auto;
+  padding: 5px;
 }
 
 .read-more {
@@ -321,7 +323,6 @@
   background-color: #fff;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
   max-width: 500px;
   width: 100%;
   margin: 40px auto 60px auto;
