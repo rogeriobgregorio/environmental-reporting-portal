@@ -19,7 +19,8 @@ class HeaderComponent extends HTMLElement {
         <nav class="menu">
           <ul>
             <li><a href="./index.html">Início</a></li>            
-            <li><a href="./reports.html">Denúncias</a></li>            
+            <li><a href="./reports.html">Denúncias</a></li>
+            <li><a href="./statistics.html">Estatísticas</a></li>                        
             <li><a href="./info.html">Informativos</a></li>
             <li><a href="./about.html">Sobre nós</a></li>            
             <li><a href="./contact.html">Contato</a></li>

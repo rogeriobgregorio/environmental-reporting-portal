@@ -52,7 +52,7 @@ class ReportingComponent extends HTMLElement {
           </div>
 
           <div class="form-group">
-            <label for="images">Imagens:</label>
+            <label for="images" class="file-btn">Selecione 1 imagem de até 10MB:</label>
             <input type="file" id="images" name="images" multiple accept="image/*">
           </div>
 

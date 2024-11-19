@@ -386,7 +386,6 @@ function closeEditModal() {
   if (modal) modal.remove();
 }
 
-// Função para abrir o modal com os comentários
 export function showCommentsModal(report) {
   const modalHtml = `
     <div id="commentsModal" class="comment-modal">
@@ -422,7 +421,7 @@ async function submitComment(reportId, content) {
   const token = localStorage.getItem("jwtToken");
 
   if (!token) {
-    alert("Você precisa estar logado para comentar.");
+    showToast("Você precisa estar logado para comentar.", "error");
     return;
   }
 
@@ -458,16 +457,12 @@ async function submitComment(reportId, content) {
 }
 
 export async function fetchReportDetailsAndUpdateModal(reportId) {
-  const token = localStorage.getItem("jwtToken");
 
   try {
     const response = await fetch(
       `http://127.0.0.1:8080/api/v1/reports/${reportId}`,
       {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        method: "GET"
       }
     );
 
@@ -486,26 +481,36 @@ export function updateCommentsInModal(comments, reportId) {
   const commentsList = document.getElementById("commentsList");
   commentsList.innerHTML = comments.length
     ? comments
-        .map(
-          (comment) => `
-          <div class="comment">
-            <div class="comment-header">
-              <div class="left">
-                <i class="profile-icon fa fa-user-circle"></i>
-                <strong>${comment.author.name}</strong>
+        .map((comment) => {
+          const token = localStorage.getItem("jwtToken");
+          const userId = token ? parseJwt(token).id : null;
+          const role = token ? parseJwt(token).role : null;
+
+          const canDelete = comment.author.id === userId || role === "ROLE_ADMIN";
+          return `
+              <div class="comment">
+                <div class="comment-header">
+                  <div class="left">
+                    <i class="profile-icon fa fa-user-circle"></i>
+                    <strong>${comment.author.name}</strong>
+                  </div>
+                  <div class="right">
+                    <span class="timestamp">${new Date(
+                      comment.timestamp
+                    ).toLocaleString()}</span>
+                    ${
+                      canDelete
+                        ? `<i class="fa-solid fa-trash delete-comment-icon" onclick="deleteComment('${comment.id}', '${reportId}')"></i>`
+                        : ""
+                    }
+                  </div>
+                </div>
+                <div class="comment-body">
+                  <p>${comment.content}</p>
+                </div>
               </div>
-              <div class="right">
-                <span class="timestamp">${new Date(comment.timestamp).toLocaleString()}
-                </span>
-                  <i class="fa-solid fa-trash delete-comment-icon" onclick="deleteComment('${comment.id}', '${reportId}')"></i>
-              </div>
-            </div>
-            <div class="comment-body">
-              <p>${comment.content}</p>
-            </div>
-          </div>
-        `
-        )
+            `;
+        })
         .join("")
     : "<p>Seja o primeiro a comentar</p>";
 }
@@ -514,11 +519,35 @@ async function deleteComment(commentId, reportId) {
   const token = localStorage.getItem("jwtToken");
 
   if (!token) {
-    alert("Você precisa estar logado para excluir um comentário.");
+    showToast("Você precisa estar logado para excluir um comentário.", "error");
     return;
   }
 
+  const userId = parseJwt(token).id;
+  const role = parseJwt(token).role;
+
   try {
+    const commentResponse = await fetch(
+      `http://127.0.0.1:8080/api/v1/comments/${commentId}`,
+      {
+        method: "GET"
+      }
+    );
+
+    if (!commentResponse.ok) {
+      throw new Error("Erro ao buscar o comentário.");
+    }
+
+    const comment = await commentResponse.json();
+
+    if (comment.author.id !== userId && role !== "ROLE_ADMIN") {
+      showToast(
+        "Você não tem permissão para excluir este comentário.",
+        "error"
+      );
+      return;
+    }
+
     const response = await fetch(
       `http://127.0.0.1:8080/api/v1/comments/${commentId}/${reportId}`,
       {
@@ -539,6 +568,7 @@ async function deleteComment(commentId, reportId) {
     showToast("Não foi possível excluir o comentário.", "error");
   }
 }
+
 
 export function addCommentToModal(comment) {
   const commentsList = document.getElementById("commentsList");

@@ -459,15 +459,15 @@
 .comment-modal-content {
   display: flex;
   flex-direction: column;
-  position: relative; /* Necessário para fixar os elementos internos */
+  position: relative; 
   background-color: #ffffff;
   padding: 20px;
   border-radius: 30px;
-  margin: 40px auto; /* Centralizado horizontalmente */
+  margin-left: 40px; 
   width: 100%;
-  max-width: 42rem;
+  max-width: 42.4rem;
   max-height: 700px;
-  overflow-y: auto; /* Scroll no conteúdo interno */
+  overflow-y: auto; 
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -519,11 +519,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Espaçamento entre textarea e botão */
-  position: sticky; /* Fixação no topo */
+  gap: 10px; 
+  position: sticky; 
   top: 0;
   background-color: #ffffff;
-  z-index: 10; /* Fica acima do conteúdo ao rolar */
+  z-index: 10; 
   padding: 10px 0;
 }
 
@@ -531,7 +531,7 @@
   flex: 1;
   margin: 10px 0;
   padding: 10px;
-  overflow-y: auto; /* Scroll para a lista de comentários */
+  overflow-y: auto; 
 }
 
 /* Estilo para o botão de enviar */
@@ -554,7 +554,7 @@
 }
 
 .comment-modal-close-button {
-  position: sticky; /* Fixação no final */
+  position: sticky; 
   bottom: 0;
   margin-top: 20px;
   background-color: #046245;
@@ -565,7 +565,7 @@
   font-size: 1.2rem;
   font-weight: 300;
   cursor: pointer;
-  width: 100%; /* Ocupa toda a largura */
+  width: 100%;
   font-family: "Roboto", sans-serif;
   transition: background-color 0.3s ease, transform 0.3s ease;
   z-index: 10;
@@ -632,4 +632,30 @@
 .delete-comment-icon:hover {
   color: #8a0303;
   transform: scale(1.05);
+}
+
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 0.9;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast.success {
+  background-color: #038a62;
+}
+
+.toast.error {
+  background-color: #f44336;
+}
+
+.toast.fade-out {
+  opacity: 0;
 }
