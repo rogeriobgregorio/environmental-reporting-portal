@@ -389,15 +389,15 @@ function closeEditModal() {
 // Função para abrir o modal com os comentários
 export function showCommentsModal(report) {
   const modalHtml = `
-    <div id="commentsModal" class="modal">
-      <div class="modal-content">
+    <div id="commentsModal" class="comment-modal">
+      <div class="comment-modal-content">
         <h3>Comentários</h3>
-        <div id="commentsList"></div>
         <form id="commentForm">
           <textarea id="commentContent" placeholder="Digite seu comentário..." required></textarea>
-          <button type="submit" class="submit-comment-btn">Enviar</button>
-        </form>
-        <button id="closeModalBtn" class="modal-button close-button">Fechar</button>
+          <button type="submit" class="submit-comment-btn">Comentar</button>
+        </form>         
+        <div id="commentsList"></div>
+         <button id="closeModalBtn" class="comment-modal-close-button">Fechar</button>        
       </div>
     </div>
   `;
@@ -417,7 +417,6 @@ export function showCommentsModal(report) {
     }
   };
 }
-
 
 async function submitComment(reportId, content) {
   const token = localStorage.getItem("jwtToken");
@@ -448,7 +447,7 @@ async function submitComment(reportId, content) {
 
     if (response.ok) {
       fetchReportDetailsAndUpdateModal(reportId);
-      document.getElementById("commentContent").value = ""; 
+      document.getElementById("commentContent").value = "";
     } else {
       throw new Error("Erro ao criar comentário.");
     }
@@ -458,7 +457,7 @@ async function submitComment(reportId, content) {
   }
 }
 
-async function fetchReportDetailsAndUpdateModal(reportId) {
+export async function fetchReportDetailsAndUpdateModal(reportId) {
   const token = localStorage.getItem("jwtToken");
 
   try {
@@ -474,7 +473,7 @@ async function fetchReportDetailsAndUpdateModal(reportId) {
 
     if (response.ok) {
       const report = await response.json();
-      updateCommentsInModal(report.comments);
+      updateCommentsInModal(report.comments, reportId);
     } else {
       throw new Error("Erro ao buscar detalhes da denúncia.");
     }
@@ -483,22 +482,62 @@ async function fetchReportDetailsAndUpdateModal(reportId) {
   }
 }
 
-function updateCommentsInModal(comments) {
+export function updateCommentsInModal(comments, reportId) {
   const commentsList = document.getElementById("commentsList");
   commentsList.innerHTML = comments.length
     ? comments
         .map(
           (comment) => `
           <div class="comment">
-            <p><strong>${comment.author.name}:</strong> ${comment.content}</p>
-            <span class="timestamp">${new Date(
-              comment.timestamp
-            ).toLocaleString()}</span>
+            <div class="comment-header">
+              <div class="left">
+                <i class="profile-icon fa fa-user-circle"></i>
+                <strong>${comment.author.name}</strong>
+              </div>
+              <div class="right">
+                <span class="timestamp">${new Date(comment.timestamp).toLocaleString()}
+                </span>
+                  <i class="fa-solid fa-trash delete-comment-icon" onclick="deleteComment('${comment.id}', '${reportId}')"></i>
+              </div>
+            </div>
+            <div class="comment-body">
+              <p>${comment.content}</p>
+            </div>
           </div>
         `
         )
         .join("")
     : "<p>Seja o primeiro a comentar</p>";
+}
+
+async function deleteComment(commentId, reportId) {
+  const token = localStorage.getItem("jwtToken");
+
+  if (!token) {
+    alert("Você precisa estar logado para excluir um comentário.");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:8080/api/v1/comments/${commentId}/${reportId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.ok) {
+      fetchReportDetailsAndUpdateModal(reportId);
+    } else {
+      throw new Error("Erro ao deletar o comentário.");
+    }
+  } catch (error) {
+    console.error("Erro ao deletar o comentário:", error);
+    showToast("Não foi possível excluir o comentário.", "error");
+  }
 }
 
 export function addCommentToModal(comment) {
@@ -523,3 +562,4 @@ window.addCommentToModal = addCommentToModal;
 window.showCommentsModal = showCommentsModal;
 window.closeEditModal = closeEditModal;
 window.showEditModal = showEditModal;
+window.deleteComment = deleteComment;

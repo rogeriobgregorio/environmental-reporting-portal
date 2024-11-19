@@ -56,7 +56,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/comments").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.PUT, "/comments/{id}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/comments/{id}").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.DELETE, "/comments/{id}").hasAnyRole(ADMIN, USER)
+                        .requestMatchers(HttpMethod.DELETE, "/comments/{commentId}/{reportId}").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/comments/search/name-email").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/reports").permitAll()
                         .requestMatchers(HttpMethod.POST, "/reports").hasAnyRole(ADMIN, USER)

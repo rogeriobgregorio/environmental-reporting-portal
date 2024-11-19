@@ -48,6 +48,7 @@ public class Report implements Serializable {
     @NotNull(message = "The image URLs cannot be null.")
     private List<String> imageURLs = new ArrayList<>();
 
+    @DBRef
     private List<Comment> comments = new ArrayList<>();
 
     public Report() {

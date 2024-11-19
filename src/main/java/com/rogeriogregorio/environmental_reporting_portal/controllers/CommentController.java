@@ -107,10 +107,10 @@ public class CommentController {
             @ApiResponse(responseCode = "404", description = "Nenhum comentário encontrado"),
             @ApiResponse(responseCode = "500", description = "Erro ao deletar comentário")
     })
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteComment(@PathVariable String id) {
+    @DeleteMapping(value = "/{commentId}/{reportId}")
+    public ResponseEntity<Void> deleteComment(@PathVariable String commentId, @PathVariable String reportId) {
 
-        commentService.deleteComment(id);
+        commentService.deleteComment(commentId, reportId);
 
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)

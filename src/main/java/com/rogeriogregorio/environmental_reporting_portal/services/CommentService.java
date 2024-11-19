@@ -18,7 +18,7 @@ public interface CommentService {
 
     CommentResponse findCommentById(String id);
 
-    void deleteComment(String id);
+    void deleteComment(String commentId, String reportId);
 
     Comment getCommentIfExists(String id);
 

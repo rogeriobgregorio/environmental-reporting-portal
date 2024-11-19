@@ -66,10 +66,9 @@ public class CommentServiceImpl implements CommentService {
                 .withContent(commentRequest.getContent())
                 .build();
 
-        report.getComments().add(comment);
-        reportRepository.save(report);
-
         Comment commentSaved = catchError.run(() -> commentRepository.save(comment));
+        report.getComments().add(commentSaved);
+        reportRepository.save(report);
         LOGGER.info("Comment created: {}", commentSaved);
         return dataMapper.map(commentSaved, CommentResponse.class);
     }
@@ -93,10 +92,14 @@ public class CommentServiceImpl implements CommentService {
                 .orElseThrow(() -> new NotFoundException("Comment not found with ID: " + id + "."));
     }
 
-    public void deleteComment(String id) {
+    public void deleteComment(String commentId, String reportId) {
 
-        Comment comment = getCommentIfExists(id);
+        Comment comment = getCommentIfExists(commentId);
+        Report report = reportService.getReportIfExists(reportId);
+
         catchError.run(() -> commentRepository.delete(comment));
+        report.getComments().remove(comment);
+        reportRepository.save(report);
         LOGGER.warn("Comment deleted: {}", comment);
     }
 
