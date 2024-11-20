@@ -10,7 +10,7 @@ class StatisticsComponent extends HTMLElement {
     this.innerHTML = `
       <section id="statistics" class="statistics">
         <h2>Estatísticas</h2>
-        <h3>Veja a situação atual das denúncias em nossa plataforma.</h3>
+        <h3>Veja a situação atual das denúncias recebidas em nossa plataforma</h3>
         <canvas id="typeChart"></canvas>
         <canvas id="statusChart"></canvas>
         <canvas id="severityChart"></canvas>
