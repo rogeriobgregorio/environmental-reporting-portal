@@ -21,5 +21,4 @@ class HeroComponent extends HTMLElement {
     initializeHeroEvents();
   }
 }
-
 customElements.define("hero-component", HeroComponent);
