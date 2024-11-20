@@ -1,4 +1,4 @@
-/* Define a seção para manter os gráficos organizados */
+/* Seção de Estatísticas*/
 .statistics {
   display: flex;
   flex-direction: column;
@@ -6,10 +6,8 @@
   align-items: center;
   padding: 20px;
   margin-top: 120px;
-  gap: 50px;
 }
 
-/* Limitar o tamanho de cada gráfico */
 .statistics canvas {
   background-color: #f7f7f7;
   padding: 1.25rem;
@@ -17,8 +15,7 @@
   max-width: 49.5rem;
   max-height: 39.5rem;
   border-radius: 1.875rem;
-  margin: 1.25rem;
-  margin: 0;
+  margin: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -26,11 +23,11 @@
   color: #046245;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2.5rem;
   margin-left: 2.5rem;
 }
 
 .statistics h3 {
   font-size: 1.5rem;
-  color: #046245;
+  font-weight: 300;
+  margin-bottom: 0.625rem;
 }

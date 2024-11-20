@@ -16,7 +16,7 @@ export async function fetchReports() {
   }
 }
 
-// Função para gerar o gráfico de Tipos de Denúncias
+// Função para gerar o gráfico de Tipos de Denúncias (agora um gráfico de barras)
 export function generateTypeChart(reports) {
   const reportTypes = {
     AIR_POLLUTION: 0,
@@ -45,7 +45,7 @@ export function generateTypeChart(reports) {
 
   const ctx = document.getElementById("typeChart").getContext("2d");
   new Chart(ctx, {
-    type: "pie",
+    type: "bar",
     data: {
       labels: Object.keys(reportTypes).map((type) => translateReportType(type)),
       datasets: [
@@ -53,10 +53,10 @@ export function generateTypeChart(reports) {
           label: "Quantidade de Denúncias por Tipo",
           data: Object.values(reportTypes),
           backgroundColor: Object.keys(reportTypes).map(
-            (type) => typeColors[type] || "rgba(0, 0, 0, 0.6)"
-          ), 
+            (type) => typeColorsBar[type]
+          ),
           borderColor: Object.keys(reportTypes).map(
-            (type) => typeColors[type] || "rgba(0, 0, 0, 1)"
+            (type) => typeColorsBorder[type]
           ),
           borderWidth: 1,
         },
@@ -70,22 +70,49 @@ export function generateTypeChart(reports) {
           labels: {
             font: {
               size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
+            boxWidth: 0,
           },
         },
         tooltip: {
           bodyFont: {
-            size: 18, // Aumenta o tamanho da fonte do tooltip
+            size: 18,
+            family: "Roboto",
+            weight: 700,
+            color: "#000000",
           },
         },
       },
-      scale: {
-        ticks: { beginAtZero: true },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            font: {
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
+            },
+            stepSize: 1,
+          },
+        },
+        x: {
+          ticks: {
+            font: {
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
+            },
+          },
+        },
       },
     },
   });
 }
-
 
 // Função para gerar o gráfico de Status das Denúncias
 export function generateStatusChart(reports) {
@@ -140,13 +167,20 @@ export function generateStatusChart(reports) {
         legend: {
           labels: {
             font: {
-              size: 18, // Aumenta o tamanho da fonte da legenda
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
+            boxWidth: 0,
           },
         },
         tooltip: {
           bodyFont: {
-            size: 18, // Aumenta o tamanho da fonte do tooltip
+            size: 18,
+            family: "Roboto",
+            weight: 700,
+            color: "#000000",
           },
         },
       },
@@ -156,14 +190,20 @@ export function generateStatusChart(reports) {
             beginAtZero: true,
             stepSize: 1,
             font: {
-              size: 18, // Aumenta o tamanho da fonte dos rótulos do eixo Y
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
           },
         },
         x: {
           ticks: {
             font: {
-              size: 18, // Aumenta o tamanho da fonte dos rótulos do eixo X
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
           },
         },
@@ -188,9 +228,25 @@ export function generateSeverityChart(reports) {
     }
   });
 
+  const severityColorsBar = {
+    VERY_LOW: "rgba(0, 0, 255, 0.2)",  
+    LOW: "rgba(0, 255, 0, 0.2)",       
+    MEDIUM: "rgba(255, 255, 0, 0.2)",  
+    HIGH: "rgba(255, 165, 0, 0.2)",    
+    VERY_HIGH: "rgba(255, 0, 0, 0.2)", 
+  };
+
+    const severityColorsBorder = {
+      VERY_LOW: "rgba(0, 0, 255, 1)", 
+      LOW: "rgba(0, 255, 0, 1)", 
+      MEDIUM: "rgba(255, 255, 0, 1)", 
+      HIGH: "rgba(255, 165, 0, 1)", 
+      VERY_HIGH: "rgba(255, 0, 0, 1)", 
+    };
+
   const ctx = document.getElementById("severityChart").getContext("2d");
   new Chart(ctx, {
-    type: "radar",
+    type: "bar",
     data: {
       labels: Object.keys(severityCount).map((severity) =>
         translateSeverity(severity)
@@ -199,9 +255,12 @@ export function generateSeverityChart(reports) {
         {
           label: "Distribuição de Severidade das Denúncias",
           data: Object.values(severityCount),
-          fill: true,
-          backgroundColor: "rgba(255, 159, 64, 0.2)",
-          borderColor: "rgba(255, 159, 64, 1)",
+          backgroundColor: Object.keys(severityCount).map(
+            (severity) => severityColorsBar[severity]
+          ),
+          borderColor: Object.keys(severityCount).map(
+            (severity) => severityColorsBorder[severity]
+          ),
           borderWidth: 1,
         },
       ],
@@ -213,36 +272,43 @@ export function generateSeverityChart(reports) {
         legend: {
           labels: {
             font: {
-              size: 18, // Aumenta o tamanho da fonte da legenda
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
+            boxWidth: 0,
           },
         },
         tooltip: {
           bodyFont: {
-            size: 18, // Aumenta o tamanho da fonte do tooltip
+            size: 18,
+            family: "Roboto",
+            weight: 700,
+            color: "#000000",
           },
         },
       },
       scales: {
-        r: {
+        y: {
           ticks: {
             beginAtZero: true,
             stepSize: 1,
-            precision: 0,
             font: {
-              size: 18, // Aumenta o tamanho da fonte dos rótulos dos eixos
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
           },
-          angleLines: {
-            display: true,
-            lineWidth: 1,
-          },
-          grid: {
-            circular: false,
-          },
-          pointLabels: {
+        },
+        x: {
+          ticks: {
             font: {
-              size: 18, // Aumenta o tamanho da fonte dos rótulos ao redor do gráfico (os pontos)
+              size: 18,
+              family: "Roboto",
+              weight: 700,
+              color: "#000000",
             },
           },
         },
@@ -293,22 +359,41 @@ const translateSeverity = (severity) =>
     VERY_HIGH: "Muito alto",
   }[severity] || severity);
 
-const typeColors = {
-  AIR_POLLUTION: "rgba(255, 66, 182, 1.0)", // Cor para Poluição do ar
-  ANIMAL_ABUSE: "rgba(0, 123, 255, 1.0)", // Cor para Maus-tratos a animais (azul)
-  DEFORESTATION: "rgba(255, 159, 64, 0.6)", // Cor para Desmatamento (laranja)
-  GREEN_AREA_INVASION: "rgba(0, 255, 0, 0.6)", // Cor para Invasão de área verde (verde)
-  ILLEGAL_DRAINAGE: "rgba(54, 162, 235, 0.3)", // Cor para Drenagem ilegal (azul claro)
-  ILLEGAL_FENCING: "rgba(255, 205, 86, 0.6)", // Cor para Cercamento ilegal (amarelo)
-  ILLEGAL_HUNTING: "rgba(102, 51, 153, 0.6)", // Cor para Caça ilegal (roxo)
-  ILLEGAL_MINING: "rgba(255, 69, 0, 0.6)", // Cor para Mineração ilegal (vermelho escuro)
-  ILLEGAL_PRUNING: "rgba(255, 105, 180, 0.8)", // Cor para Poda ilegal (rosa)
-  ILLEGAL_TREE_REMOVAL: "rgba(34, 139, 34, 0.6)", // Cor para Remoção ilegal de árvores (verde escuro)
-  ILLEGAL_WASTE_DISPOSAL: "rgba(255, 99, 71, 0.6)", // Cor para Descarte ilegal de resíduos (tomato)
-  SOIL_CONTAMINATION: "rgba(139, 69, 19, 0.6)", // Cor para Contaminação do solo (marrom)
-  WATER_CONTAMINATION: "rgba(30, 144, 255, 0.6)", // Cor para Contaminação da água (azul escuro)
-  ECOLOGICAL_IMBALANCE: "rgba(255, 20, 147, 0.2)", // Cor para Desequilíbrio ecológico (deep pink)
-  WILDFIRE: "rgba(255, 69, 0, 1.0)", // Cor para Queimada ilegal (vermelho)
-  OTHER: "rgba(255, 255, 0, 0.6)", // Cor para Outro (amarelo claro)
+const typeColorsBar = {
+  AIR_POLLUTION: "rgba(255, 66, 182, 0.2)",
+  ANIMAL_ABUSE: "rgba(0, 123, 255, 0.2)",
+  DEFORESTATION: "rgba(255, 159, 64, 0.2)",
+  GREEN_AREA_INVASION: "rgba(0, 255, 0, 0.2)",
+  ILLEGAL_DRAINAGE: "rgba(54, 162, 235, 0.2)",
+  ILLEGAL_FENCING: "rgba(255, 205, 86, 0.2)",
+  ILLEGAL_HUNTING: "rgba(102, 51, 153, 0.2)",
+  ILLEGAL_MINING: "rgba(255, 69, 0, 0.2)",
+  ILLEGAL_PRUNING: "rgba(255, 105, 180, 0.2)",
+  ILLEGAL_TREE_REMOVAL: "rgba(34, 139, 34, 0.2)",
+  ILLEGAL_WASTE_DISPOSAL: "rgba(255, 99, 71, 0.2)",
+  SOIL_CONTAMINATION: "rgba(139, 69, 19, 0.2)",
+  WATER_CONTAMINATION: "rgba(30, 144, 255, 0.2)",
+  ECOLOGICAL_IMBALANCE: "rgba(255, 20, 147, 0.2)",
+  WILDFIRE: "rgba(255, 69, 0, 0.2)",
+  OTHER: "rgba(255, 255, 0, 0.2)",
+};
+
+const typeColorsBorder = {
+  AIR_POLLUTION: "rgba(255, 66, 182, 1)",
+  ANIMAL_ABUSE: "rgba(0, 123, 255, 1)",
+  DEFORESTATION: "rgba(255, 159, 64, 1)",
+  GREEN_AREA_INVASION: "rgba(0, 255, 0, 1)",
+  ILLEGAL_DRAINAGE: "rgba(54, 162, 235, 1)",
+  ILLEGAL_FENCING: "rgba(255, 205, 86, 1)",
+  ILLEGAL_HUNTING: "rgba(102, 51, 153, 1)",
+  ILLEGAL_MINING: "rgba(255, 69, 0, 1)",
+  ILLEGAL_PRUNING: "rgba(255, 105, 180, 1)",
+  ILLEGAL_TREE_REMOVAL: "rgba(34, 139, 34, 1)",
+  ILLEGAL_WASTE_DISPOSAL: "rgba(255, 99, 71, 1)",
+  SOIL_CONTAMINATION: "rgba(139, 69, 19, 1)",
+  WATER_CONTAMINATION: "rgba(30, 144, 255, 1)",
+  ECOLOGICAL_IMBALANCE: "rgba(255, 20, 147, 1)",
+  WILDFIRE: "rgba(255, 69, 0, 1)",
+  OTHER: "rgba(255, 255, 0, 1)",
 };
 

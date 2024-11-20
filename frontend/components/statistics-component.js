@@ -10,16 +10,15 @@ class StatisticsComponent extends HTMLElement {
     this.innerHTML = `
       <section id="statistics" class="statistics">
         <h2>Estatísticas</h2>
+        <h3>Veja a situação atual das denúncias em nossa plataforma.</h3>
         <canvas id="typeChart"></canvas>
         <canvas id="statusChart"></canvas>
         <canvas id="severityChart"></canvas>
       </section>
     `;
 
-    // Recuperar os dados dos reports
     const reports = await fetchReports();
 
-    // Gerar os gráficos com os dados dos reports
     generateTypeChart(reports);
     generateStatusChart(reports);
     generateSeverityChart(reports);
