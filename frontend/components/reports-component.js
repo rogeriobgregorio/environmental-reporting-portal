@@ -9,7 +9,7 @@ class ReportsComponent extends HTMLElement {
     const totalReportsCount = reports.length;
 
     const reportsHtml = reports.length
-      ? reports.map((report) => renderReportCard(report, role)).join("")
+      ? reports.map((report) => renderReportCard(report, role)).reverse().join("")
       : ` 
         <div class="all-reports-list">
           <div class="no-reports">

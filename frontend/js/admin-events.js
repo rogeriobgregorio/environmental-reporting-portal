@@ -78,6 +78,7 @@ async function fetchAllReports(token, element) {
       const role = parseJwt(token).role;
       allReportsListElement.innerHTML = reportsData
         .map((report) => renderReportCard(report, role))
+        .reverse()
         .join("");
     } else {
       allReportsListElement.innerHTML = `

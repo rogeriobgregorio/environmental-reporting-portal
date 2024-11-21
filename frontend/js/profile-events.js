@@ -89,6 +89,7 @@ async function fetchUserReports(userId, token, element) {
       const role = parseJwt(token).role;
       reportListElement.innerHTML = reportsData
         .map((report) => renderReportCard(report, role))
+        .reverse()
         .join("");
     } else {
       reportListElement.innerHTML = `
