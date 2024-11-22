@@ -19,7 +19,7 @@ import java.util.UUID;
 @Component
 public class FileStorageImpl implements FileStorage {
 
-    private static final String STORAGE_DIRECTORY = "uploads/";
+    private static final String STORAGE_DIRECTORY = "resources/";
     private static final Logger LOGGER = LogManager.getLogger(FileStorageImpl.class);
 
     private final CatchError catchError;
@@ -51,7 +51,7 @@ public class FileStorageImpl implements FileStorage {
 
         for (MultipartFile file : files) {
 
-            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
             Path path = Paths.get(STORAGE_DIRECTORY + fileName);
 
             catchError.run(() -> {
