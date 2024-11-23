@@ -19,7 +19,7 @@ import java.util.UUID;
 @Component
 public class FileStorageImpl implements FileStorage {
 
-    private static final String STORAGE_DIRECTORY = "resources/";
+    private static final String STORAGE_DIRECTORY = "uploads/";
     private static final Logger LOGGER = LogManager.getLogger(FileStorageImpl.class);
 
     private final CatchError catchError;

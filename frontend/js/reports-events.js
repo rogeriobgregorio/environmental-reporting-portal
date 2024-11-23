@@ -516,6 +516,10 @@ export function updateCommentsInModal(comments, reportId) {
 }
 
 async function deleteComment(commentId, reportId) {
+  showDeleteCommentModal(commentId, reportId);
+}
+
+async function deleteCommentConfirmed(commentId, reportId) {
   const token = localStorage.getItem("jwtToken");
 
   if (!token) {
@@ -530,7 +534,7 @@ async function deleteComment(commentId, reportId) {
     const commentResponse = await fetch(
       `http://127.0.0.1:8080/api/v1/comments/${commentId}`,
       {
-        method: "GET"
+        method: "GET",
       }
     );
 
@@ -569,7 +573,6 @@ async function deleteComment(commentId, reportId) {
   }
 }
 
-
 export function addCommentToModal(comment) {
   const commentsList = document.getElementById("commentsList");
   const commentHtml = `
@@ -588,6 +591,33 @@ export function addCommentToModal(comment) {
   commentsList.insertAdjacentHTML("beforeend", commentHtml);
 }
 
+function showDeleteCommentModal(commentId, reportId) {
+  const modalHtml = `
+    <div id="deleteCommentModal" class="modal">
+      <div class="modal-content">
+        <h3>Você tem certeza que deseja deletar este comentário?</h3>
+        <button id="confirmDeleteComment" class="modal-button delete-button">Deletar</button>
+        <button id="cancelDeleteComment" class="modal-button cancel-button">Cancelar</button>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", modalHtml);
+  const modal = document.getElementById("deleteCommentModal");
+
+  document.getElementById("cancelDeleteComment").onclick = () =>
+    closeModal(modal);
+  document.getElementById("confirmDeleteComment").onclick = async () => {
+    await deleteCommentConfirmed(commentId, reportId);
+    closeModal(modal);
+  };
+
+  function closeModal(modalElement) {
+    modalElement.remove();
+  }
+}
+
+window.showDeleteCommentModal = showDeleteCommentModal;
 window.addCommentToModal = addCommentToModal;
 window.showCommentsModal = showCommentsModal;
 window.closeEditModal = closeEditModal;

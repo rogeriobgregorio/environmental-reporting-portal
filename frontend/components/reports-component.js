@@ -24,7 +24,7 @@ class ReportsComponent extends HTMLElement {
         <h2>Denúncias</h2>
         <div class="total-reports">
           <i class="fa-solid fa-file-alt"></i>
-          <span>Total de Denúncias recebidas até o momento: ${totalReportsCount}</span>
+          <span>Total de denúncias recebidas até o momento: ${totalReportsCount}</span>
         </div>
         <div class="cards">
           ${reportsHtml}
