@@ -28,7 +28,7 @@ export async function fetchMessages() {
 
     if (response.ok) {
       messages = await response.json();
-      renderMessages(messages);
+      renderMessages(messages.reverse());
     } else {
       throw new Error("Erro ao buscar mensagens.");
     }
