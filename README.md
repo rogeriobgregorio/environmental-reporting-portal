@@ -6,6 +6,8 @@ reportar situações que prejudicam o meio ambiente. Construída em Java e Ecoss
 de princípios SOLID, além de Design Patterns para criar um software flexível, escalável e de fácil manutenção.
 Utiliza tecnologias como JWT, JUnit, Mockito e log4j2 para garantir a qualidade e eficiência do sistema.
 
+#### Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
+
 ## Problema a ser resolvido:
 Este software visa resolver a falta de um canal seguro, eficiente e organizado para a denúncia e o monitoramento de 
 problemas ambientais, proporcionando uma plataforma acessível para cidadãos e autoridades reportarem e acompanharem 
@@ -72,9 +74,10 @@ A interface para consumir a API esta localizada na pasta "front-end".
 
 5. Abra a página index.html no browser utilizando um servidor, como live server por exemplo.
 
-6. Utilize o usuário **admin@email.com** e a senha **myscret** (ou outra senha que você tenha definido no passo 8) para logar como administrador.
+6. Importante: as variáveis de ambiente do projeto "JWT_SECRET" e "PASSWORD_SECRET" devem receber o valor "mysecret" ou qualquer outro que você desejar.
 
-7. Importante: as variáveis de ambiente do projeto "JWT_SECRET" e "PASSWORD_SECRET" devem receber o valor "mysecret" ou qualquer outro que você desejar.
+7. Utilize o usuário **admin@email.com** e a senha **myscret** (ou outra senha que você tenha definido no passo 6) para logar como administrador.
+
 
 ## Referência
 
