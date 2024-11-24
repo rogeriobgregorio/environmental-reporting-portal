@@ -25,3 +25,68 @@ segurança e gestão eficaz das denúncias.
 
 **Diagrama Entidade-Relacionamento**
 ![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/diagrams/diagram-der.png)
+
+## Stack utilizada
+
+**Back-end:**
+- Java 17
+- Spring Boot
+- Spring Data MongoDB
+- Spring Security
+- JWT
+
+**Front-end:**
+- HTML5
+- CSS3
+- Javascript
+
+**Banco de Dados:**
+- MongoDB
+- MongoDB Compass
+
+## Rodando localmente
+
+Siga as etapas abaixo para configurar e executar o projeto Java com Spring localmente:
+
+1. Certifique-se de ter o Java 17 JDK instalado. Caso não tenha, faça o download e a instalação a partir do site oficial da Orecle.
+
+2. Clone o repositório do projeto:
+```bash
+  git clone https://github.com/rogeriobgregorio/environmental-reporting-portal
+```
+
+3. Acesse o diretório do projeto:
+```bash
+  cd environmental-reporting-portal
+```
+
+4. Execute o projeto:
+```bash
+  ./mvnw spring-boot:run
+```
+Se preferir, abra o projeto em uma IDE, como IntelliJ por exemplo, e execute o projeto.
+
+Após concluir essas etapas, o seu servidor Spring estará em execução localmente na porta 8080.
+
+A interface para consumir a API esta localizada na pasta "front-end".
+
+5. Abra a página index.html no browser utilizando um servidor, como live server por exemplo.
+
+6. Utilize o usuário **admin@email.com** e a senha **myscret** (ou outra senha que você tenha definido no passo 8) para logar como administrador.
+
+7. Importante: as variáveis de ambiente do projeto "JWT_SECRET" e "PASSWORD_SECRET" devem receber o valor "mysecret" ou qualquer outro que você desejar.
+
+## Referência
+
+- [Documentação da API](http://localhost:8080/swagger-ui/index.html#)
+  A documentação completa da API pode ser acessada localmente ao executar a aplicação e visitar http://localhost:8080/swagger-ui/index.html#. Esta interface interativa, gerada pelo Swagger, fornece detalhes sobre cada endpoint, parâmetros de solicitação, respostas esperadas e exemplos práticos de uso.
+
+- [Spring Framework](https://spring.io/)
+  Consulte a documentação oficial do Spring Framework para obter informações detalhadas sobre o framework utilizado no backend. Esta referência abrange conceitos fundamentais, configurações avançadas e as melhores práticas recomendadas pela comunidade Spring.
+
+- [Swagger Documentation](https://swagger.io/)
+  O Swagger é integrado à API para facilitar a compreensão e interação. Obtenha mais informações sobre o Swagger em https://swagger.io/.
+## Autores
+#### Rogério Bernardo Gregório
+- [Github](https://github.com/rogeriobgregorio)
+- [LinkedIn](https://www.linkedin.com/in/rogeriogregorio/)
