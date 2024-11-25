@@ -15,7 +15,7 @@ public class UserRequest implements Serializable {
     private String email;
     private String password;
     private UserRole role;
-    private Instant timeStamp;
+    private Instant timestamp;
 
     public UserRequest() {
     }
@@ -25,7 +25,7 @@ public class UserRequest implements Serializable {
         setEmail(builder.email);
         setPassword(builder.password);
         setRole(builder.role);
-        setTimeStamp(builder.timeStamp);
+        setTimestamp(builder.timestamp);
     }
 
     public static Builder newBuilder() {
@@ -64,12 +64,12 @@ public class UserRequest implements Serializable {
         this.role = role;
     }
 
-    public Instant getTimeStamp() {
-        return timeStamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(Instant timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Builder toBuilder() {
@@ -79,7 +79,7 @@ public class UserRequest implements Serializable {
                 .withEmail(this.email)
                 .withPassword(this.password)
                 .withRole(this.role)
-                .withTimeStamp(this.timeStamp);
+                .withTimestamp(this.timestamp);
     }
 
     public static final class Builder {
@@ -87,7 +87,7 @@ public class UserRequest implements Serializable {
         private String email;
         private String password;
         private UserRole role;
-        private Instant timeStamp;
+        private Instant timestamp;
 
         private Builder() {
         }
@@ -112,8 +112,8 @@ public class UserRequest implements Serializable {
             return this;
         }
 
-        public Builder withTimeStamp(Instant timeStamp) {
-            this.timeStamp = timeStamp;
+        public Builder withTimestamp(Instant timeStamp) {
+            this.timestamp = timeStamp;
             return this;
         }
 
