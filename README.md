@@ -6,7 +6,10 @@ reportar situações que prejudicam o meio ambiente. Construída em Java e Ecoss
 de princípios SOLID, além de Design Patterns para criar um software flexível, escalável e de fácil manutenção.
 Utiliza tecnologias como JWT, JUnit, Mockito e log4j2 para garantir a qualidade e eficiência do sistema.
 
-#### Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
+## Demonstração
+Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
+![ecoar-gif](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/ECOAR.gif)
+
 
 ## Problema a ser resolvido:
 Este software visa resolver a falta de um canal seguro, eficiente e organizado para a denúncia e o monitoramento de 
@@ -26,7 +29,7 @@ segurança e gestão eficaz das denúncias.
 ## Modelo Conceitual
 
 **Diagrama Entidade-Relacionamento**
-![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/diagrams/diagram-der.png)
+![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/diagram-der.png)
 
 ## Stack utilizada
 
@@ -36,6 +39,8 @@ segurança e gestão eficaz das denúncias.
 - Spring Data MongoDB
 - Spring Security
 - JWT
+- Junit
+- Mockito
 
 **Front-end:**
 - HTML5
