@@ -7,7 +7,8 @@ de princípios SOLID, além de Design Patterns para criar um software flexível,
 Utiliza tecnologias como JWT, JUnit, Mockito e log4j2 para garantir a qualidade e eficiência do sistema.
 
 ## Demonstração
-Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
+#### Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
+O Environmental Reporting Portal foi utilizado para o funcionamento do projeto **ECOAR** (Espaço de Concientização e Ação Ambiental Responsável):
 ![ecoar-gif](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/ECOAR.gif)
 
 
