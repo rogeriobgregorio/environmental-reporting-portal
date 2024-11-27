@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/comments")
+@RequestMapping(value = "/comments", produces = {"application/json"})
 @Tag(name = "Comments API", description = "API para gestão de comentários")
 public class CommentController {
 

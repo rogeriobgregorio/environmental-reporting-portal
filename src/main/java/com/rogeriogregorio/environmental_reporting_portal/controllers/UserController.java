@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/users", produces = {"application/json"})
 @Tag(name = "Users API", description = "API para gestão de usuários")
 public class UserController {
 

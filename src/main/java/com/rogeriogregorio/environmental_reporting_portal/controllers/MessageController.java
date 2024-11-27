@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/messages")
+@RequestMapping(value = "/messages", produces = {"application/json"})
 @Tag(name = "Messages API", description = "API para gestão de mensagens")
 public class MessageController {
 

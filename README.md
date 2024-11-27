@@ -47,6 +47,7 @@ segurança e gestão eficaz das denúncias.
 - HTML5
 - CSS3
 - Javascript
+- Charts.js
 
 **Banco de Dados:**
 - MongoDB
@@ -87,8 +88,8 @@ A interface para consumir a API esta localizada na pasta "front-end".
 
 ## Referência
 
-- [Documentação da API](http://localhost:8080/swagger-ui/index.html#)
-  A documentação completa da API pode ser acessada localmente ao executar a aplicação e visitar http://localhost:8080/swagger-ui/index.html#. Esta interface interativa, gerada pelo Swagger, fornece detalhes sobre cada endpoint, parâmetros de solicitação, respostas esperadas e exemplos práticos de uso.
+- [Documentação da API](http://localhost:8080/api/v1/swagger-ui/index.html#)
+  A documentação completa da API pode ser acessada localmente ao executar a aplicação e visitar http://localhost:8080/api/v1/swagger-ui/index.html#. Esta interface interativa, gerada pelo Swagger, fornece detalhes sobre cada endpoint, parâmetros de solicitação, respostas esperadas e exemplos práticos de uso.
 
 - [Spring Framework](https://spring.io/)
   Consulte a documentação oficial do Spring Framework para obter informações detalhadas sobre o framework utilizado no backend. Esta referência abrange conceitos fundamentais, configurações avançadas e as melhores práticas recomendadas pela comunidade Spring.

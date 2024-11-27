@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/mail")
+@RequestMapping(value = "/mail", produces = {"application/json"})
 public class MailController {
 
     private final MailService mailService;

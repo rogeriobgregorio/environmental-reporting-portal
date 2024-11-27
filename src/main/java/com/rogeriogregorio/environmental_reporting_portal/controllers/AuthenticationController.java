@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/authenticate")
+@RequestMapping(value = "/authenticate", produces = {"application/json"})
 @Tag(name = "Authentication API", description = "API para autenticação")
 public class AuthenticationController {
 

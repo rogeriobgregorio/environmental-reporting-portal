@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/reports")
+@RequestMapping(value = "/reports", produces = {"application/json"})
 @Tag(name = "Reports API", description = "API para gestão de denúncias")
 public class ReportController {
 
