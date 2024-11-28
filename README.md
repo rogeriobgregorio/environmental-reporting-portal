@@ -8,7 +8,10 @@ Utiliza tecnologias como MongoDB, JWT, JUnit, Mockito e log4j2 para garantir a q
 
 ## Demonstração
 #### Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
-O Environmental Reporting Portal foi utilizado para o funcionamento do projeto **ECOAR** (Espaço de Concientização e Ação Ambiental Responsável):
+O Environmental Reporting Portal foi utilizado para o funcionamento do projeto **ECOAR** (Espaço de Concientização e Ação
+Ambiental Responsável). O sistema foi apresentado na **7º Engetec – Encontro de Gestão e Tecnologia**, um evento científico 
+organizado e sediado pela **FATEC Zona Leste** (Faculdade de Tecnologia da Zona Leste):
+
 ![ecoar-gif](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/ECOAR.gif)
 
 
@@ -56,7 +59,8 @@ segurança e gestão eficaz das denúncias.
 ## Documentação
 
 [Documentação da API](http://localhost:8080/api/v1/swagger-ui/index.html#):
-a documentação completa da API pode ser acessada localmente ao executar a aplicação e visitar http://localhost:8080/api/v1/swagger-ui/index.html#. Esta interface interativa, gerada pelo Swagger, fornece detalhes sobre cada endpoint, parâmetros de solicitação, respostas esperadas e exemplos práticos de uso.
+a documentação completa da API pode ser acessada localmente ao executar a aplicação e visitar http://localhost:8080/api/v1/swagger-ui/index.html#. 
+Esta interface interativa, gerada pelo Swagger, fornece detalhes sobre cada endpoint, parâmetros de solicitação, respostas esperadas e exemplos práticos de uso.
 
 ## Rodando localmente
 
@@ -94,16 +98,18 @@ A interface para consumir a API esta localizada na pasta "front-end".
 ## Referência
 
 - [Spring Framework](https://spring.io/):
-  consulte a documentação oficial do Spring Framework para obter informações detalhadas sobre o framework utilizado no backend. Esta referência abrange conceitos fundamentais, configurações avançadas e as melhores práticas recomendadas pela comunidade Spring.
+consulte a documentação oficial do Spring Framework para obter informações detalhadas sobre o framework utilizado no backend. 
+Esta referência abrange conceitos fundamentais, configurações avançadas e as melhores práticas recomendadas pela comunidade Spring.
 
 - [Charts.js](https://chartjs.org/): 
-biblioteca de JavaScript utilizada para a criação de gráficos interativos e visualizações de dados em páginas web. Popular devido à sua simplicidade de uso e ao fato de ser baseada em HTML5 canvas, o que permite gerar gráficos em tempo real, mesmo em dispositivos móveis.
+biblioteca de JavaScript utilizada para a criação de gráficos interativos e visualizações de dados em páginas web. Popular 
+devido à sua simplicidade de uso e ao fato de ser baseada em HTML5 canvas, o que permite gerar gráficos em tempo real, mesmo em dispositivos móveis.
 
 - [Swagger Documentation](https://swagger.io/): 
   o Swagger é integrado à API para facilitar a compreensão e interação. Obtenha mais informações sobre o Swagger em https://swagger.io/.
 
-## Autores
-#### Rogério Bernardo Gregório
+## Autor
 
-- [linkedin.com/in/rogeriogregorio](https://www.linkedin.com/in/rogeriogregorio)
-- [github.com/rogeriobgregorio](https://github.com/rogeriobgregorio)
+#### Rogério Bernardo Gregório
+- Linkedin: [linkedin.com/in/rogeriogregorio](https://linkedin.com/in/rogeriogregorio)
+- Email: [bernardo.rogerio93@gmail.com](mailto:bernardo.rogerio93@gmail.com)
