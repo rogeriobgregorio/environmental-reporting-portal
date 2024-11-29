@@ -136,18 +136,21 @@ class UserServiceImplTest {
 
         when(dataMapper.map(user, UserResponse.class)).thenReturn(expectedResponse);
         when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
-        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> userRepository.findById(user.getId()));
+        when(userRepository.save(user)).thenReturn(user);
+        when(dataMapper.map(eq(user), eq(UserResponse.class))).thenReturn(expectedResponse);
+        when(catchError.run(any(CatchError.SafeFunction.class))).then(invocation -> invocation
+                .getArgument(0, CatchError.SafeFunction.class).execute());
 
         // Act
-        UserResponse actualResponse = userService.findUserById(user.getId());
+        UserResponse actualResponse = userService.updateUserRole(user.getId(), userRequest.getRole().toString());
 
         // Assert
         assertNotNull(actualResponse, "User should not be null");
         assertEquals(expectedResponse.getId(), actualResponse.getId(), "IDs should match");
         assertEquals(expectedResponse, actualResponse, "Expected and actual responses should be equal");
         verify(dataMapper, times(1)).map(user, UserResponse.class);
-        verify(userRepository, times(1)).findById(user.getId());
-        verify(catchError, times(1)).run(any(CatchError.SafeFunction.class));
+        verify(userRepository, times(1)).save(user);
+        verify(catchError, times(2)).run(any(CatchError.SafeFunction.class));
     }
 
     @Test
@@ -180,7 +183,7 @@ class UserServiceImplTest {
         when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> userRepository.findById(user.getId()));
 
         // Act and Assert
-        assertThrows(NotFoundException.class, () -> userService.findUserById(user.getId()),
+        assertThrows(NotFoundException.class, () -> userService.findUserById("1"),
                 "Expected NotFoundException to be thrown");
         verify(userRepository, times(1)).findById("1");
         verify(userRepository, never()).save(user);

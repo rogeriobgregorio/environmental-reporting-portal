@@ -7,6 +7,7 @@ class FooterComponent extends HTMLElement {
           <a href="./terms.html">Termos de Uso</a>
           <a href="./lgpd.html">LGPD</a>
           <a href="./policy.html">Políticas de Privacidade</a>
+          <a href="https://www.instagram.com/ecoarfatec/" target="_blank">Instagram</a>
         </div>
         
         <p>&copy; 2024 ECOAR - Todos os Direitos Reservados</p>
