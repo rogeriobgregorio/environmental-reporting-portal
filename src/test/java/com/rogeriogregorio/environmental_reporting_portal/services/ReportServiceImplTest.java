@@ -117,13 +117,15 @@ class ReportServiceImplTest {
         assertNotNull(result);
         assertEquals(1, result.getTotalElements());
         assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError).run((CatchError.SafeFunction<Object>) any());
+        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
     }
 
     @Test
     @DisplayName("createReport - Criação bem-sucedida retorna relatório")
     void shouldCreateReport() {
         // Arrange
+        ReportResponse expectedResponse = reportResponse;
+
         when(userService.getUserIfExists(reportRequest.getAuthorId())).thenReturn(author);
         when(fileStorage.saveFilesAndGetUrls(reportRequest.getImages())).thenReturn(report.getImageURLs());
         when(reportRepository.save(any(Report.class))).thenReturn(report);
@@ -134,12 +136,12 @@ class ReportServiceImplTest {
         ReportResponse actualResponse = reportService.createReport(reportRequest);
 
         // Assert
-        assertNotNull(actualResponse);
-        assertEquals(reportResponse, actualResponse);
-        verify(userService).getUserIfExists(reportRequest.getAuthorId());
-        verify(fileStorage).saveFilesAndGetUrls(reportRequest.getImages());
-        verify(reportRepository).save(any(Report.class));
-        verify(dataMapper).map(report, ReportResponse.class);
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(expectedResponse, actualResponse, "Expected and actual responses should be equal");
+        verify(userService, times(1)).getUserIfExists(reportRequest.getAuthorId());
+        verify(fileStorage, times(1)).saveFilesAndGetUrls(reportRequest.getImages());
+        verify(reportRepository, times(1)).save(any(Report.class));
+        verify(dataMapper, times(1)).map(report, ReportResponse.class);
     }
 
     @Test
@@ -156,7 +158,7 @@ class ReportServiceImplTest {
         // Assert
         assertNotNull(actualResponse);
         assertEquals(reportResponse, actualResponse);
-        verify(reportRepository).findById(report.getId());
+        verify(reportRepository, times(1)).findById(report.getId());
     }
 
     @Test
@@ -168,7 +170,7 @@ class ReportServiceImplTest {
 
         // Act and Assert
         assertThrows(NotFoundException.class, () -> reportService.findReportById("1"));
-        verify(reportRepository).findById(report.getId());
+        verify(reportRepository, times(1)).findById(report.getId());
     }
 
     @Test
@@ -211,8 +213,8 @@ class ReportServiceImplTest {
         assertNotNull(actualResponse);
         assertEquals(reportResponse, actualResponse);
         verify(reportRepository, times(1)).findById(report.getId());
-        verify(reportRepository).save(any(Report.class));
-        verify(dataMapper).map(report, ReportResponse.class);
+        verify(reportRepository, times(1)).save(any(Report.class));
+        verify(dataMapper, times(1)).map(report, ReportResponse.class);
         verify(catchError, times(2)).run(any(CatchError.SafeFunction.class));
     }
 
@@ -223,7 +225,7 @@ class ReportServiceImplTest {
         when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.findById(report.getId()));
 
         assertThrows(NotFoundException.class, () -> reportService.updateReport("1", reportRequest));
-        verify(reportRepository).findById(report.getId());
+        verify(reportRepository, times(1)).findById(report.getId());
     }
 
     @Test
@@ -243,9 +245,9 @@ class ReportServiceImplTest {
 
         assertNotNull(actualResponse, "A resposta não deve ser nula");
         assertEquals(reportResponse, actualResponse, "A resposta deve ser igual à esperada");
-        verify(reportRepository).findById(report.getId());
-        verify(reportRepository).save(any(Report.class));
-        verify(dataMapper).map(report, ReportResponse.class);
+        verify(reportRepository, times(1)).findById(report.getId());
+        verify(reportRepository, times(1)).save(any(Report.class));
+        verify(dataMapper, times(1)).map(report, ReportResponse.class);
     }
 
     @Test
@@ -255,7 +257,7 @@ class ReportServiceImplTest {
         when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.findById(report.getId()));
 
         assertThrows(NotFoundException.class, () -> reportService.updateReportStatus("1", 3));
-        verify(reportRepository).findById(report.getId());
+        verify(reportRepository, times(1)).findById(report.getId());
     }
 
     @Test
@@ -270,7 +272,7 @@ class ReportServiceImplTest {
         assertNotNull(result);
         assertEquals(1, result.getTotalElements());
         assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError).run((CatchError.SafeFunction<Object>) any());
+        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
     }
 
     @Test
@@ -285,7 +287,7 @@ class ReportServiceImplTest {
         assertNotNull(result);
         assertEquals(1, result.getTotalElements());
         assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError).run((CatchError.SafeFunction<Object>) any());
+        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
     }
 
     @Test
@@ -300,7 +302,7 @@ class ReportServiceImplTest {
         assertNotNull(result);
         assertEquals(1, result.getTotalElements());
         assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError).run((CatchError.SafeFunction<Object>) any());
+        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
     }
 
     @Test
@@ -315,7 +317,7 @@ class ReportServiceImplTest {
         assertNotNull(result);
         assertEquals(1, result.getTotalElements());
         assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError).run((CatchError.SafeFunction<Object>) any());
+        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
     }
 
 }
