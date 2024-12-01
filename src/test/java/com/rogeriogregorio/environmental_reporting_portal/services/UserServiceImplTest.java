@@ -91,15 +91,16 @@ class UserServiceImplTest {
     @Test
     @DisplayName("findAllUsers - Busca bem-sucedida retorna lista de usuários")
     void shouldFindAllUsers() {
+        UserResponse expectedResponse = userResponse;
         Page<User> userPage = new PageImpl<>(List.of(user));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenReturn(userPage);
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenReturn(userPage);
         when(dataMapper.map(any(User.class), eq(UserResponse.class))).thenReturn(userResponse);
 
-        Page<UserResponse> result = userService.findAllUsers(Pageable.unpaged());
+        Page<UserResponse> actualResponse = userService.findAllUsers(Pageable.unpaged());
 
-        assertNotNull(result);
-        assertEquals(1, result.getTotalElements());
-        assertEquals(userResponse, result.getContent().get(0));
+        assertNotNull(actualResponse, "User should not be null");
+        assertEquals(1, actualResponse.getTotalElements());
+        assertEquals(expectedResponse, actualResponse.getContent().get(0));
         verify(catchError).run((CatchError.SafeFunction<Object>) any());
     }
 

@@ -103,25 +103,26 @@ class ReportServiceImplTest {
     }
 
     @Test
-    @DisplayName("findAllReports - Busca bem-sucedida retorna lista de relatórios")
+    @DisplayName("findAllReports - Busca bem-sucedida retorna lista de denúncias")
     void shouldFindAllReports() {
         // Arrange
+        ReportResponse expectedResponse = reportResponse;
         Page<Report> reportPage = new PageImpl<>(List.of(report));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenReturn(reportPage);
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenReturn(reportPage);
         when(dataMapper.map(any(Report.class), eq(ReportResponse.class))).thenReturn(reportResponse);
 
         // Act
-        Page<ReportResponse> result = reportService.findAllReports(Pageable.unpaged());
+        Page<ReportResponse> actualResponse = reportService.findAllReports(Pageable.unpaged());
 
         // Assert
-        assertNotNull(result);
-        assertEquals(1, result.getTotalElements());
-        assertEquals(reportResponse, result.getContent().get(0));
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(1, actualResponse.getTotalElements());
+        assertEquals(expectedResponse, actualResponse.getContent().get(0));
         verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
     }
 
     @Test
-    @DisplayName("createReport - Criação bem-sucedida retorna relatório")
+    @DisplayName("createReport - Criação bem-sucedida retorna denúncia")
     void shouldCreateReport() {
         // Arrange
         ReportResponse expectedResponse = reportResponse;
@@ -129,7 +130,7 @@ class ReportServiceImplTest {
         when(userService.getUserIfExists(reportRequest.getAuthorId())).thenReturn(author);
         when(fileStorage.saveFilesAndGetUrls(reportRequest.getImages())).thenReturn(report.getImageURLs());
         when(reportRepository.save(any(Report.class))).thenReturn(report);
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.save(report));
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> reportRepository.save(report));
         when(dataMapper.map(report, ReportResponse.class)).thenReturn(reportResponse);
 
         // Act
@@ -145,19 +146,20 @@ class ReportServiceImplTest {
     }
 
     @Test
-    @DisplayName("findReportById - Retorna relatório pelo ID")
+    @DisplayName("findReportById - Retorna denúncia pelo ID")
     void shouldFindReportById() {
         // Arrange
+        ReportResponse expectedResponse = reportResponse;
         when(reportRepository.findById(report.getId())).thenReturn(Optional.of(report));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.findById(report.getId()));
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> reportRepository.findById(report.getId()));
         when(dataMapper.map(report, ReportResponse.class)).thenReturn(reportResponse);
 
         // Act
         ReportResponse actualResponse = reportService.findReportById(report.getId());
 
         // Assert
-        assertNotNull(actualResponse);
-        assertEquals(reportResponse, actualResponse);
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(expectedResponse, actualResponse, "Expected and actual responses should be equal");
         verify(reportRepository, times(1)).findById(report.getId());
     }
 
@@ -166,7 +168,7 @@ class ReportServiceImplTest {
     void shouldThrowExceptionWhenReportNotFound() {
         // Arrange
         when(reportRepository.findById(report.getId())).thenReturn(Optional.empty());
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.findById("1"));
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> reportRepository.findById("1"));
 
         // Act and Assert
         assertThrows(NotFoundException.class, () -> reportService.findReportById("1"));
@@ -174,7 +176,7 @@ class ReportServiceImplTest {
     }
 
     @Test
-    @DisplayName("deleteReport - Exclui relatório com sucesso")
+    @DisplayName("deleteReport - Exclui denúncia com sucesso")
     void shouldDeleteReport() throws IOException {
         // Arrange
         when(reportRepository.findById(report.getId())).thenReturn(Optional.of(report));
@@ -197,9 +199,10 @@ class ReportServiceImplTest {
     }
 
     @Test
-    @DisplayName("updateReport - Atualiza relatório com sucesso")
+    @DisplayName("updateReport - Atualiza denúncia com sucesso")
     void shouldUpdateReport() {
-
+        // Arrange
+        ReportResponse expectedResponse = reportResponse;
         when(reportRepository.findById(report.getId())).thenReturn(Optional.of(report));
         when(reportRepository.save(any(Report.class))).thenReturn(report);
         when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> {
@@ -208,10 +211,12 @@ class ReportServiceImplTest {
         });
         when(dataMapper.map(report, ReportResponse.class)).thenReturn(reportResponse);
 
+        // Act
         ReportResponse actualResponse = reportService.updateReport(report.getId(), reportRequest);
 
-        assertNotNull(actualResponse);
-        assertEquals(reportResponse, actualResponse);
+        // Asserts
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(expectedResponse, actualResponse, "Expected and actual responses should be equal");
         verify(reportRepository, times(1)).findById(report.getId());
         verify(reportRepository, times(1)).save(any(Report.class));
         verify(dataMapper, times(1)).map(report, ReportResponse.class);
@@ -219,20 +224,21 @@ class ReportServiceImplTest {
     }
 
     @Test
-    @DisplayName("updateReport - Lança exceção para relatório inexistente")
+    @DisplayName("updateReport - Lança exceção para denúncia inexistente")
     void shouldThrowExceptionWhenUpdatingNonExistingReport() {
         when(reportRepository.findById(report.getId())).thenReturn(Optional.empty());
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.findById(report.getId()));
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> reportRepository.findById(report.getId()));
 
         assertThrows(NotFoundException.class, () -> reportService.updateReport("1", reportRequest));
         verify(reportRepository, times(1)).findById(report.getId());
     }
 
     @Test
-    @DisplayName("updateReportStatus - Atualiza status do relatório com sucesso")
+    @DisplayName("updateReportStatus - Atualiza status da denúncia com sucesso")
     void shouldUpdateReportStatus() {
+        // Arrange
         Integer newStatus = ReportStatus.VERIFIED.getCode();
-
+        ReportResponse expectedResponse = reportResponse;
         when(reportRepository.findById(report.getId())).thenReturn(Optional.of(report));
         when(reportRepository.save(any(Report.class))).thenReturn(report);
         when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> {
@@ -241,83 +247,101 @@ class ReportServiceImplTest {
         });
         when(dataMapper.map(report, ReportResponse.class)).thenReturn(reportResponse);
 
+        // Act
         ReportResponse actualResponse = reportService.updateReportStatus(report.getId(), newStatus);
 
-        assertNotNull(actualResponse, "A resposta não deve ser nula");
-        assertEquals(reportResponse, actualResponse, "A resposta deve ser igual à esperada");
+        // Asserts
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(expectedResponse, actualResponse, "Expected and actual responses should be equal");
         verify(reportRepository, times(1)).findById(report.getId());
         verify(reportRepository, times(1)).save(any(Report.class));
         verify(dataMapper, times(1)).map(report, ReportResponse.class);
     }
 
     @Test
-    @DisplayName("updateReportStatus - Lança exceção para relatório inexistente")
+    @DisplayName("updateReportStatus - Lança exceção para denúncia inexistente")
     void shouldThrowExceptionWhenUpdatingStatusOfNonExistingReport() {
         when(reportRepository.findById(report.getId())).thenReturn(Optional.empty());
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenAnswer(invocation -> reportRepository.findById(report.getId()));
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> reportRepository.findById(report.getId()));
 
         assertThrows(NotFoundException.class, () -> reportService.updateReportStatus("1", 3));
         verify(reportRepository, times(1)).findById(report.getId());
     }
 
     @Test
-    @DisplayName("findReportsByAuthorId - Retorna relatórios de um autor")
+    @DisplayName("findReportsByAuthorId - Retorna denúncia de um autor")
     void shouldFindReportsByAuthorId() {
+        // Arrange
+        ReportResponse expectedResponse = reportResponse;
         Page<Report> reportPage = new PageImpl<>(List.of(report));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenReturn(reportPage);
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenReturn(reportPage);
         when(dataMapper.map(any(Report.class), eq(ReportResponse.class))).thenReturn(reportResponse);
 
-        Page<ReportResponse> result = reportService.findReportsByAuthorId(author.getId(), Pageable.unpaged());
+        // Act
+        Page<ReportResponse> actualResponse = reportService.findReportsByAuthorId(author.getId(), Pageable.unpaged());
 
-        assertNotNull(result);
-        assertEquals(1, result.getTotalElements());
-        assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
+        // Asserts
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(1, actualResponse.getTotalElements());
+        assertEquals(expectedResponse, actualResponse.getContent().get(0));
+        verify(catchError, times(1)).run(any(CatchError.SafeFunction.class));
     }
 
     @Test
-    @DisplayName("findReportsBySeverityLevel - Retorna relatórios por nível de severidade")
+    @DisplayName("findReportsBySeverityLevel - Retorna denúncia por nível de severidade")
     void shouldFindReportsBySeverityLevel() {
+        // Arrange
+        ReportResponse expectedResponse = reportResponse;
         Page<Report> reportPage = new PageImpl<>(List.of(report));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenReturn(reportPage);
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenReturn(reportPage);
         when(dataMapper.map(any(Report.class), eq(ReportResponse.class))).thenReturn(reportResponse);
 
-        Page<ReportResponse> result = reportService.findReportsBySeverityLevel(report.getSeverityLevel().getCode(), Pageable.unpaged());
+        // Act
+        Page<ReportResponse> actualResponse = reportService.findReportsBySeverityLevel(report.getSeverityLevel().getCode(), Pageable.unpaged());
 
-        assertNotNull(result);
-        assertEquals(1, result.getTotalElements());
-        assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
+        // Asserts
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(1, actualResponse.getTotalElements());
+        assertEquals(expectedResponse, actualResponse.getContent().get(0));
+        verify(catchError, times(1)).run(any(CatchError.SafeFunction.class));
     }
 
     @Test
-    @DisplayName("findReportsByReportType - Retorna relatórios por tipo")
+    @DisplayName("findReportsByReportType - Retorna denúncia por tipo")
     void shouldFindReportsByReportType() {
+        // Arrange
+        ReportResponse expectedResponse = reportResponse;
         Page<Report> reportPage = new PageImpl<>(List.of(report));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenReturn(reportPage);
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenReturn(reportPage);
         when(dataMapper.map(any(Report.class), eq(ReportResponse.class))).thenReturn(reportResponse);
 
-        Page<ReportResponse> result = reportService.findReportsByReportType(report.getReportType().getCode(), Pageable.unpaged());
+        // Act
+        Page<ReportResponse> actualResponse = reportService.findReportsByReportType(report.getReportType().getCode(), Pageable.unpaged());
 
-        assertNotNull(result);
-        assertEquals(1, result.getTotalElements());
-        assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
+        // Asserts
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(1, actualResponse.getTotalElements());
+        assertEquals(expectedResponse, actualResponse.getContent().get(0));
+        verify(catchError, times(1)).run(any(CatchError.SafeFunction.class));
     }
 
     @Test
-    @DisplayName("findReportsByReportStatus - Retorna relatórios por status")
+    @DisplayName("findReportsByReportStatus - Retorna denúncia por status")
     void shouldFindReportsByReportStatus() {
+        // Arrange
+        ReportResponse expectedResponse = reportResponse;
         Page<Report> reportPage = new PageImpl<>(List.of(report));
-        when(catchError.run((CatchError.SafeFunction<Object>) any())).thenReturn(reportPage);
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenReturn(reportPage);
         when(dataMapper.map(any(Report.class), eq(ReportResponse.class))).thenReturn(reportResponse);
 
-        Page<ReportResponse> result = reportService.findReportsByReportStatus(report.getReportStatus().getCode(), Pageable.unpaged());
+        // Act
+        Page<ReportResponse> actualResponse = reportService.findReportsByReportStatus(report.getReportStatus().getCode(), Pageable.unpaged());
 
-        assertNotNull(result);
-        assertEquals(1, result.getTotalElements());
-        assertEquals(reportResponse, result.getContent().get(0));
-        verify(catchError, times(1)).run((CatchError.SafeFunction<Object>) any());
+        // Assert
+        assertNotNull(actualResponse, "Report should not be null");
+        assertEquals(1, actualResponse.getTotalElements());
+        assertEquals(expectedResponse, actualResponse.getContent().get(0));
+        verify(catchError, times(1)).run(any(CatchError.SafeFunction.class));
     }
 
 }
