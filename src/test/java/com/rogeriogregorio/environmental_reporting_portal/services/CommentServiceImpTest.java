@@ -21,6 +21,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,7 +73,7 @@ class CommentServiceImplTest {
                 .withId("1")
                 .withAuthor(author)
                 .withDescription("Test Report")
-                .withComments(List.of())
+                .withComments(new ArrayList<>())
                 .withTimestamp(Instant.now())
                 .build();
 
@@ -120,7 +121,6 @@ class CommentServiceImplTest {
     @DisplayName("createComment - Criação de comentário bem-sucedida")
     void shouldCreateComment() {
         // Arrange
-        report = mock(Report.class);
         CommentResponse expectedResponse = commentResponse;
         when(userService.getUserIfExists(commentRequest.getAuthorId())).thenReturn(author);
         when(reportService.getReportIfExists(commentRequest.getReportId())).thenReturn(report);
@@ -186,6 +186,10 @@ class CommentServiceImplTest {
         when(commentRepository.findById(comment.getId())).thenReturn(Optional.of(comment));
         when(reportService.getReportIfExists(report.getId())).thenReturn(report);
         when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> Optional.of(comment));
+        doAnswer(invocation -> {
+            commentRepository.delete(comment);
+            return null;
+        }).when(catchError).run(any(CatchError.SafeProcedure.class));
         doNothing().when(commentRepository).delete(comment);
         when(reportRepository.save(report)).thenReturn(report);
 
