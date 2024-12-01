@@ -24,7 +24,7 @@ public class ReportResponse implements Serializable {
     private Integer severityLevel;
     private Integer reportType;
     private Integer reportStatus;
-    private Instant timeStamp;
+    private Instant timestamp;
     private List<String> imageURLs = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class ReportResponse implements Serializable {
         severityLevel = builder.severityLevel;
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
-        setTimeStamp(builder.timeStamp);
+        setTimestamp(builder.timestamp);
         setImageURLs(builder.imageURLs);
         setComments(builder.comments);
     }
@@ -116,12 +116,12 @@ public class ReportResponse implements Serializable {
         this.reportStatus = reportStatus.getCode();
     }
 
-    public Instant getTimeStamp() {
-        return timeStamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(Instant timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
     public List<String> getImageURLs() {
@@ -151,7 +151,7 @@ public class ReportResponse implements Serializable {
                 .withSeverityLevel(this.severityLevel)
                 .withReportType(this.reportType)
                 .withReportStatus(this.reportStatus)
-                .withTimeStamp(this.timeStamp)
+                .withTimestamp(this.timestamp)
                 .withImageURLs(this.imageURLs)
                 .withComments(this.comments);
     }
@@ -164,7 +164,7 @@ public class ReportResponse implements Serializable {
         private Integer severityLevel;
         private Integer reportType;
         private Integer reportStatus;
-        private Instant timeStamp;
+        private Instant timestamp;
         private List<String> imageURLs;
         private List<Comment> comments;
 
@@ -206,8 +206,8 @@ public class ReportResponse implements Serializable {
             return this;
         }
 
-        public Builder withTimeStamp(Instant timeStamp) {
-            this.timeStamp = timeStamp;
+        public Builder withTimestamp(Instant timestamp) {
+            this.timestamp = timestamp;
             return this;
         }
 

@@ -79,7 +79,7 @@ class ReportServiceImplTest {
                 .withSeverityLevel(3)
                 .withReportType(1)
                 .withReportStatus(ReportStatus.PENDING.getCode())
-                .withTimeStamp(Instant.now())
+                .withTimestamp(Instant.now())
                 .build();
 
         reportRequest = ReportRequest.newBuilder()
@@ -126,7 +126,6 @@ class ReportServiceImplTest {
     void shouldCreateReport() {
         // Arrange
         ReportResponse expectedResponse = reportResponse;
-
         when(userService.getUserIfExists(reportRequest.getAuthorId())).thenReturn(author);
         when(fileStorage.saveFilesAndGetUrls(reportRequest.getImages())).thenReturn(report.getImageURLs());
         when(reportRepository.save(any(Report.class))).thenReturn(report);

@@ -43,7 +43,7 @@ public class Report implements Serializable {
     @NotNull(message = "The report status cannot be null.")
     private Integer reportStatus;
 
-    private Instant timeStamp;
+    private Instant timestamp;
 
     @NotNull(message = "The image URLs cannot be null.")
     private List<String> imageURLs = new ArrayList<>();
@@ -62,7 +62,7 @@ public class Report implements Serializable {
         severityLevel = builder.severityLevel;
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
-        setTimeStamp(builder.timeStamp);
+        setTimestamp(builder.timestamp);
         setImageURLs(builder.imageURLs);
         setComments(builder.comments);
     }
@@ -139,12 +139,12 @@ public class Report implements Serializable {
         this.reportStatus = reportStatus.getCode();
     }
 
-    public Instant getTimeStamp() {
-        return timeStamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(Instant timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
     public List<String> getImageURLs() {
@@ -173,7 +173,7 @@ public class Report implements Serializable {
                 .withSeverityLevel(this.severityLevel)
                 .withReportType(this.reportStatus)
                 .withReportStatus(this.reportStatus)
-                .withTimeStamp(this.timeStamp)
+                .withTimestamp(this.timestamp)
                 .withImageURLs(this.imageURLs)
                 .withComments(this.comments);
     }
@@ -186,7 +186,7 @@ public class Report implements Serializable {
         private Integer severityLevel;
         private Integer reportType;
         private Integer reportStatus;
-        private Instant timeStamp;
+        private Instant timestamp;
         private List<String> imageURLs;
         private List<Comment> comments;
 
@@ -228,8 +228,8 @@ public class Report implements Serializable {
             return this;
         }
 
-        public Builder withTimeStamp(Instant timeStamp) {
-            this.timeStamp = timeStamp;
+        public Builder withTimestamp(Instant timestamp) {
+            this.timestamp = timestamp;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class Report implements Serializable {
                 ", severityLevel=" + severityLevel +
                 ", reportType=" + reportType +
                 ", reportStatus=" + reportStatus +
-                ", timeStamp=" + timeStamp +
+                ", timestamp=" + timestamp +
                 ", imageURLs=" + imageURLs +
                 ", comments=" + comments +
                 '}';

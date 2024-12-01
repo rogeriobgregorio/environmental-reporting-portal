@@ -22,7 +22,7 @@ public class ReportRequest implements Serializable {
     private Integer severityLevel;
     private Integer reportType;
     private Integer reportStatus;
-    private Instant timeStamp;
+    private Instant timestamp;
     private transient List<MultipartFile> images = new ArrayList<>();
 
     public ReportRequest() {
@@ -35,7 +35,7 @@ public class ReportRequest implements Serializable {
         severityLevel = builder.severityLevel;
         reportType = builder.reportType;
         reportStatus = builder.reportStatus;
-        setTimeStamp(builder.timeStamp);
+        setTimestamp(builder.timestamp);
         setImages(builder.images);
     }
 
@@ -103,12 +103,12 @@ public class ReportRequest implements Serializable {
         this.reportStatus = reportStatus.getCode();
     }
 
-    public Instant getTimeStamp() {
-        return timeStamp;
+    public Instant getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(Instant timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
     public List<MultipartFile> getImages() {
@@ -128,7 +128,7 @@ public class ReportRequest implements Serializable {
                 .withSeverityLevel(this.severityLevel)
                 .withReportType(this.reportType)
                 .withReportStatus(this.reportStatus)
-                .withTimeStamp(this.timeStamp)
+                .withTimestamp(this.timestamp)
                 .withImages(this.images);
     }
 
@@ -140,7 +140,7 @@ public class ReportRequest implements Serializable {
         private Integer severityLevel;
         private Integer reportType;
         private Integer reportStatus;
-        private Instant timeStamp;
+        private Instant timestamp;
         private List<MultipartFile> images;
 
         private Builder() {
@@ -176,8 +176,8 @@ public class ReportRequest implements Serializable {
             return this;
         }
 
-        public Builder withTimeStamp(Instant timeStamp) {
-            this.timeStamp = timeStamp;
+        public Builder withTimestamp(Instant timeStamp) {
+            this.timestamp = timeStamp;
             return this;
         }
 

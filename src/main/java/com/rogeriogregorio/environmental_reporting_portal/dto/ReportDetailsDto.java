@@ -28,7 +28,7 @@ public class ReportDetailsDto implements Serializable {
         this.severityLevel = report.getSeverityLevel().toString();
         this.reportType = report.getReportType().toString();
         this.reportStatus = report.getReportStatus().toString();
-        this.timeStamp = report.getTimeStamp().toString();
+        this.timeStamp = report.getTimestamp().toString();
     }
 
     public String getAuthor() {

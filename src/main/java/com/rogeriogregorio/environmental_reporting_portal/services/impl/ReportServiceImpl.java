@@ -69,7 +69,7 @@ public class ReportServiceImpl implements ReportService {
                 .withSeverityLevel(reportRequest.getSeverityLevel().getCode())
                 .withReportType(reportRequest.getReportType().getCode())
                 .withReportStatus(ReportStatus.PENDING.getCode())
-                .withTimeStamp(Instant.now())
+                .withTimestamp(Instant.now())
                 .build();
 
         Report reportSaved = catchError.run(() -> reportRepository.save(report));
