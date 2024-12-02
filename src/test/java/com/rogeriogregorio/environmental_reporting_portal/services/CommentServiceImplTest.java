@@ -5,6 +5,7 @@ import com.rogeriogregorio.environmental_reporting_portal.dto.response.CommentRe
 import com.rogeriogregorio.environmental_reporting_portal.entities.Comment;
 import com.rogeriogregorio.environmental_reporting_portal.entities.Report;
 import com.rogeriogregorio.environmental_reporting_portal.entities.User;
+import com.rogeriogregorio.environmental_reporting_portal.exceptions.NotFoundException;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.CommentRepository;
 import com.rogeriogregorio.environmental_reporting_portal.repositories.ReportRepository;
 import com.rogeriogregorio.environmental_reporting_portal.services.impl.CommentServiceImpl;
@@ -177,6 +178,20 @@ class CommentServiceImplTest {
         assertNotNull(actualResponse, "Comment should not be null");
         assertEquals(expectedResponse, actualResponse, "Expected and actual responses should be equal");
         verify(commentRepository, times(1)).findById(comment.getId());
+    }
+
+    @Test
+    @DisplayName("findCommentById - Exceção ao tentar buscar comentário inexistente")
+    void shouldThrowExceptionWhenCommentNotFoundById() {
+        // Arrange
+        when(commentRepository.findById(comment.getId())).thenReturn(Optional.empty());
+        when(catchError.run(any(CatchError.SafeFunction.class))).thenAnswer(invocation -> commentRepository.findById(comment.getId()));
+
+        // Act and Assert
+        assertThrows(NotFoundException.class, () -> commentService.findCommentById("1"),
+                "Expected NotFoundException to be thrown");
+        verify(commentRepository, times(1)).findById("1");
+        verify(catchError, times(1)).run(any(CatchError.SafeFunction.class));
     }
 
     @Test
