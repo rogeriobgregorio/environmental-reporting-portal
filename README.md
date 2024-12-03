@@ -10,7 +10,7 @@ Utiliza tecnologias como MongoDB, JWT, JUnit, Mockito e log4j2 para garantir a q
 #### Assista ao vídeo demonstrativo: https://youtu.be/aoaOdXzpXEY
 O Environmental Reporting Portal foi utilizado para o funcionamento do projeto **ECOAR** (Espaço de Concientização e Ação
 Ambiental Responsável). O sistema será apresentado na **7º Engetec – Encontro de Gestão e Tecnologia**, um evento científico 
-organizado e sediado pela **FATEC Zona Leste** (Faculdade de Tecnologia da Zona Leste):
+organizado e sediado pela **FATEC Zona Leste** (Faculdade de Tecnologia da Zona Leste)
 
 ![ecoar-gif](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/ECOAR.gif)
 
