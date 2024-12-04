@@ -20,6 +20,7 @@ class AboutComponent extends HTMLElement {
             sobre práticas sustentáveis, leis ambientais e mudanças climáticas, com o objetivo de conscientizar a 
             população sobre a importância da preservação ambiental.
           </p>
+
         </div>
 
         <div class="icon-section">
@@ -42,6 +43,18 @@ class AboutComponent extends HTMLElement {
             <p>Ética, transparência, responsabilidade ambiental e a importância da colaboração entre comunidades e instituições.</p>
           </div>
 
+        </div>
+
+        <div>
+
+          <h3>Alinhamento com os ODS</h3>
+
+          <p>
+            O ECOAR contribui de forma significativa para os seguintes Objetivos de Desenvolvimento Sustentável: 
+            ODS 11 – Cidades e Comunidades Sustentáveis, ao fornecer uma plataforma para o monitoramento de problemas ambientais urbanos; 
+            ODS 13 – Ação Contra a Mudança Global do Clima, ao incentivar a denúncia de práticas que contribuem para a degradação ambiental 
+            e promovem a mitigação de seus impactos; e ODS 15 – Vida Terrestre, ao apoiar a proteção de ecossistemas ameaçados pelo homem.
+          </p>
         </div>
 
       </section>
