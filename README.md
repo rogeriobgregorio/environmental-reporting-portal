@@ -31,17 +31,10 @@ segurança e gestão eficaz das denúncias.
 - Relatórios gráficos para acompanhamento de estatísticas.
 
 ## Modelo Conceitual
-
 **Diagrama Entidade-Relacionamento**
 ![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/documentation/diagram-der.png)
 
-## Diagrama UML
-
-**Diagrama de Casos de Uso**
-![diagram-dcu](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/documentation/DCU.pdf)
-
 ## Stack utilizada
-
 **Back-end:**
 - Java 17
 - Spring Boot
@@ -62,13 +55,11 @@ segurança e gestão eficaz das denúncias.
 - MongoDB Compass
 
 ## Documentação
-
 [Documentação da API](http://localhost:8080/api/v1/swagger-ui/index.html#):
 a documentação completa da API pode ser acessada localmente ao executar a aplicação e visitar http://localhost:8080/api/v1/swagger-ui/index.html#. 
 Esta interface interativa, gerada pelo Swagger, fornece detalhes sobre cada endpoint, parâmetros de solicitação, respostas esperadas e exemplos práticos de uso.
 
 ## Rodando localmente
-
 Siga as etapas abaixo para configurar e executar o projeto Java com Spring localmente:
 
 1. Certifique-se de ter o Java 17 JDK instalado. Caso não tenha, faça o download e a instalação a partir do site oficial da [Oracle](https://oracle.com/).
@@ -101,7 +92,6 @@ A interface para consumir a API esta localizada na pasta "front-end".
 
 
 ## Referência
-
 - [Spring Framework](https://spring.io/):
 consulte a documentação oficial do Spring Framework para obter informações detalhadas sobre o framework utilizado no backend. 
 Esta referência abrange conceitos fundamentais, configurações avançadas e as melhores práticas recomendadas pela comunidade Spring.
@@ -114,7 +104,6 @@ devido à sua simplicidade de uso e ao fato de ser baseada em HTML5 canvas, o qu
   o Swagger é integrado à API para facilitar a compreensão e interação. Obtenha mais informações sobre o Swagger em https://swagger.io/.
 
 ## Autor
-
 #### Rogério Bernardo Gregório
 - Linkedin: [linkedin.com/in/rogeriogregorio](https://linkedin.com/in/rogeriogregorio)
 - Email: [bernardo.rogerio93@gmail.com](mailto:bernardo.rogerio93@gmail.com)
