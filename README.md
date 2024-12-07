@@ -38,7 +38,7 @@ segurança e gestão eficaz das denúncias.
 ## Diagrama UML
 
 **Diagrama de Casos de Uso**
-![diagram-dcu](https://github.com/rogeriobgregorio/environmental-reporting-portal/blob/main/documentation/DCU.pdf)
+![diagram-dcu](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/documentation/DCU.pdf)
 
 ## Stack utilizada
 
