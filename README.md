@@ -12,7 +12,7 @@ O Environmental Reporting Portal foi utilizado para o funcionamento do projeto *
 Ambiental Responsável). O sistema será apresentado na **7º Engetec – Encontro de Gestão e Tecnologia**, um evento científico 
 organizado e sediado pela **FATEC Zona Leste** (Faculdade de Tecnologia da Zona Leste)
 
-![ecoar-gif](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/ECOAR.gif)
+![ecoar-gif](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/documentation/ECOAR.gif)
 
 
 ## Problema a ser resolvido:
@@ -33,7 +33,12 @@ segurança e gestão eficaz das denúncias.
 ## Modelo Conceitual
 
 **Diagrama Entidade-Relacionamento**
-![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/screenshots/diagram-der.png)
+![diagram-der](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/documentation/diagram-der.png)
+
+## Diagrama UML
+
+**Diagrama de Casos de Uso**
+![diagram-dcu](https://github.com/rogeriobgregorio/environmental-reporting-portal/raw/main/documentation/DCU.png)
 
 ## Stack utilizada
 
