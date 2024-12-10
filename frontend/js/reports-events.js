@@ -102,7 +102,7 @@ export function renderReportCard(report, role) {
         <i class="fa-solid fa-circle-user profile-icon"></i>
         <h3>${report.author.name}</h3>
         <span class="timestamp">${new Date(
-          report.timeStamp
+          report.timestamp
         ).toLocaleString()}</span>
         <div class="action-icons">
           ${editIcon}
