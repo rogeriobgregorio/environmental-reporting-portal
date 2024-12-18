@@ -1,9 +1,10 @@
 # Environmental Reporting Portal
 [![Status](https://img.shields.io/badge/Status-Concluído-brightgreen.svg)](https://github.com/seu-usuario/seu-projeto)
 
-O **Environmental Reporting Portal** é uma Aplicação Web robusta, para um Portal de Denúncias Ambientais, que permite 
-reportar situações que prejudicam o meio ambiente. Construída em Java e Ecossistema Spring, prioriza código limpo e implementação 
-de princípios SOLID, além de Design Patterns para criar um software flexível, escalável e de fácil manutenção.
+O **Environmental Reporting Portal** é uma Aplicação Web robusta (API REST + Interface), para um Portal de Denúncias Ambientais, que permite 
+reportar situações que prejudicam o meio ambiente. Sua API REST construída em Java e Ecossistema Spring, prioriza código limpo e implementação 
+de princípios SOLID, além de Design Patterns para criar um software flexível, escalável e de fácil manutenção. A interface feita com HTML, CSS 
+e Javascript é amigável e intuitiva para proporcionar maior usabilidade ao usuário.
 Utiliza tecnologias como MongoDB, JWT, JUnit, Mockito e log4j2 para garantir a qualidade e eficiência do sistema.
 
 ## Demonstração
